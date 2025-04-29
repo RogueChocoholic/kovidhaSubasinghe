@@ -5,6 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kovidha Subasinghe | Software Engineer</title>
+
+    <meta name="title" content="Kovidha Subasinghe | Portfolio">
+    <meta name="description" content="This is my portfolio. Includes all my projects, CV, and personal details.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kovidha-subasinghe.vercel.app/">
+    <meta property="og:title" content="Kovidha Subasinghe | Portfolio">
+    <meta property="og:description" content="This is my portfolio. Includes all my projects, CV, and personal details.">
+    <meta property="og:image" content="./resources/img/heroImg.jpg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://kovidha-subasinghe.vercel.app/">
+    <meta name="twitter:title" content="Kovidha Subasinghe | Portfolio">
+    <meta name="twitter:description"
+        content="This is my portfolio. Includes all my projects, CV, and personal details.">
+    <meta name="twitter:image" content="./resources/img/heroImg.jpg">
+
+
+    <!-- Additional Meta -->
+    <meta name="author" content="Kovidha Subasinghe">
+    <meta name="keywords"
+        content="Kovidha Subasinghe, kovi, kovidha, roguechocholic, portfolio, web developer, projects, CV">
+    <!-- favicon -->
+    <link rel="icon" href="./resources/img/favicon.ico" type="image/x-icon">
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- AOS Animation Library -->
@@ -17,6 +43,26 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Kovidha Subasinghe",
+              "url": "https://kovidha-subasinghe.vercel.app/",
+              "image": "./resources/img/heroImg.jpg",
+              "sameAs": [
+                "https://github.com/RogueChocoholic",
+                "https://www.linkedin.com/in/kovidha-subasinghe/"
+              ],
+              "jobTitle": "Web Developer",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "Freelance"
+              },
+              "description": "This is my personal portfolio including my projects, CV, and more.",
+              "email": "mailto:kovidhasubasinghe@gmail.com"
+            }
+            </script>
 
     <script>
         tailwind.config = {
@@ -332,7 +378,7 @@
     <header class="fixed w-full bg-white bg-opacity-90 backdrop-blur-sm shadow-sm z-50">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold font-playfair">
+                <a href="index.html" class="text-2xl font-bold font-playfair">
                     <span class="text-indigo-700">Kovidha</span><span class="text-indigo-500">.Subasinghe</span>
                 </a>
 
@@ -650,19 +696,19 @@
                     <div class="mt-10">
                         <h3 class="text-xl font-semibold mb-4 font-playfair">Follow Me</h3>
                         <div class="flex space-x-4">
-                            <a href="#"
+                            <a href="https://x.com/devChocoholic"
                                 class="social-icon w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
-                                <i class="fab fa-twitter"></i>
+                                <i class="fab fa-x-twitter"></i>
                             </a>
-                            <a href="#"
+                            <a href="https://www.instagram.com/_k_o_v_i_"
                                 class="social-icon w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#"
+                            <!-- <a href="#"
                                 class="social-icon w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
                                 <i class="fab fa-dribbble"></i>
-                            </a>
-                            <a href="#"
+                            </a> -->
+                            <a href="https://www.behance.net/kovidhasubasinghe"
                                 class="social-icon w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
                                 <i class="fab fa-behance"></i>
                             </a>
@@ -720,16 +766,17 @@
     <!-- Footer -->
     <footer class="py-10 bg-gradient text-white">
         <div class="container mx-auto px-6 text-center">
-            <p>© <span id="current-year"></span> Alex.dev. All rights reserved.</p>
+            <p>© <span id="current-year"></span> Kovidha Subasinghe. All rights reserved.</p>
             <div class="flex justify-center space-x-4 mt-4">
-                <a href="#" class="text-indigo-300 hover:text-white transition-colors">
+                <a href="https://github.com/RogueChocoholic" class="text-indigo-300 hover:text-white transition-colors">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="#" class="text-indigo-300 hover:text-white transition-colors">
+                <a href="https://www.linkedin.com/in/kovidha-subasinghe/"
+                    class="text-indigo-300 hover:text-white transition-colors">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="#" class="text-indigo-300 hover:text-white transition-colors">
-                    <i class="fab fa-twitter"></i>
+                <a href="https://x.com/devChocoholic" class="text-indigo-300 hover:text-white transition-colors">
+                    <i class="fab fa-x-twitter"></i>
                 </a>
             </div>
         </div>
