@@ -1,0 +1,326 @@
+{
+    "projects": [
+        {
+            "id": "pjbiologyLMS",
+            "title": "PJBiology – Learning Management System",
+            "short_description": "LMS for a biology tuition class with live classes, video access, and student performance tracking.",
+            "full_description": "Developed a full-featured Learning Management System for PJBiology, enabling students to purchase packages, attend live sessions, access recorded content, and track their academic performance. The teacher manages the entire system through a powerful admin dashboard with payment processing, class scheduling, paper grading, and more.",
+            "image": "./resources/pjbiology/pjbiologySS (1).png",
+            "gallery": [
+                {
+                    "alt": "PelicanMall Home Page",
+                    "src": "./resources/pjbiology/pjbiologySS (1).png"
+                },
+                {
+                    "alt": "PelicanMall Home Page",
+                    "src": "./resources/pjbiology/pjbiologySS (2).png"
+                },
+                {
+                    "alt": "PelicanMall Home Page",
+                    "src": "./resources/pjbiology/pjbiologySS (3).png"
+                },
+                {
+                    "alt": "PelicanMall Home Page",
+                    "src": "./resources/pjbiology/pjbiologySS (4).png"
+                },
+                {
+                    "alt": "PelicanMall Home Page",
+                    "src": "./resources/pjbiology/pjbiologySS (5).png"
+                },
+                {
+                    "alt": "PelicanMall Home Page",
+                    "src": "./resources/pjbiology/pjbiologySS (6).png"
+                },
+                {
+                    "alt": "PelicanMall Home Page",
+                    "src": "./resources/pjbiology/pjbiologySS (7).png"
+                }
+            ],
+            "client": {
+                "type": "Client Project",
+                "name": "PJBiology",
+                "industry": "Education / Private Tuition",
+                "location": "Sri Lanka"
+            },
+            "timeline": "January – March 2025",
+            "role": "Full-Stack Developer",
+            "project_overview": [
+                "Built for a well-known Sri Lankan biology tutor, PJBiology offers an all-in-one platform for online class delivery, payment handling, paper submission, and performance analytics. It supports both scheduled classes and flexible recorded viewing tied to each package purchase."
+            ],
+            "challenge": {
+                "title_change": "Key Features & Technical Challenges",
+                "paragraphs": [],
+                "points": [
+                    "Live and recorded class handling tied to package duration (40–60 days).",
+                    "Payment integration with PayHere and slip submission support.",
+                    "Advanced admin panel with class, package, student, and paper management.",
+                    "Custom logic for 'Paper Classes' with student-selected time slots."
+                ]
+            },
+            "technologies_used": {
+                "tech_stack": [
+                    "HTML",
+                    "JavaScript",
+                    "PHP",
+                    "Bootstrap",
+                    "GSAP"
+                ],
+                "description": "Frontend and backend were developed solo using standard web technologies. GSAP was used for animations and transitions. PHP handled the business logic, while PayHere integrated secure payment features."
+            },
+            "card_section_1": {
+                "title": "Highlights",
+                "paragraph": "The LMS provided a seamless experience for both students and the teacher. With structured packages and adaptive class management, PJBiology modernized the tuition process while retaining flexibility.",
+                "details": [
+                    {
+                        "icon": "fa-credit-card",
+                        "title": "Payments & Packages",
+                        "description": "Secure online payment with PayHere and manually approved slip uploads."
+                    },
+                    {
+                        "icon": "fa-cogs",
+                        "title": "Full Admin Control",
+                        "description": "Comprehensive dashboard for scheduling, grading, analytics, and student management."
+                    }
+                ]
+            },
+            "results_impact": {
+                "paragraph": "The site remains active and regularly updated. Though formal feedback wasn't gathered, usage continues and the client occasionally requests new features—indicating a successful rollout.",
+                "details": [
+                    {
+                        "digit": "Ongoing",
+                        "impact": "Used by real students actively preparing for biology exams."
+                    },
+                    {
+                        "digit": "250+",
+                        "impact": "Registered Users."
+                    }
+                ]
+            },
+            "key_learnings": {
+                "paragraphs": [
+                    "Being the first real-world client project, this helped build confidence in client handling, pricing structure planning, and scope estimation.",
+                    "Long development sessions strengthened problem-solving skills and code quality."
+                ],
+                "points": [
+                    "Design scalable database structures early, especially for package/class relationships.",
+                    "Communicate clearly with clients about scope changes and custom requirements.",
+                    "Always test for real-world edge cases in payment and attendance systems."
+                ]
+            },
+            "live_link": "https://pjbiology.lk"
+        },
+        {
+            "id": "loversQuarrel2024",
+            "title": "lq.lk – Lovers' Quarrel 2024 Official Webpage",
+            "short_description": "Official event site for the Mahinda–Richmond Big Match 2024.",
+            "full_description": "Developed the official front-end for the 2024 Lovers' Quarrel cricket encounter between Mahinda College and Richmond College. The website included live scorecards, streaming access, historical highlights, app promotion, and a media gallery.",
+            "image": "./resources/lqlk/Screenshot (185).png",
+            "gallery": [
+                {
+                    "alt": "LQ.lk Home Page",
+                    "src": "./resources/lqlk/Screenshot (185).png"
+                },  {
+                    "alt": "LQ.lk Home Page",
+                    "src": "./resources/lqlk/Screenshot (186).png"
+                },  {
+                    "alt": "LQ.lk Home Page",
+                    "src": "./resources/lqlk/Screenshot (187).png"
+                },  {
+                    "alt": "LQ.lk Home Page",
+                    "src": "./resources/lqlk/Screenshot (188).png"
+                },    {
+                     "alt": "LQ.lk Home Page",
+                    "src": "./resources/lqlk/Screenshot (189).png"
+                }
+            ],
+            "client": {
+                "type": "Event Project",
+                "name": "Web Team MCG",
+                "industry": "Sports / Education",
+                "location": "Sri Lanka"
+            },
+            "timeline": "March 2024",
+            "role": "Frontend Developer",
+            "project_overview": [
+                "The Lovers' Quarrel 2024 site served as the digital hub for fans and students, delivering match-day updates, historical background, and access to the mobile app, all under a responsive, performance-optimized interface."
+            ],
+            "challenge": {
+                "title_change": "Key Features",
+                "paragraphs": [],
+                "points": [
+                    "Live Scorecard Integration: Real-time match updates throughout the event.",
+                    "Responsive UI: Optimized for mobile, tablet, and desktop devices using Bootstrap and Vue.js."
+                ]
+            },
+            "technologies_used": {
+                "tech_stack": [
+                    "HTML",
+                    "CSS",
+                    "Bootstrap",
+                    "JavaScript",
+                    "Vue.js"
+                ],
+                "description": "The frontend was built using HTML, CSS, Bootstrap, and Vue.js to ensure smooth UI transitions and a modern single-page experience. Backend functionality was handled separately by the team."
+            },
+            "card_section_1": {
+                "title": "Highlights",
+                "paragraph": "Focused on delivering a fast, accessible, and mobile-first experience for a large user base during a high-profile school cricket event.",
+                "details": [
+                    {
+                        "icon": "fa-trophy",
+                        "title": "Event Specific",
+                        "description": "Crafted exclusively for the 2024 Big Match, tailored to that year’s schedule and branding."
+                    },
+                    {
+                        "icon": "fa-users",
+                        "title": "Team Collaboration",
+                        "description": "Frontend by me, backend handled by other developers in the organizing committee."
+                    }
+                ]
+            },
+            "results_impact": {
+                "paragraph": "The site received positive feedback for its clean interface and real-time match coverage. It served hundreds of concurrent users smoothly during the event.",
+                "details": [
+                    {
+                        "digit": "5,000+ ",
+                        "impact": "Visits during the 3-day match event."
+                    },
+                    {
+                        "digit": "High user retention",
+                        "impact": "Users stayed on the site for extended periods thanks to live features."
+                    }
+                ]
+            },
+            "key_learnings": {
+                "paragraphs": [
+                    "Coordinating with backend teammates taught the importance of aligning frontend requests with available APIs.",
+                    "Developing for a short-lived but high-traffic project brought insights into performance tuning and content prioritization."
+                ],
+                "points": [
+                    "Plan for server load even on short-term projects.",
+                    "Keep UI components modular for quick updates.",
+                    "Test heavily on mobile devices due to audience profile."
+                ]
+            },
+            "live_link": "./project_files/lqlk/index.html"
+        },
+        {
+            "id": "pelicanMall",
+            "title": "PelicanMall eCommerce Website",
+            "short_description": "An eCommerce website built for a computer shop.",
+            "full_description": "A full-stack PHP-based eCommerce platform developed for Pelicantech, allowing product listing, customer accounts, and basic order management.",
+            "image": "./resources/pelicanmall/Screenshot (26).png",
+            "gallery": [
+                {
+                    "alt": "PelicanMall Home Page",
+                    "src": "./resources/pelicanmall/Screenshot (26).png"
+                },
+                {
+                    "alt": "PelicanMall Home Page",
+                    "src": "./resources/pelicanmall/Screenshot (27).png"
+                },
+                {
+                    "alt": "PelicanMall Home Page",
+                    "src": "./resources/pelicanmall/Screenshot (28).png"
+                },
+                {
+                    "alt": "PelicanMall Login Page",
+                    "src": "./resources/pelicanmall/Screenshot (68).png"
+                },
+                {
+                    "alt": "PelicanMall Sign up Page",
+                    "src": "./resources/pelicanmall/Screenshot (95).png"
+                },
+                {
+                    "alt": "PelicanMall Product Catelog",
+                    "src": "./resources/pelicanmall/Screenshot (139).png"
+                },
+                {
+                    "alt": "PelicanMall Single Product View",
+                    "src": "./resources/pelicanmall/Screenshot (175).png"
+                },
+                {
+                    "alt": "PelicanMall Shopping Cart",
+                    "src": "./resources/pelicanmall/Screenshot (177).png"
+                }
+            ],
+            "client": {
+                "type": "Academic Project",
+                "name": "Academic Project",
+                "industry": "E-commerce",
+                "location": "Sri Lanka"
+            },
+            "timeline": "One Month",
+            "role": "Full-Stack Developer",
+            "project_overview": [
+                "PelicanMall is a full-featured e-commerce web application developed as part of a viva project for Pelican Software Solutions. It provides a streamlined online shopping experience for customers and a robust management interface for administrators."
+            ],
+            "challenge": {
+                "title_change": "Key Features",
+                "paragraphs": [],
+                "points": [
+                    "Product Catalog: Dynamic display of products with categories, search, and filtering.",
+                    "User Authentication: Secure user registration, login, and role-based access (customer/admin).",
+                    "Shopping Cart: Persistent cart system with item quantity management.",
+                    "Order Management: Users can place, track, and view their order history. Admins can manage orders and update statuses.",
+                    "Admin Dashboard: Product CRUD operations, order analytics, and user management via a clean dashboard UI.",
+                    "Responsive Design: Mobile-friendly layout using Bootstrap and responsive web design practices.",
+                    "Secure Backend: Input validation, session handling, and secure database queries."
+                ]
+            },
+            "technologies_used": {
+                "tech_stack": [
+                    "HTML",
+                    "Bootstrap",
+                    "JavaScript",
+                    "PHP",
+                    "MySQL",
+                    "AJAX",
+                    "Stripe"
+                ],
+                "description": "The project was developed using a combination of HTML, Bootstrap, JavaScript, PHP, MySQL, and AJAX. The front-end was designed with Bootstrap for responsiveness and ease of use, while the back-end was built with PHP and MySQL for data management. AJAX was used for dynamic content loading without page refreshes."
+            },
+            "card_section_1": {
+                "title": "Highlights",
+                "paragraph": "I developed a lightweight but scalable eCommerce platform that works smoothly on free hosting. The admin panel allows easy control over product listings and orders.",
+                "details": [
+                    {
+                        "icon": "fa-box",
+                        "title": "Custom Admin Panel",
+                        "description": "Built from scratch to manage inventory and view orders."
+                    },
+                    {
+                        "icon": "fa-mobile-alt",
+                        "title": "Mobile Friendly",
+                        "description": "Responsive layout ensured easy shopping on all devices."
+                    }
+                ]
+            },
+            "results_impact": {
+                "paragraph": "PelicanMall's launch allowed the client to expand their customer base beyond physical store visitors, resulting in a noticeable boost in online engagement and sales.",
+                "details": [
+                    {
+                        "digit": "200+",
+                        "impact": "Unique Visitors per Month"
+                    },
+                    {
+                        "digit": "10+",
+                        "impact": "Daily Orders"
+                    }
+                ]
+            },
+            "key_learnings": {
+                "paragraphs": [
+                    "Collaborating with clients who lack technical knowledge taught me the importance of intuitive UI design and effective communication.",
+                    "Deploying on free hosting plans introduced performance challenges, which improved my skills in code and database optimization."
+                ],
+                "points": [
+                    "Prioritize mobile responsiveness from the start of development.",
+                    "Write efficient SQL queries to minimize server load, especially on limited hosting plans.",
+                    "Build admin interfaces that match real user workflows, not just developer assumptions."
+                ]
+            },
+            "live_link": "https://pelicantechmall.infinityfreeapp.com/"
+        }
+    ]
+}

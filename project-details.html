@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Website | Project Details</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Lightbox for image gallery -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        indigo: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                            950: '#1e1b4b',
+                        }
+                    },
+                    fontFamily: {
+                        'playfair': ['"Playfair Display"', 'serif'],
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .bg-gradient {
+            /* background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%); */
+            background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+        }
+
+        .bg-gradient2 {
+            background: linear-gradient(135deg, #4338ca 0%, #a777e3 100%);
+            /* background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%); */
+        }
+
+        .text-gradient {
+            /* background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%); */
+            background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #4f46e5;
+            transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .social-icon {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            color: #4f46e5;
+        }
+
+        /* Custom cursor */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(79, 70, 229, 0.3);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #4f46e5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Elegant button styles */
+        .btn-elegant {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .btn-elegant:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .btn-elegant:hover:before {
+            width: 100%;
+        }
+
+        /* Elegant image hover effect */
+        .img-hover-zoom {
+            overflow: hidden;
+        }
+
+        .img-hover-zoom img {
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .img-hover-zoom:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Decorative elements */
+        .decorative-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #4338ca 0%, #6366f1 100%);
+            margin: 0 auto;
+        }
+
+        /* Project gallery */
+        .gallery-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Header -->
+    <header class="fixed w-full bg-white bg-opacity-90 backdrop-blur-sm shadow-sm z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold font-playfair">
+                    <span class="text-indigo-700">Kovidha</span><span class="text-indigo-500">.Subasinghe</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html#home"
+                        class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Home</a>
+                    <a href="index.html#about"
+                        class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">About</a>
+                    <a href="index.html#skills"
+                        class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Skills</a>
+                    <a href="index.html#projects"
+                        class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Projects</a>
+                    <a href="index.html#contact"
+                        class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2">
+                <nav class="flex flex-col space-y-4">
+                    <a href="index.html#home" class="text-gray-700 hover:text-indigo-600 transition-colors">Home</a>
+                    <a href="index.html#about" class="text-gray-700 hover:text-indigo-600 transition-colors">About</a>
+                    <a href="index.html#skills" class="text-gray-700 hover:text-indigo-600 transition-colors">Skills</a>
+                    <a href="index.html#projects"
+                        class="text-gray-700 hover:text-indigo-600 transition-colors">Projects</a>
+                    <a href="index.html#contact"
+                        class="text-gray-700 hover:text-indigo-600 transition-colors">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Hero Section -->
+    <section class="pt-32 pb-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-4" data-aos="fade-up">
+                    <a href="index.html#projects"
+                        class="text-indigo-600 hover:text-indigo-700 flex items-center text-sm font-medium group mb-4">
+                        <i class="fas fa-arrow-left mr-2 transform group-hover:-translate-x-1 transition-transform"></i>
+                        Back to Projects
+                    </a>
+                    <span class="text-indigo-600 text-sm font-medium tracking-wider uppercase" id="projectType">Client
+                        Project</span>
+                    <h1 class="text-4xl md:text-5xl font-bold mt-2 font-playfair" id="projectName">E-commerce Website
+                    </h1>
+                </div>
+
+                <div class="rounded-xl overflow-hidden shadow-lg mb-10 img-hover-zoom" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80"
+                        id="heroImage" alt="E-commerce Website" class="w-full h-auto">
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="text-lg font-semibold mb-2 font-playfair">Client</h3>
+                        <p class="text-gray-600" id="projectClient">Local Boutique Store</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-lg font-semibold mb-2 font-playfair">Timeline</h3>
+                        <p class="text-gray-600" id="projectTimeLine">3 Months (2023)</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="300">
+                        <h3 class="text-lg font-semibold mb-2 font-playfair">Role</h3>
+                        <p class="text-gray-600" id="projectRole">Full-stack Developer</p>
+                    </div>
+                    <a class="text-center inline-block bg-gradient text-white px-8 py-3 rounded-lg btn-elegant shadow-md hover:bg-indigo-100 transition-colors"
+                        data-aos="fade-up" data-aos-delay="200" id="liveLink" target="_blank">Live Link</a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-12" data-aos="fade-up">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-playfair">Project Overview</h2>
+                    <div id="overViewContainer">
+
+
+                    </div>
+                </div>
+
+                <div class="mb-12" data-aos="fade-up" id="challengeSection">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-playfair" id="challengeTitle">The Challenge</h2>
+                    <div id="challengeContainer">
+
+
+                    </div>
+                </div>
+
+                <div class="mb-12" data-aos="fade-up" id="techStackSection">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-playfair">Technologies Used</h2>
+                    <div class="flex flex-wrap gap-3 mb-6" id="techStackContainer">
+
+                    </div>
+                    <p class="text-gray-600 leading-relaxed" id="techStackDescription">
+
+                    </p>
+                </div>
+
+                <div class="mb-12" data-aos="fade-up" id="cardSection1">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-playfair" id="cardSection1_title">The Solution
+                    </h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed" id="cardSection1_description">
+                        I developed a custom e-commerce solution that met all the client's requirements:
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-8 mb-6" id="cardSection_container">
+
+                    </div>
+                </div>
+
+                <!-- Project Gallery -->
+                <div class="mb-12" data-aos="fade-up">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-playfair">Project Gallery</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="projectGalleryContainer">
+
+                    </div>
+                </div>
+
+                <div class="mb-12" data-aos="fade-up" id="resultSection">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-playfair">Results & Impact</h2>
+
+                    <div class="grid md:grid-cols-3 gap-6 mb-6" id="resultContainer">
+
+                    </div>
+
+                    <p class="text-gray-600 leading-relaxed" id="resultDescription">
+
+                    </p>
+                </div>
+
+                <div class="mb-12" data-aos="fade-up" id="keyLearningSection">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 font-playfair">Key Learnings</h2>
+                    <div id="keyLearningsContainer">
+
+                    </div>
+                </div>
+
+                <!-- Next/Previous Projects -->
+                <div class="border-t border-gray-200 pt-10" data-aos="fade-up">
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="#" class="group" id="nextButton">
+                            <span class="block text-sm text-gray-500 mb-1">Previous Project</span>
+                            <span class="text-indigo-600 group-hover:text-indigo-700 font-medium flex items-center">
+                                <i
+                                    class="fas fa-arrow-left mr-2 transform group-hover:-translate-x-1 transition-transform"></i>
+                                Task Management App
+                            </span>
+                        </a>
+                        <a href="#" class="group text-right" id="prevButton">
+                            <span class="block text-sm text-gray-500 mb-1">Next Project</span>
+                            <span
+                                class="text-indigo-600 group-hover:text-indigo-700 font-medium flex items-center justify-end">
+                                Student Information System
+                                <i
+                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient2 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6 font-playfair" data-aos="fade-up">Interested in working together?</h2>
+            <p class="text-indigo-200 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
+            </p>
+            <a href="index.html#contact"
+                class="inline-block bg-white text-indigo-900 px-8 py-3 rounded-lg btn-elegant shadow-md hover:bg-indigo-700 hover:text-white transition-colors"
+                data-aos="fade-up" data-aos-delay="200">
+                Get In Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 bg-gradient text-white">
+        <div class="container mx-auto px-6 text-center">
+            <p>© <span id="current-year"></span> Kovidha Subasinghe. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="text-indigo-300 hover:text-white transition-colors">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="text-indigo-300 hover:text-white transition-colors">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="text-indigo-300 hover:text-white transition-colors">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- jQuery (required for Lightbox2) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <!-- Lightbox2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+    <!-- Main JavaScript -->
+    <script>
+
+        // GSAP Animations
+        // gsap.from(".hero-text", {
+        //     duration: 1,
+        //     y: 50,
+        //     opacity: 0,
+        //     stagger: 0.2,
+        //     ease: "power3.out"
+        // });
+    </script>
+</body>
+
+</html>
