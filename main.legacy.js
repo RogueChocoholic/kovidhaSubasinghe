@@ -97,7 +97,7 @@ for (let i = 0; i < bubbleCount; i++) {
 
 // const texts = ["Software Engineering Undergraduate", "Web Developer", "Problem Solver"];
 const texts = [
-  "Software Engineer",
+  "Software Engineering Undergraduate",
   "Full-Stack Developer",
   "Tech Problem Solver",
   "Web Developer",
