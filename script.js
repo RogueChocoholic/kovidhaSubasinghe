@@ -87,6 +87,10 @@ function loadProjectDetails(id) {
     })
     .catch((error) => {
       console.error("Error fetching project details: ", error);
+      const preloader = document.querySelector(".preloader");
+      if (preloader) {
+        preloader.classList.add("fade-out");
+      }
     });
 }
 
