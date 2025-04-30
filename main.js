@@ -96,13 +96,13 @@ for (let i = 0; i < bubbleCount; i++) {
 }
 
 // GSAP Animations
-gsap.from(".hero-text", {
-  duration: 1,
-  y: 50,
-  opacity: 0,
-  stagger: 0.2,
-  ease: "power3.out",
-});
+// gsap.from(".hero-text", {
+//   duration: 1,
+//   y: 50,
+//   opacity: 0,
+//   stagger: 0.2,
+//   ease: "power3.out",
+// });
 
 // const texts = ["Software Engineering Undergraduate", "Web Developer", "Problem Solver"];
 const texts = [
