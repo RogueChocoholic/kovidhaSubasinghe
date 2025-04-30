@@ -1,8 +1,34 @@
+let projectLoaded = false;
 document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id"); // This gets the ?id=xxx value
   if (id) {
     loadProjectDetails(id);
+
+
+    setTimeout(() => {
+      if (!projectLoaded) {
+        console.warn("Project failed to load in time. Retrying...");
+    
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+    
+        if (id) {
+          loadProjectDetails(id); // Retry once
+        } else {
+          console.error("No project ID in URL.");
+        }
+      }
+    }, 3000); // adjust as needed
+    
+    setTimeout(() => {
+      const preloader = document.querySelector(".preloader");
+      if (preloader && !preloader.classList.contains("fade-out")) {
+        console.warn("Forcing preloader to fade out due to timeout.");
+        preloader.classList.add("fade-out");
+      }
+    }, 7000); // force after 7 seconds
+    
   } else {
     console.error("No project ID provided in the URL.");
   }
@@ -14,6 +40,7 @@ function loadProjectDetails(id) {
     .then((data) => {
       const project = data.projects.find((p) => p.id === id);
       if (project) {
+        projectLoaded = true; // ✅ Mark as loaded
         renderTitle(project);
         renderHeroHead(project);
         renderOverviewChallenge(project);
@@ -43,12 +70,18 @@ function loadProjectDetails(id) {
           new Date().getFullYear();
 
         // Preloader
-        window.addEventListener("load", () => {
-          const preloader = document.querySelector(".preloader");
+        // window.addEventListener("load", () => {
+        //   const preloader = document.querySelector(".preloader");
+        //   setTimeout(() => {
+        //     preloader.classList.add("fade-out");
+        //   }, 500);
+        // });
+        const preloader = document.querySelector(".preloader");
+        if (preloader) {
           setTimeout(() => {
             preloader.classList.add("fade-out");
           }, 500);
-        });
+        }
 
         // Custom Cursor
         const cursor = document.querySelector(".custom-cursor");
