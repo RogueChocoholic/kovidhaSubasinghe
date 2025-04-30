@@ -39,17 +39,6 @@ This website is built as a single-page application using modern HTML, CSS (Tailw
 
 ---
 
-## 🚀 Getting Started (Optional for Local Development)
-
-```bash
-# Clone the repo
-git clone https://github.com/your-username/portfolio.git
-
-# Navigate to the folder
-cd portfolio
-
-# Open index.html in your browser
-```
 
 ## 🖼️ Screenshots
 
