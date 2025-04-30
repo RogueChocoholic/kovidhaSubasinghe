@@ -13,6 +13,7 @@ function loadProjectDetails(id) {
     .then((data) => {
       const project = data.projects.find((p) => p.id === id);
       if (project) {
+        renderTitle(project);
         renderHeroHead(project);
         renderOverviewChallenge(project);
         renderTechStack(project);
@@ -340,4 +341,10 @@ function renderNavButtons(project, id) {
   } else {
     prevButton.innerHTML = "";
   }
+}
+
+function renderTitle(project) {
+  const title = document.getElementById("project-title");
+  const project_title = project.title;
+  title.innerHTML = project_title;
 }
