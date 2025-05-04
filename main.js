@@ -162,10 +162,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const card = `
               <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="100">
-                <div class="h-48 bg-gray-200 relative overflow-hidden img-hover-zoom">
-                  <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+                <div href="project-details.html?id=${project.id}" class="h-48 bg-gray-200 relative overflow-hidden img-hover-zoom">
+                  <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover cursor-pointer" onclick="window.location.href='project-details.html?id=${project.id}'" />
                   <div class="absolute top-4 left-4 bg-indigo-600 text-white text-xs px-2 py-1 rounded">${project.client.type}</div>
-                </div>
+                </div >
                 <div class="p-6">
                   <h3 class="font-bold text-xl mb-2 font-playfair">${project.title}</h3>
                   <p class="text-gray-600 mb-4">${project.short_description}</p>
