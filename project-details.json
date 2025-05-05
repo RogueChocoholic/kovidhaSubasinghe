@@ -8,32 +8,48 @@
             "image": "./resources/pjbiology/pjbiologySS (1).png",
             "gallery": [
                 {
-                    "alt": "PelicanMall Home Page",
+                    "alt": "pjbiology Home Page",
                     "src": "./resources/pjbiology/pjbiologySS (1).png"
                 },
                 {
-                    "alt": "PelicanMall Home Page",
+                    "alt": "pjbiology Student Login",
                     "src": "./resources/pjbiology/pjbiologySS (2).png"
                 },
                 {
-                    "alt": "PelicanMall Home Page",
+                    "alt": "pjbiology Student dashboard",
                     "src": "./resources/pjbiology/pjbiologySS (3).png"
                 },
                 {
-                    "alt": "PelicanMall Home Page",
+                    "alt": "pjbiology Student dashboard",
                     "src": "./resources/pjbiology/pjbiologySS (4).png"
                 },
                 {
-                    "alt": "PelicanMall Home Page",
+                    "alt": "pjbiology Student dashboard",
                     "src": "./resources/pjbiology/pjbiologySS (5).png"
                 },
                 {
-                    "alt": "PelicanMall Home Page",
+                    "alt": "pjbiology Student dashboard",
                     "src": "./resources/pjbiology/pjbiologySS (6).png"
                 },
                 {
-                    "alt": "PelicanMall Home Page",
+                    "alt": "pjbiology Home Page",
                     "src": "./resources/pjbiology/pjbiologySS (7).png"
+                },
+                {
+                    "alt": "pjbiology Home Page",
+                    "src": "./resources/pjbiology/pjbiologySS (8).png"
+                },
+                {
+                    "alt": "pjbiology Home Page",
+                    "src": "./resources/pjbiology/pjbiologySS (9).png"
+                },
+                {
+                    "alt": "pjbiology Home Page",
+                    "src": "./resources/pjbiology/pjbiologySS (10).png"
+                },
+                {
+                    "alt": "pjbiology Home Page",
+                    "src": "./resources/pjbiology/pjbiologySS (11).png"
                 }
             ],
             "client": {
