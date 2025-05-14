@@ -50,6 +50,10 @@
                 {
                     "alt": "pjbiology Home Page",
                     "src": "./resources/pjbiology/pjbiologySS (11).png"
+                },
+                {
+                    "alt": "pjbiology Home Page",
+                    "src": "./resources/pjbiology/pjbiologySS (12).png"
                 }
             ],
             "client": {
@@ -79,6 +83,8 @@
                     "JavaScript",
                     "PHP",
                     "Bootstrap",
+                    "Tailwind CSS",
+                    "MySQL",
                     "GSAP"
                 ],
                 "description": "Frontend and backend were developed solo using standard web technologies. GSAP was used for animations and transitions. PHP handled the business logic, while PayHere integrated secure payment features."
@@ -107,7 +113,7 @@
                         "impact": "Used by real students actively preparing for biology exams."
                     },
                     {
-                        "digit": "350+",
+                        "digit": "400+",
                         "impact": "Registered Users."
                     }
                 ]
