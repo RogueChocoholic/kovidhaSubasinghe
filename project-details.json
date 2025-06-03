@@ -113,7 +113,7 @@
                         "impact": "Used by real students actively preparing for biology exams."
                     },
                     {
-                        "digit": "400+",
+                        "digit": "600+",
                         "impact": "Registered Users."
                     }
                 ]
@@ -322,12 +322,8 @@
                 "paragraph": "PelicanMall's launch allowed the client to expand their customer base beyond physical store visitors, resulting in a noticeable boost in online engagement and sales.",
                 "details": [
                     {
-                        "digit": "200+",
-                        "impact": "Unique Visitors per Month"
-                    },
-                    {
-                        "digit": "10+",
-                        "impact": "Daily Orders"
+                        "digit": "Mock Site",
+                        "impact": "Built as an Academic Project"
                     }
                 ]
             },
