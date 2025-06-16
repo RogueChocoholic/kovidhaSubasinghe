@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reka Ira - Creative Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'gradient': 'gradient 8s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #000000, #1a1a1a, #333333, #000000);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #000000, #4a4a4a, #000000);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 8s ease infinite;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark-glass {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, #000000, #333333, #000000);
+            background-size: 200% 200%;
+            transition: all 0.4s ease;
+        }
+        
+        .btn-gradient:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid;
+            border-image: linear-gradient(135deg, #000000, #666666) 1;
+            transition: all 0.4s ease;
+        }
+        
+        .btn-outline:hover {
+            background: linear-gradient(135deg, #000000, #333333);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .shape {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(0,0,0,0.1), rgba(0,0,0,0.05));
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .service-icon {
+            background: linear-gradient(135deg, #f0f0f0, #ffffff);
+            transition: all 0.4s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, #000000, #333333);
+            color: white;
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .parallax {
+            transform: translateZ(0);
+            transition: transform 0.1s ease-out;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(15px) rotate(240deg); }
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+        }
+        
+        .section-gradient {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
+        }
+    </style>
+</head>
+<body class="bg-white text-black overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full nav-blur z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0">
+                    <h1 class="text-3xl font-black gradient-text">REKA IRA</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="relative font-semibold text-lg hover:text-gray-600 transition-all duration-300 group">
+                            Home
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#services" class="relative font-semibold text-lg hover:text-gray-600 transition-all duration-300 group">
+                            Services
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#about" class="relative font-semibold text-lg hover:text-gray-600 transition-all duration-300 group">
+                            About
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#contact" class="relative font-semibold text-lg hover:text-gray-600 transition-all duration-300 group">
+                            Contact
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-3 rounded-xl hover:bg-gray-100 transition-colors">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-4 pt-4 pb-6 space-y-2 bg-white/95 backdrop-blur-lg">
+                <a href="#home" class="block px-4 py-3 font-semibold text-lg rounded-xl hover:bg-gray-100 transition-colors">Home</a>
+                <a href="#services" class="block px-4 py-3 font-semibold text-lg rounded-xl hover:bg-gray-100 transition-colors">Services</a>
+                <a href="#about" class="block px-4 py-3 font-semibold text-lg rounded-xl hover:bg-gray-100 transition-colors">About</a>
+                <a href="#contact" class="block px-4 py-3 font-semibold text-lg rounded-xl hover:bg-gray-100 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center hero-gradient pt-20 relative overflow-hidden">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="space-y-8">
+                <div class="animate-float">
+                    <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight text-shadow">
+                        TRANSFORMING<br>
+                        <span class="gradient-text inline-block animate-pulse-slow">IDEAS</span><br>
+                        INTO IMPACT
+                    </h1>
+                </div>
+                <p class="text-xl md:text-2xl mb-12 max-w-4xl mx-auto font-medium text-gray-700 leading-relaxed">
+                    Full-spectrum creative agency delivering brand strategies, content creation, 
+                    activations, business development, and cutting-edge digital solutions.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <button class="btn-gradient text-white px-10 py-5 text-xl font-bold rounded-full shadow-2xl">
+                        START YOUR PROJECT
+                    </button>
+                    <button class="btn-outline px-10 py-5 text-xl font-bold rounded-full">
+                        VIEW OUR WORK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 section-gradient text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-32 h-32 rounded-full bg-white animate-bounce-slow"></div>
+            <div class="absolute bottom-20 right-20 w-24 h-24 rounded-full bg-white animate-float"></div>
+            <div class="absolute top-1/2 left-1/4 w-16 h-16 rounded-full bg-white animate-pulse-slow"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-5xl md:text-6xl font-black mb-8 text-shadow">OUR SERVICES</h2>
+                <p class="text-2xl max-w-4xl mx-auto text-gray-300 leading-relaxed">
+                    We offer comprehensive creative solutions to elevate your brand and drive meaningful results.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card glass-effect p-8 rounded-3xl hover-lift fade-in group">
+                    <div class="service-icon w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mb-6 mx-auto">
+                        🎯
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 text-center">Brand Strategy</h3>
+                    <p class="text-lg text-gray-300 leading-relaxed text-center">
+                        Comprehensive brand positioning, identity development, and strategic planning to establish your unique market presence.
+                    </p>
+                </div>
+                
+                <div class="service-card glass-effect p-8 rounded-3xl hover-lift fade-in group">
+                    <div class="service-icon w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mb-6 mx-auto">
+                        📝
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 text-center">Content Creation</h3>
+                    <p class="text-lg text-gray-300 leading-relaxed text-center">
+                        Engaging visual and written content across all platforms to tell your story and connect with your audience.
+                    </p>
+                </div>
+                
+                <div class="service-card glass-effect p-8 rounded-3xl hover-lift fade-in group">
+                    <div class="service-icon w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mb-6 mx-auto">
+                        🎪
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 text-center">On-Ground Activations</h3>
+                    <p class="text-lg text-gray-300 leading-relaxed text-center">
+                        Immersive experiential marketing campaigns and events that create lasting connections with your target market.
+                    </p>
+                </div>
+                
+                <div class="service-card glass-effect p-8 rounded-3xl hover-lift fade-in group">
+                    <div class="service-icon w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mb-6 mx-auto">
+                        📈
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 text-center">Business Development</h3>
+                    <p class="text-lg text-gray-300 leading-relaxed text-center">
+                        Strategic growth planning, market analysis, and partnership development to scale your business effectively.
+                    </p>
+                </div>
+                
+                <div class="service-card glass-effect p-8 rounded-3xl hover-lift fade-in lg:col-span-2 group">
+                    <div class="service-icon w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mb-6 mx-auto">
+                        💻
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 text-center">Digital Development</h3>
+                    <p class="text-lg text-gray-300 leading-relaxed text-center">
+                        Custom web applications, mobile apps, and standalone software solutions built with cutting-edge technology and user-centric design.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-20 right-10 w-40 h-40 rounded-full bg-black animate-float"></div>
+            <div class="absolute bottom-10 left-20 w-28 h-28 rounded-full bg-black animate-bounce-slow"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="slide-in-left">
+                    <h2 class="text-5xl md:text-6xl font-black mb-10 gradient-text">ABOUT REKA IRA</h2>
+                    <p class="text-xl mb-8 leading-relaxed text-gray-700">
+                        We are a full-spectrum creative agency that believes in the power of strategic thinking 
+                        combined with exceptional execution. Our mission is to transform your ideas into impactful 
+                        solutions that drive real results.
+                    </p>
+                    <p class="text-lg mb-10 leading-relaxed text-gray-600">
+                        From brand strategy to digital development, we approach every project with creativity, 
+                        precision, and a deep understanding of your business objectives. We don't just create; 
+                        we craft experiences that resonate and inspire action.
+                    </p>
+                    <button class="btn-gradient text-white px-10 py-5 text-xl font-bold rounded-full shadow-xl">
+                        LEARN MORE
+                    </button>
+                </div>
+                <div class="slide-in-right">
+                    <div class="dark-glass p-12 rounded-3xl shadow-2xl">
+                        <h3 class="text-3xl font-bold mb-8 text-center">OUR APPROACH</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4 p-4 rounded-2xl hover:bg-white/10 transition-colors">
+                                <span class="text-2xl font-black text-white bg-black rounded-full w-12 h-12 flex items-center justify-center">01</span>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Strategic Discovery</h4>
+                                    <p class="text-gray-600">Deep research and analysis</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4 p-4 rounded-2xl hover:bg-white/10 transition-colors">
+                                <span class="text-2xl font-black text-white bg-black rounded-full w-12 h-12 flex items-center justify-center">02</span>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Creative Development</h4>
+                                    <p class="text-gray-600">Innovative concept creation</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4 p-4 rounded-2xl hover:bg-white/10 transition-colors">
+                                <span class="text-2xl font-black text-white bg-black rounded-full w-12 h-12 flex items-center justify-center">03</span>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Precision Execution</h4>
+                                    <p class="text-gray-600">Flawless implementation</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4 p-4 rounded-2xl hover:bg-white/10 transition-colors">
+                                <span class="text-2xl font-black text-white bg-black rounded-full w-12 h-12 flex items-center justify-center">04</span>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Performance Analysis</h4>
+                                    <p class="text-gray-600">Continuous optimization</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 section-gradient text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-1/4 left-10 w-20 h-20 rounded-full bg-white animate-pulse-slow"></div>
+            <div class="absolute bottom-1/3 right-16 w-36 h-36 rounded-full bg-white animate-float"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-5xl md:text-6xl font-black mb-8 text-shadow">GET IN TOUCH</h2>
+                <p class="text-2xl max-w-4xl mx-auto text-gray-300 leading-relaxed">
+                    Ready to transform your ideas into impact? Let's start a conversation about your next project.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div class="slide-in-left">
+                    <div class="glass-effect p-10 rounded-3xl">
+                        <form class="space-y-8">
+                            <div>
+                                <label for="name" class="block text-xl font-semibold mb-3">Name</label>
+                                <input type="text" id="name" name="name" 
+                                       class="w-full px-6 py-4 bg-white/10 text-white border-2 border-white/20 rounded-2xl focus:outline-none focus:border-white/50 transition-all backdrop-blur-sm" 
+                                       required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xl font-semibold mb-3">Email</label>
+                                <input type="email" id="email" name="email" 
+                                       class="w-full px-6 py-4 bg-white/10 text-white border-2 border-white/20 rounded-2xl focus:outline-none focus:border-white/50 transition-all backdrop-blur-sm" 
+                                       required>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-xl font-semibold mb-3">Message</label>
+                                <textarea id="message" name="message" rows="6" 
+                                          class="w-full px-6 py-4 bg-white/10 text-white border-2 border-white/20 rounded-2xl focus:outline-none focus:border-white/50 transition-all backdrop-blur-sm resize-none" 
+                                          required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-white text-black py-5 text-xl font-bold rounded-2xl hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-xl">
+                                SEND MESSAGE
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="slide-in-right">
+                    <div class="space-y-10">
+                        <div class="glass-effect p-8 rounded-3xl">
+                            <h3 class="text-3xl font-bold mb-6">CONNECT WITH US</h3>
+                            <p class="text-xl mb-8 text-gray-300 leading-relaxed">
+                                Follow us on social media for the latest updates, insights, and behind-the-scenes content.
+                            </p>
+                            
+                            <div class="space-y-6">
+                                <a href="#" class="flex items-center space-x-6 text-xl hover:text-gray-300 transition-all p-4 rounded-2xl hover:bg-white/10">
+                                    <span class="text-3xl">📧</span>
+                                    <span>hello@rekaira.com</span>
+                                </a>
+                                <a href="#" class="flex items-center space-x-6 text-xl hover:text-gray-300 transition-all p-4 rounded-2xl hover:bg-white/10">
+                                    <span class="text-3xl">📱</span>
+                                    <span>+1 (555) 123-4567</span>
+                                </a>
+                                <a href="#" class="flex items-center space-x-6 text-xl hover:text-gray-300 transition-all p-4 rounded-2xl hover:bg-white/10">
+                                    <span class="text-3xl">📍</span>
+                                    <span>New York, NY</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-effect p-8 rounded-3xl">
+                            <h4 class="text-2xl font-bold mb-6">SOCIAL MEDIA</h4>
+                            <div class="flex space-x-6">
+                                <a href="#" class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center text-2xl hover:bg-white/30 hover:scale-110 transition-all">📘</a>
+                                <a href="#" class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center text-2xl hover:bg-white/30 hover:scale-110 transition-all">📷</a>
+                                <a href="#" class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center text-2xl hover:bg-white/30 hover:scale-110 transition-all">🐦</a>
+                                <a href="#" class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center text-2xl hover:bg-white/30 hover:scale-110 transition-all">💼</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-100 to-white py-12 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-4xl font-black gradient-text mb-4">REKA IRA</h3>
+                <p class="text-lg text-gray-600">© 2024 Reka Ira Creative Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Enhanced scroll animations with stagger effect
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for floating shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax');
+            
+            parallaxElements.forEach(element => {
+                const speed = element.dataset.speed || 0.5;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+
+            // Navigation blur effect
+            const nav = document.querySelector('nav');
+            if (scrolled > 50) {
+                nav.classList.add('shadow-2xl');
+            } else {
+                nav.classList.remove('shadow-2xl');
+            }
+        });
+
+        // Form submission with animation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            
+            button.textContent = 'SENDING...';
+            button.classList.add('animate-pulse');
+            
+            setTimeout(() => {
+                button.textContent = 'MESSAGE SENT!';
+                button.classList.remove('animate-pulse');
+                button.classList.add('bg-green-500');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('bg-green-500');
+                    this.reset();
+                }, 2000);
+            }, 1500);
+        });
+
+        // Add mouse movement parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.02;
+                const xMove = (x - 0.5) * speed * 100;
+                const yMove = (y - 0.5) * speed * 100;
+                
+                shape.style.transform = `translate(${xMove}px, ${yMove}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
