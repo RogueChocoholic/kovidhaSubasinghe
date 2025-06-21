@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Reka Ira Creative Agency</title>
+    <title>Start Your Project - Reka Ira Creative Agency</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="preloader.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -163,33 +163,45 @@
 
         .section-gradient {
             background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
-        }
-
-        .timeline-item {
             position: relative;
-            padding-left: 2rem;
+            overflow: hidden;
         }
 
-        .timeline-item::before {
+        .section-gradient::after {
             content: '';
             position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #e5e7eb;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.05) 0, transparent 30%),
+                radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.05) 0, transparent 30%);
+            pointer-events: none;
+            z-index: 0;
+            animation: rotate-pattern 60s linear infinite;
+        }
+        
+        @keyframes rotate-pattern {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .form-input {
+            transition: all 0.3s ease;
         }
 
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: -4px;
-            top: 0;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #000000;
+        .form-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.12);
         }
+        
+        .btn-gradient:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        
     </style>
 </head>
 
@@ -291,140 +303,68 @@
     <section class="pt-32 pb-16 lg:pt-40 lg:pb-24 hero-gradient">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center fade-in">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 lg:mb-8 gradient-text">Our Story</h1>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 lg:mb-8 gradient-text">Start Your Project</h1>
                 <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto">
-                    From a small creative studio to a full-service agency, we've been crafting exceptional brand experiences since 2015.
+                    Tell us about your next big idea. Fill out the form below to get started.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Our Mission -->
-    <section class="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                <div class="fade-in">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-6 gradient-text">Our Mission</h2>
-                    <p class="text-gray-600 text-lg mb-6">
-                        We believe in the power of creativity to transform businesses. Our mission is to help brands connect with their audience through innovative design, strategic thinking, and compelling storytelling.
-                    </p>
-                    <p class="text-gray-600 text-lg">
-                        Every project we undertake is driven by our commitment to excellence, innovation, and measurable results. We're not just creating designs; we're building experiences that resonate with people and drive business growth.
-                    </p>
-                </div>
-                <div class="fade-in">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                        alt="Our Team" class="rounded-2xl shadow-2xl">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Values -->
+    <!-- Project Form Section -->
     <section class="py-16 lg:py-24 section-gradient text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-12 text-center text-shadow">Our Values</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Value 1 -->
-                <div class="glass-effect p-8 rounded-2xl fade-in">
-                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-lightbulb text-2xl"></i>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="dark-glass p-8 sm:p-12 rounded-3xl">
+                <form action="#" method="POST" class="space-y-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div>
+                            <label for="full-name" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                            <input type="text" name="full-name" id="full-name" class="form-input block w-full bg-black/20 border-white/20 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-white/50" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                            <input type="email" name="email" id="email" class="form-input block w-full bg-black/20 border-white/20 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-white/50" required>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Innovation</h3>
-                    <p class="text-gray-300">
-                        We constantly push boundaries and explore new ideas to create unique solutions that stand out in the market.
-                    </p>
-                </div>
-
-                <!-- Value 2 -->
-                <div class="glass-effect p-8 rounded-2xl fade-in">
-                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-handshake text-2xl"></i>
+                    <div>
+                        <label for="company-name" class="block text-sm font-medium text-gray-300 mb-2">Company Name (Optional)</label>
+                        <input type="text" name="company-name" id="company-name" class="form-input block w-full bg-black/20 border-white/20 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-white/50">
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Collaboration</h3>
-                    <p class="text-gray-300">
-                        We believe in the power of teamwork and close collaboration with our clients to achieve exceptional results.
-                    </p>
-                </div>
-
-                <!-- Value 3 -->
-                <div class="glass-effect p-8 rounded-2xl fade-in">
-                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-chart-line text-2xl"></i>
+                    <div>
+                        <label for="project-type" class="block text-sm font-medium text-gray-300 mb-2">Project Type</label>
+                        <select id="project-type" name="project-type" class="form-input block w-full bg-black/20 border-white/20 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-white/50" required>
+                            <option>Website Design & Development</option>
+                            <option>Branding & Identity</option>
+                            <option>Digital Marketing</option>
+                            <option>Content Creation</option>
+                            <option>Other</option>
+                        </select>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Results-Driven</h3>
-                    <p class="text-gray-300">
-                        We focus on delivering measurable results that contribute to our clients' business growth and success.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Journey -->
-    <section class="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-12 text-center gradient-text">Our Journey</h2>
-            <div class="max-w-3xl mx-auto">
-                <!-- Timeline Item 1 -->
-                <div class="timeline-item mb-12 fade-in">
-                    <h3 class="text-xl font-bold mb-2">2015</h3>
-                    <p class="text-gray-600">
-                        Founded as a small creative studio with a team of three passionate designers.
-                    </p>
-                </div>
-
-                <!-- Timeline Item 2 -->
-                <div class="timeline-item mb-12 fade-in">
-                    <h3 class="text-xl font-bold mb-2">2017</h3>
-                    <p class="text-gray-600">
-                        Expanded our services to include digital marketing and brand strategy.
-                    </p>
-                </div>
-
-                <!-- Timeline Item 3 -->
-                <div class="timeline-item mb-12 fade-in">
-                    <h3 class="text-xl font-bold mb-2">2019</h3>
-                    <p class="text-gray-600">
-                        Opened our second office and grew our team to 15 creative professionals.
-                    </p>
-                </div>
-
-                <!-- Timeline Item 4 -->
-                <div class="timeline-item mb-12 fade-in">
-                    <h3 class="text-xl font-bold mb-2">2021</h3>
-                    <p class="text-gray-600">
-                        Launched our digital development division to offer comprehensive web solutions.
-                    </p>
-                </div>
-
-                <!-- Timeline Item 5 -->
-                <div class="timeline-item fade-in">
-                    <h3 class="text-xl font-bold mb-2">2023</h3>
-                    <p class="text-gray-600">
-                        Celebrated our 8th anniversary with a team of 30+ creative professionals and a portfolio of 200+ successful projects.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center fade-in">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-6 gradient-text">Join Our Journey</h2>
-                <p class="text-gray-600 mb-8 text-lg max-w-3xl mx-auto">
-                    Let's create something extraordinary together. Whether you're looking to build a new brand or elevate an existing one, we're here to help.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="./start-project.html" class="btn-gradient text-white px-8 py-4 text-lg font-bold rounded-full shadow-xl">
-                        Start Your Project
-                    </a>
-                    <a href="./schedule-consultation.html" class="btn-outline px-8 py-4 text-lg font-bold rounded-full">
-                        Schedule a Consultation
-                    </a>
-                </div>
+                    <div>
+                        <label for="project-description" class="block text-sm font-medium text-gray-300 mb-2">Project Description</label>
+                        <textarea id="project-description" name="project-description" rows="6" class="form-input block w-full bg-black/20 border-white/20 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-white/50" required></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div>
+                            <label for="budget" class="block text-sm font-medium text-gray-300 mb-2">Estimated Budget (USD)</label>
+                            <select id="budget" name="budget" class="form-input block w-full bg-black/20 border-white/20 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-white/50" required>
+                                <option>Less than $5,000</option>
+                                <option>$5,000 - $10,000</option>
+                                <option>$10,000 - $25,000</option>
+                                <option>$25,000+</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="timeline" class="block text-sm font-medium text-gray-300 mb-2">Ideal Timeline</label>
+                            <input type="text" name="timeline" id="timeline" placeholder="e.g., 3-6 months" class="form-input block w-full bg-black/20 border-white/20 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-white/50">
+                        </div>
+                    </div>
+                    <div class="text-center pt-4">
+                        <button type="submit" class="btn-gradient text-white px-10 py-4 text-lg font-bold rounded-full shadow-xl w-full sm:w-auto">
+                            Submit Project Inquiry
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -517,7 +457,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+        document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
 

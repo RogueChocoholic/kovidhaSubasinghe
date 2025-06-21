@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Reka Ira Creative Agency</title>
+    <title>Careers - Reka Ira Creative Agency</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="preloader.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -165,30 +165,13 @@
             background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
         }
 
-        .timeline-item {
-            position: relative;
-            padding-left: 2rem;
+        .job-card {
+            transition: all 0.3s ease;
         }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #e5e7eb;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: -4px;
-            top: 0;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #000000;
+        .job-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -291,139 +274,98 @@
     <section class="pt-32 pb-16 lg:pt-40 lg:pb-24 hero-gradient">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center fade-in">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 lg:mb-8 gradient-text">Our Story</h1>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 lg:mb-8 gradient-text">Join Our Team</h1>
                 <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto">
-                    From a small creative studio to a full-service agency, we've been crafting exceptional brand experiences since 2015.
+                    We're building the future of digital creativity. Find your place with us.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Our Mission -->
+    <!-- Open Positions -->
     <section class="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                <div class="fade-in">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-6 gradient-text">Our Mission</h2>
-                    <p class="text-gray-600 text-lg mb-6">
-                        We believe in the power of creativity to transform businesses. Our mission is to help brands connect with their audience through innovative design, strategic thinking, and compelling storytelling.
-                    </p>
-                    <p class="text-gray-600 text-lg">
-                        Every project we undertake is driven by our commitment to excellence, innovation, and measurable results. We're not just creating designs; we're building experiences that resonate with people and drive business growth.
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-12 text-center gradient-text">Current Openings</h2>
+            <div class="space-y-8">
+                <!-- Job Listing 1 -->
+                <div class="job-card bg-white rounded-2xl shadow-lg p-8 fade-in">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">Senior UI/UX Designer</h3>
+                            <div class="flex items-center space-x-4 text-gray-500">
+                                <span><i class="fas fa-map-marker-alt mr-2"></i>Remote</span>
+                                <span><i class="fas fa-briefcase mr-2"></i>Full-time</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 sm:mt-0">
+                            <a href="apply.html?job=Senior+UI%2FUX+Designer" class="btn-gradient text-white px-6 py-3 font-bold rounded-full">Apply Now</a>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mt-6">
+                        We're looking for a passionate Senior UI/UX Designer to create stunning, user-centric designs for our clients. You'll lead design projects from concept to completion and mentor junior designers.
                     </p>
                 </div>
-                <div class="fade-in">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                        alt="Our Team" class="rounded-2xl shadow-2xl">
+
+                <!-- Job Listing 2 -->
+                <div class="job-card bg-white rounded-2xl shadow-lg p-8 fade-in">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">Lead Frontend Developer</h3>
+                            <div class="flex items-center space-x-4 text-gray-500">
+                                <span><i class="fas fa-map-marker-alt mr-2"></i>New York, NY</span>
+                                <span><i class="fas fa-briefcase mr-2"></i>Full-time</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 sm:mt-0">
+                            <a href="apply.html?job=Lead+Frontend+Developer" class="btn-gradient text-white px-6 py-3 font-bold rounded-full">Apply Now</a>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mt-6">
+                        Lead our frontend development team in building high-performance, responsive web applications. Must be an expert in React, Vue, or a similar modern framework.
+                    </p>
+                </div>
+
+                <!-- Job Listing 3 -->
+                <div class="job-card bg-white rounded-2xl shadow-lg p-8 fade-in">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">Digital Marketing Strategist</h3>
+                            <div class="flex items-center space-x-4 text-gray-500">
+                                <span><i class="fas fa-map-marker-alt mr-2"></i>Remote</span>
+                                <span><i class="fas fa-briefcase mr-2"></i>Contract</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 sm:mt-0">
+                            <a href="apply.html?job=Digital+Marketing+Strategist" class="btn-gradient text-white px-6 py-3 font-bold rounded-full">Apply Now</a>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mt-6">
+                        Develop and execute comprehensive digital marketing campaigns for our diverse clients. Proven experience in SEO, SEM, and social media marketing is required.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Our Values -->
+    <!-- Why Join Us -->
     <section class="py-16 lg:py-24 section-gradient text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-12 text-center text-shadow">Our Values</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Value 1 -->
-                <div class="glass-effect p-8 rounded-2xl fade-in">
-                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-lightbulb text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Innovation</h3>
-                    <p class="text-gray-300">
-                        We constantly push boundaries and explore new ideas to create unique solutions that stand out in the market.
-                    </p>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-12 text-center text-shadow">Why Reka Ira?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="dark-glass p-8 rounded-2xl fade-in">
+                    <div class="text-4xl mb-4"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Innovate & Create</h3>
+                    <p class="text-gray-300">Work on challenging projects that push the boundaries of creativity and technology.</p>
                 </div>
-
-                <!-- Value 2 -->
-                <div class="glass-effect p-8 rounded-2xl fade-in">
-                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-handshake text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Collaboration</h3>
-                    <p class="text-gray-300">
-                        We believe in the power of teamwork and close collaboration with our clients to achieve exceptional results.
-                    </p>
+                <div class="dark-glass p-8 rounded-2xl fade-in">
+                    <div class="text-4xl mb-4"><i class="fas fa-users"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Collaborative Culture</h3>
+                    <p class="text-gray-300">Join a supportive and talented team that values collaboration and continuous learning.</p>
                 </div>
-
-                <!-- Value 3 -->
-                <div class="glass-effect p-8 rounded-2xl fade-in">
-                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-chart-line text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Results-Driven</h3>
-                    <p class="text-gray-300">
-                        We focus on delivering measurable results that contribute to our clients' business growth and success.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Journey -->
-    <section class="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-12 text-center gradient-text">Our Journey</h2>
-            <div class="max-w-3xl mx-auto">
-                <!-- Timeline Item 1 -->
-                <div class="timeline-item mb-12 fade-in">
-                    <h3 class="text-xl font-bold mb-2">2015</h3>
-                    <p class="text-gray-600">
-                        Founded as a small creative studio with a team of three passionate designers.
-                    </p>
-                </div>
-
-                <!-- Timeline Item 2 -->
-                <div class="timeline-item mb-12 fade-in">
-                    <h3 class="text-xl font-bold mb-2">2017</h3>
-                    <p class="text-gray-600">
-                        Expanded our services to include digital marketing and brand strategy.
-                    </p>
-                </div>
-
-                <!-- Timeline Item 3 -->
-                <div class="timeline-item mb-12 fade-in">
-                    <h3 class="text-xl font-bold mb-2">2019</h3>
-                    <p class="text-gray-600">
-                        Opened our second office and grew our team to 15 creative professionals.
-                    </p>
-                </div>
-
-                <!-- Timeline Item 4 -->
-                <div class="timeline-item mb-12 fade-in">
-                    <h3 class="text-xl font-bold mb-2">2021</h3>
-                    <p class="text-gray-600">
-                        Launched our digital development division to offer comprehensive web solutions.
-                    </p>
-                </div>
-
-                <!-- Timeline Item 5 -->
-                <div class="timeline-item fade-in">
-                    <h3 class="text-xl font-bold mb-2">2023</h3>
-                    <p class="text-gray-600">
-                        Celebrated our 8th anniversary with a team of 30+ creative professionals and a portfolio of 200+ successful projects.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center fade-in">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-6 gradient-text">Join Our Journey</h2>
-                <p class="text-gray-600 mb-8 text-lg max-w-3xl mx-auto">
-                    Let's create something extraordinary together. Whether you're looking to build a new brand or elevate an existing one, we're here to help.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="./start-project.html" class="btn-gradient text-white px-8 py-4 text-lg font-bold rounded-full shadow-xl">
-                        Start Your Project
-                    </a>
-                    <a href="./schedule-consultation.html" class="btn-outline px-8 py-4 text-lg font-bold rounded-full">
-                        Schedule a Consultation
-                    </a>
+                <div class="dark-glass p-8 rounded-2xl fade-in">
+                    <div class="text-4xl mb-4"><i class="fas fa-rocket"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Career Growth</h3>
+                    <p class="text-gray-300">We invest in our team's growth with professional development and advancement opportunities.</p>
                 </div>
             </div>
         </div>

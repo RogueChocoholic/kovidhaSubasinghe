@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Reka Ira Creative Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="preloader.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'gradient': 'gradient 12s linear infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+                            '50%': { 'background-size': '200% 200%', 'background-position': 'right center' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        * { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #000000, #4a4a4a, #000000);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 12s ease infinite;
+        }
+        .nav-blur { backdrop-filter: blur(20px); background: rgba(255, 255, 255, 0.95); }
+        .hero-gradient { background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%); }
+        .section-gradient { background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%); }
+    </style>
+</head>
+
+<body class="bg-white text-black overflow-x-hidden">
+    <div class="preloader">
+        <div class="preloader-content"><img src="./preloaderLogo.svg" alt="" class="mb-5 " style="width: 10dvw;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full nav-blur z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 lg:h-20">
+                <div class="flex-shrink-0">
+                    <a href="rekaira.html"><img src="./rekaIraLogoSVG.svg" width="100px" alt="Reka Ira Logo"></a>
+                </div>
+                <div class="hidden lg:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="rekaira.html" class="relative font-medium text-sm hover:text-gray-600 transition-all duration-300 group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="services.html" class="relative font-medium text-sm hover:text-gray-600 transition-all duration-300 group">Services<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="portfolio.html" class="relative font-medium text-sm hover:text-gray-600 transition-all duration-300 group">Portfolio<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="process.html" class="relative font-medium text-sm hover:text-gray-600 transition-all duration-300 group">Process<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="team.html" class="relative font-medium text-sm hover:text-gray-600 transition-all duration-300 group">Team<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="about.html" class="relative font-medium text-sm hover:text-gray-600 transition-all duration-300 group">About<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span></a>
+                        <a href="contact.html" class="relative font-medium text-sm hover:text-gray-600 transition-all duration-300 group">Contact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span></a>
+                    </div>
+                </div>
+                <div class="lg:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 transition-colors"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden">
+            <div class="px-4 pt-2 pb-4 space-y-1 bg-white/95 backdrop-blur-lg border-t border-gray-200">
+                <a href="rekaira.html" class="block px-3 py-2 font-medium text-sm rounded-lg hover:bg-gray-100 transition-colors">Home</a>
+                <a href="services.html" class="block px-3 py-2 font-medium text-sm rounded-lg hover:bg-gray-100 transition-colors">Services</a>
+                <a href="portfolio.html" class="block px-3 py-2 font-medium text-sm rounded-lg hover:bg-gray-100 transition-colors">Portfolio</a>
+                <a href="process.html" class="block px-3 py-2 font-medium text-sm rounded-lg hover:bg-gray-100 transition-colors">Process</a>
+                <a href="team.html" class="block px-3 py-2 font-medium text-sm rounded-lg hover:bg-gray-100 transition-colors">Team</a>
+                <a href="about.html" class="block px-3 py-2 font-medium text-sm rounded-lg hover:bg-gray-100 transition-colors">About</a>
+                <a href="contact.html" class="block px-3 py-2 font-medium text-sm rounded-lg hover:bg-gray-100 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main class="pt-32 pb-16 lg:pt-40 lg:pb-24 hero-gradient">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black gradient-text">Terms of Service</h1>
+                <p class="text-lg text-gray-600 mt-4">Effective Date: June 21, 2025</p>
+            </div>
+
+            <div class="prose lg:prose-xl max-w-none text-gray-700 space-y-6">
+                <p>Welcome to Reka Ira. By accessing or using our website at rekaira.lk, you agree to be bound by the following Terms of Service. These terms apply to all visitors, users, and others who access or use the site.</p>
+
+                <h2 class="text-2xl font-bold text-black pt-6">1. Who We Are</h2>
+                <p>Reka Ira is a marketing and technology agency based in Sri Lanka. We offer creative and technical services including branding, media production, website/app development, and marketing strategy for clients both local and international.</p>
+
+                <h2 class="text-2xl font-bold text-black pt-6">2. Use of Our Website</h2>
+                <ul class="list-disc list-inside space-y-1">
+                    <li>You may browse and interact with publicly available pages.</li>
+                    <li>You agree not to misuse or disrupt the site (e.g., introducing malware, scraping, spamming).</li>
+                    <li>The site is intended for individuals aged 16 and older.</li>
+                </ul>
+                
+                <h2 class="text-2xl font-bold text-black pt-6">3. Intellectual Property</h2>
+                <p>All content on this website, including designs, text, images, code, and logos, are the intellectual property of Reka Ira, unless otherwise stated. You may not reproduce, copy, or redistribute any content without written permission.</p>
+
+                <h2 class="text-2xl font-bold text-black pt-6">4. Submissions</h2>
+                <p>Any information or materials submitted through our contact forms, career portal, or project inquiries must:</p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li>Be truthful and accurate</li>
+                    <li>Not infringe any third-party rights</li>
+                    <li>Not contain malicious files or spam</li>
+                </ul>
+                <p>We may retain submitted materials (such as CVs, emails, and messages) to process your request or inquiry. See our <a href="privacy-policy.html" class="text-black font-semibold hover:underline">Privacy Policy</a> for more details.</p>
+
+                <h2 class="text-2xl font-bold text-black pt-6">5. Third-Party Links</h2>
+                <p>Our site may contain links to third-party websites or services. We do not control and are not responsible for their content, privacy practices, or terms.</p>
+
+                <h2 class="text-2xl font-bold text-black pt-6">6. Disclaimers</h2>
+                <p>Our website is provided "as-is" and "as-available" without warranties of any kind. We make reasonable efforts to keep the site updated, but we do not guarantee it will always be error-free or uninterrupted.</p>
+
+                <h2 class="text-2xl font-bold text-black pt-6">7. Limitation of Liability</h2>
+                <p>To the fullest extent permitted by law, Reka Ira is not liable for any direct, indirect, or incidental damages arising out of your use of this site.</p>
+
+                <h2 class="text-2xl font-bold text-black pt-6">8. Modifications to Services</h2>
+                <p>We may update or modify the website and its content at any time without notice. This includes changes to services, pricing, branding, or functionality.</p>
+
+                <h2 class="text-2xl font-bold text-black pt-6">9. Governing Law</h2>
+                <p>These Terms are governed by the laws of Sri Lanka. Any disputes will be subject to the jurisdiction of Sri Lankan courts.</p>
+
+                <h2 class="text-2xl font-bold text-black pt-6">10. Contact</h2>
+                <p>If you have any questions about these Terms, please contact us at:</p>
+                <p>
+                    <strong>Email:</strong> <a href="mailto:rekaira@gmail.com" class="text-black font-semibold hover:underline">rekaira@gmail.com</a><br>
+                    <strong>Address:</strong> Karapitiya, Galle, Sri Lanka
+                </p>
+
+                <p class="pt-4 text-center text-sm text-gray-500">© Reka Ira – All rights reserved.</p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="section-gradient text-white pt-16 lg:pt-24 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="space-y-4">
+                    <img src="./RekairaWhite.svg" width="120" class="mb-4" alt="Reka Ira Logo">
+                    <p class="text-gray-300">A creative agency dedicated to building impactful digital experiences.</p>
+                    <div class="flex space-x-4 pt-2">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-linkedin-in text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-dribbble text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-300 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="portfolio.html" class="text-gray-300 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="process.html" class="text-gray-300 hover:text-white transition-colors">Our Process</a></li>
+                        <li><a href="team.html" class="text-gray-300 hover:text-white transition-colors">Team</a></li>
+                        <li><a href="careers.html" class="text-gray-300 hover:text-white transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Get in Touch</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-3"></i><span>Karapitiya, Galle, Sri Lanka</span></li>
+                        <li class="!mt-4"><a href="mailto:hello@rekaira.com" class="hover:text-white transition-colors flex items-center"><i class="fas fa-envelope mr-3"></i>hello@rekaira.com</a></li>
+                        <li><a href="tel:+94771234567" class="hover:text-white transition-colors flex items-center"><i class="fas fa-phone-alt mr-3"></i>+94 77 123 4567</a></li>
+                        <li class="!mt-6"><a href="start-project.html" class="font-bold hover:text-white transition-colors">→ Start a Project</a></li>
+                        <li><a href="schedule-consultation.html" class="font-bold hover:text-white transition-colors">→ Schedule a Consultation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Join Our Newsletter</h3>
+                    <p class="text-gray-300 mb-4">Get the latest news, updates, and insights from our team.</p>
+                    <form action="#" class="flex">
+                        <input type="email" placeholder="Your email" class="form-input w-full bg-black/20 border-white/20 rounded-l-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-white/50">
+                        <button type="submit" class="btn-gradient text-white px-4 rounded-r-lg font-bold"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/10 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 Reka Ira Creative Agency. All Rights Reserved. | <a href="privacy-policy.html" class="hover:text-white">Privacy Policy</a> | <a href="terms-of-service.html" class="hover:text-white">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        window.addEventListener('load', () => { document.querySelector('.preloader').classList.add('fade-out'); });
+    </script>
+</body>
+</html> 
