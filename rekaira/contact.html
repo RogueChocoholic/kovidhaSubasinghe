@@ -163,15 +163,47 @@
 
         .section-gradient {
             background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-gradient::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.05) 0, transparent 30%),
+                radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.05) 0, transparent 30%);
+            pointer-events: none;
+            z-index: 0;
+            animation: rotate-pattern 60s linear infinite;
+        }
+        
+        @keyframes rotate-pattern {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .contact-card {
             transition: all 0.3s ease;
+            border: 1px solid transparent;
         }
 
         .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .icon-wrapper {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .contact-card:hover .icon-wrapper {
+            transform: scale(1.1) rotate(-8deg);
         }
 
         .form-input {
@@ -180,7 +212,38 @@
 
         .form-input:focus {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .btn-gradient:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        
+        .social-icon {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-4px) scale(1.15);
+        }
+
+        .hover-instagram:hover {
+            background: #E1306C;
+        }
+
+        .hover-linkedin:hover {
+            background: #0A66C2;
+        }
+
+        .hover-xtwitter:hover {
+            background: #14171A;
+        }
+
+        .hover-facebook:hover {
+            background: #1877F2;
         }
     </style>
 </head>
@@ -284,53 +347,72 @@
     <section class="pt-32 pb-16 lg:pt-40 lg:pb-24 hero-gradient">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center fade-in">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 lg:mb-8 gradient-text">Get in
-                    Touch</h1>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 lg:mb-8 gradient-text">Contact Us</h1>
                 <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto">
-                    Let's discuss how we can help bring your vision to life
+                    Let's Create the Future, Together.<br>
+                    At Reka Ira, we're more than marketers — we're storytellers, strategists, and your next big move. Whether you're ready to launch something bold or just curious about how we can elevate your brand, we're here to talk.<br><br>
+                    Reach out. The horizon is just the beginning.
                 </p>
             </div>
         </div>
     </section>
 
     <!-- Contact Information -->
-    <section class="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section class="py-16 lg:py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Contact Card 1 -->
-                <div class="contact-card bg-white p-8 rounded-2xl shadow-xl fade-in">
-                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-6">
+                <div class="contact-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 fade-in group">
+                    <div
+                        class="icon-wrapper w-16 h-16 bg-black group-hover:bg-blue-600 rounded-full flex items-center justify-center mb-6 transition-all duration-300">
                         <i class="fas fa-map-marker-alt text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Our Location</h3>
-                    <p class="text-gray-600">
-                        Maha Weediya<br>
-                        Galle<br>
-                        Galle, Sri Lanka
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">Visit Us</h3>
+                    <p class="text-gray-500 text-sm mb-4">Karapitiya,<br>Galle.</p>
+                    <p class="text-gray-700">
+                        We like coffee and bold ideas, come say hi!
                     </p>
                 </div>
 
                 <!-- Contact Card 2 -->
-                <div class="contact-card bg-white p-8 rounded-2xl shadow-xl fade-in">
-                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-6">
+                <div class="contact-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 fade-in group"
+                    style="transition-delay: 100ms;">
+                    <div
+                        class="icon-wrapper w-16 h-16 bg-black group-hover:bg-green-600 rounded-full flex items-center justify-center mb-6 transition-all duration-300">
                         <i class="fas fa-phone-alt text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Phone</h3>
-                    <p class="text-gray-600">
-                        +94 71 650 0197<br>
-                        +94 77 565 1380
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">Call Us</h3>
+                    <p class="text-gray-500 text-sm mb-4">+94 71 650 0197<br>+94 77 565 1380</p>
+                    <p class="text-gray-700">
+                        Let's talk strategy, not just services.
                     </p>
                 </div>
 
                 <!-- Contact Card 3 -->
-                <div class="contact-card bg-white p-8 rounded-2xl shadow-xl fade-in">
-                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-6">
+                <div class="contact-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 fade-in group"
+                    style="transition-delay: 200ms;">
+                    <div
+                        class="icon-wrapper w-16 h-16 bg-black group-hover:bg-red-600 rounded-full flex items-center justify-center mb-6 transition-all duration-300">
                         <i class="fas fa-envelope text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Email</h3>
-                    <p class="text-gray-600">
-                        inquire@rekaira.com<br>
-                        support@rekaira.com
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">Email Us</h3>
+                    <p class="text-gray-500 text-sm mb-4">rekairamedia@gmail.com</p>
+                    <p class="text-gray-700">
+                        Your inbox is about to get more inspiring.
+                    </p>
+                </div>
+
+                <!-- Contact Card 4: WhatsApp -->
+                <div class="contact-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 fade-in group"
+                    style="transition-delay: 300ms;">
+                    <div
+                        class="icon-wrapper w-16 h-16 bg-black group-hover:bg-teal-600 rounded-full flex items-center justify-center mb-6 transition-all duration-300">
+                        <i class="fab fa-whatsapp text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">Whatsapp</h3>
+                    <p class="text-gray-500 text-sm mb-4">+94 71 650 0197<br>+94 77 565 1380</p>
+                    <p class="text-gray-700">
+                        Prefer to drop a message? We've got you.
                     </p>
                 </div>
             </div>
@@ -339,56 +421,62 @@
 
     <!-- Contact Form -->
     <section class="py-16 lg:py-24 section-gradient text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                 <!-- Form -->
-                <div class="fade-in">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-8 text-shadow">Send Us a Message</h2>
+                <div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-2 text-shadow fade-in">Send Us a Message</h2>
+                    <p class="text-lg text-gray-300 mb-8 fade-in" style="transition-delay: 100ms;">
+                        Tell us what's on your mind, and we'll bring clarity, creativity, and momentum 😉.
+                    </p>
                     <form class="space-y-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div>
+                            <div class="fade-in" style="transition-delay: 200ms;">
                                 <label class="block text-sm font-medium mb-2">First Name</label>
                                 <input type="text"
                                     class="form-input w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-white/40">
                             </div>
-                            <div>
+                            <div class="fade-in" style="transition-delay: 300ms;">
                                 <label class="block text-sm font-medium mb-2">Last Name</label>
                                 <input type="text"
                                     class="form-input w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-white/40">
                             </div>
                         </div>
-                        <div>
+                        <div class="fade-in" style="transition-delay: 400ms;">
                             <label class="block text-sm font-medium mb-2">Email</label>
                             <input type="email"
                                 class="form-input w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-white/40">
                         </div>
-                        <div>
+                        <div class="fade-in" style="transition-delay: 500ms;">
                             <label class="block text-sm font-medium mb-2">Phone</label>
                             <input type="tel"
                                 class="form-input w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-white/40">
                         </div>
-                        <div>
+                        <div class="fade-in" style="transition-delay: 600ms;">
                             <label class="block text-sm font-medium mb-2">Message</label>
                             <textarea rows="4"
                                 class="form-input w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-white/40"></textarea>
                         </div>
-                        <button type="submit"
-                            class="btn-gradient text-white px-8 py-4 text-lg font-bold rounded-full shadow-xl w-full">
-                            Send Message
-                        </button>
+                        <div class="fade-in" style="transition-delay: 700ms;">
+                            <button type="submit"
+                                class="btn-gradient text-white px-8 py-4 text-lg font-bold rounded-full shadow-xl w-full">
+                                Send Message
+                            </button>
+                        </div>
                     </form>
                 </div>
 
                 <!-- Map -->
-                <div class="fade-in">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-8 text-shadow">Find Us</h2>
-                    <div class="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden shadow-2xl">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-4 text-shadow fade-in">Find Us</h2>
+                    <p class="text-lg text-gray-300 mb-8 fade-in" style="transition-delay: 100ms;">
+                        We're located in a vibrant part of Galle. Feel free to visit us for a chat about your next big idea.
+                    </p>
+                    <div class="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden shadow-2xl fade-in" style="transition-delay: 200ms;">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1983.7340723116836!2d80.22534269184483!3d6.067425963758385!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae1717dd886f3cb%3A0x45f49f2a0cb6ca34!2sNational%20Hospital%20-%20Galle%20(previously%20Teaching%20Hospital%20-%20Karapitiya)!5e0!3m2!1sen!2ssg!4v1750350090291!5m2!1sen!2ssg"
-                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="grayscale hover:grayscale-0 transition-all duration-500"></iframe>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -398,23 +486,24 @@
     <section class="py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center fade-in">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-8 gradient-text">Connect With Us</h2>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-4 gradient-text">Follow Us</h2>
+                <p class="text-lg text-gray-600 mb-8">Stay ahead of the curve: @RekaIraDigital</p>
                 <div class="flex justify-center space-x-6">
                     <a href="#"
-                        class="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white hover:bg-gray-800 transition-colors">
-                        <i class="fab fa-facebook-f text-xl"></i>
-                    </a>
-                    <a href="#"
-                        class="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white hover:bg-gray-800 transition-colors">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>
-                    <a href="#"
-                        class="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white hover:bg-gray-800 transition-colors">
+                        class="social-icon hover-instagram w-12 h-12 bg-black rounded-full flex items-center justify-center text-white">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
                     <a href="#"
-                        class="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white hover:bg-gray-800 transition-colors">
+                        class="social-icon hover-linkedin w-12 h-12 bg-black rounded-full flex items-center justify-center text-white">
                         <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="#"
+                        class="social-icon hover-xtwitter w-12 h-12 bg-black rounded-full flex items-center justify-center text-white">
+                        <i class="fab fa-x-twitter text-xl"></i>
+                    </a>
+                    <a href="#"
+                        class="social-icon hover-facebook w-12 h-12 bg-black rounded-full flex items-center justify-center text-white">
+                        <i class="fab fa-facebook-f text-xl"></i>
                     </a>
                 </div>
             </div>
@@ -449,11 +538,12 @@
         };
 
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
+            entries.forEach((entry) => {
                 if (entry.isIntersecting) {
+                    const delay = parseInt(entry.target.style.transitionDelay) || 0;
                     setTimeout(() => {
                         entry.target.classList.add('visible');
-                    }, index * 100);
+                    }, delay);
                 }
             });
         }, observerOptions);
