@@ -1,6 +1,166 @@
 {
     "projects": [
         {
+            "id": "rekairaMarketingWebsite",
+            "title": "Rekaira – Marketing & Development Agency",
+            "short_description": "Responsive business site for Rekaira, a startup offering digital marketing and custom software development services.",
+            "full_description": "Designed and developed the complete frontend for Rekaira, a digital marketing firm that also provides tailored web, mobile, and standalone development services. The website showcases the firm's offerings, allows clients to book consultations, explore careers, and initiate new projects. Backend development is currently underway to integrate full functionality.",
+            "image": "./resources/rekaira/rekairaSS (1).png",
+            "gallery": [
+              {
+                "alt": "Rekaira Home Page",
+                "src": "./resources/rekaira/rekairaSS (1).png"
+              },
+              {
+                "alt": "Rekaira Services",
+                "src": "./resources/rekaira/rekairaSS (2).png"
+              },
+              {
+                "alt": "Rekaira Processes",
+                "src": "./resources/rekaira/rekairaSS (3).png"
+              },
+              {
+                "alt": "Rekaira About",
+                "src": "./resources/rekaira/rekairaSS (4).png"
+              },
+              {
+                "alt": "Rekaira Our Services Page",
+                "src": "./resources/rekaira/rekairaSS (5).png"
+              },
+              {
+                "alt": "Rekaira Our Services Page",
+                "src": "./resources/rekaira/rekairaSS (6).png"
+              },
+              {
+                "alt": "Rekaira Our Portfolio Page",
+                "src": "./resources/rekaira/rekairaSS (7).png"
+              },
+              {
+                "alt": "Rekaira Our Processes Page",
+                "src": "./resources/rekaira/rekairaSS (8).png"
+              },
+              {
+                "alt": "Rekaira Our Services Page",
+                "src": "./resources/rekaira/rekairaSS (9).png"
+              },
+              {
+                "alt": "Rekaira Our Team Page",
+                "src": "./resources/rekaira/rekairaSS (10).png"
+              },
+              {
+                "alt": "Rekaira Our Team Page",
+                "src": "./resources/rekaira/rekairaSS (11).png"
+              },
+              {
+                "alt": "Rekaira Our Story Page",
+                "src": "./resources/rekaira/rekairaSS (12).png"
+              },
+              {
+                "alt": "Rekaira Our Team Page",
+                "src": "./resources/rekaira/rekairaSS (13).png"
+              },
+              {
+                "alt": "Rekaira Contact us",
+                "src": "./resources/rekaira/rekairaSS (14).png"
+              },
+              {
+                "alt": "Rekaira Contact use",
+                "src": "./resources/rekaira/rekairaSS (15).png"
+              },
+              {
+                "alt": "Rekaira Career Page",
+                "src": "./resources/rekaira/rekairaSS (16).png"
+              },
+              {
+                "alt": "Rekaira Career Page",
+                "src": "./resources/rekaira/rekairaSS (17).png"
+              },
+              {
+                "alt": "Rekaira Career Page",
+                "src": "./resources/rekaira/rekairaSS (18).png"
+              },
+              {
+                "alt": "Rekaira Start your project",
+                "src": "./resources/rekaira/rekairaSS (19).png"
+              },
+              {
+                "alt": "Rekaira Schedule a consultation",
+                "src": "./resources/rekaira/rekairaSS (20).png"
+              }
+            ],
+            "client": {
+              "type": "Internal Project (In Progress)",
+              "name": "Rekaira",
+              "industry": "Marketing / Software Development",
+              "location": "Sri Lanka"
+            },
+            "timeline": "Ongoing – Started June 2025",
+            "role": "Developer",
+            "project_overview": [
+              "Rekaira's website positions the brand as a multi-service agency, allowing clients to request both marketing and development services. The interface makes it easy to learn about the agency, browse available roles, and take direct action through structured forms. Backend functionality will be added progressively."
+            ],
+            "challenge": {
+              "title_change": "Key Features & Technical Challenges",
+              "paragraphs": [],
+              "points": [
+                "Designing a unified interface to serve both marketing and software development audiences.",
+                "Ensuring form usability and layout responsiveness across devices.",
+                "Creating clear navigation paths for diverse users—clients, job seekers, and general visitors.",
+                "Handling animation and interactivity using only vanilla JavaScript, without external libraries."
+              ]
+            },
+            "technologies_used": {
+              "tech_stack": [
+                "HTML",
+                "Tailwind CSS",
+                "JavaScript"
+              ],
+              "description": "The site was built using semantic HTML5, Tailwind CSS for fast and responsive styling, and vanilla JavaScript to manage interactivity, animations, and navigation flow."
+            },
+            "card_section_1": {
+              "title": "Highlights",
+              "paragraph": "Rekaira's site acts as a central hub for branding, outreach, recruitment, and onboarding. It supports both marketing and development leads.",
+              "details": [
+                {
+                  "icon": "fa-briefcase",
+                  "title": "Career Listings",
+                  "description": "Dedicated page for exploring vacancies and submitting applications directly."
+                },
+                {
+                  "icon": "fa-calendar-alt",
+                  "title": "Consultations & Project Requests",
+                  "description": "Visitors can request consultations or initiate new projects through smooth form-based flows."
+                }
+              ]
+            },
+            "results_impact": {
+              "paragraph": "Frontend development is complete and live. Backend integration is in progress, and the site will soon support full data submission, project tracking, and form processing. The live version currently demonstrates structure, branding, and core flows.",
+              "details": [
+                {
+                  "digit": "100%",
+                  "impact": "Frontend design and development complete."
+                },
+                {
+                  "digit": "Live",
+                  "impact": "Publicly hosted and ready for backend integration."
+                }
+              ]
+            },
+            "key_learnings": {
+              "paragraphs": [
+                "Built a complete frontend architecture that balanced design, business goals, and scalability.",
+                "Gained experience developing multi-purpose pages under a unified brand tone."
+              ],
+              "points": [
+                "Plan navigation and user flows carefully when a site serves multiple audiences.",
+                "Tailwind CSS speeds up development but requires clean component structuring to stay readable.",
+                "Minimal JS can still deliver smooth UX with the right logic and clean HTML."
+              ]
+            },
+            "live_link": "https://kovidha-subasinghe.vercel.app/rekaira/rekaira.html"
+          }
+          ,
+        {
             "id": "pjbiologyLMS",
             "title": "PJBiology – Learning Management System",
             "short_description": "LMS for a biology tuition class with live classes, video access, and student performance tracking.",
@@ -141,17 +301,21 @@
                 {
                     "alt": "LQ.lk Home Page",
                     "src": "./resources/lqlk/Screenshot (185).png"
-                },  {
+                },
+                {
                     "alt": "LQ.lk Home Page",
                     "src": "./resources/lqlk/Screenshot (186).png"
-                },  {
+                },
+                {
                     "alt": "LQ.lk Home Page",
                     "src": "./resources/lqlk/Screenshot (187).png"
-                },  {
+                },
+                {
                     "alt": "LQ.lk Home Page",
                     "src": "./resources/lqlk/Screenshot (188).png"
-                },    {
-                     "alt": "LQ.lk Home Page",
+                },
+                {
+                    "alt": "LQ.lk Home Page",
                     "src": "./resources/lqlk/Screenshot (189).png"
                 }
             ],
