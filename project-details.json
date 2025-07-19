@@ -234,7 +234,8 @@
                     "Live and recorded class handling tied to package duration (40–60 days).",
                     "Payment integration with PayHere and slip submission support.",
                     "Advanced admin panel with class, package, student, and paper management.",
-                    "Custom logic for 'Paper Classes' with student-selected time slots."
+                    "Custom logic for 'Paper Classes' with student-selected time slots.",
+                    "Instructor panel for QR based attenance marking and paper marking"
                 ]
             },
             "technologies_used": {
@@ -273,7 +274,7 @@
                         "impact": "Used by real students actively preparing for biology exams."
                     },
                     {
-                        "digit": "1200+",
+                        "digit": "1300+",
                         "impact": "Registered Users."
                     }
                 ]
