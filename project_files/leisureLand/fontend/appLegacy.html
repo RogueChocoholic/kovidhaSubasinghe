@@ -27,19 +27,6 @@
             overflow: hidden;
         }
 
-        /* Mobile touch improvements */
-        @media (max-width: 768px) {
-            .touch-target {
-                min-height: 44px;
-                min-width: 44px;
-            }
-            
-            .mobile-card {
-                padding: 12px;
-                margin-bottom: 8px;
-            }
-        }
-
        
         /* Embedded Inter font */
         @font-face {
@@ -75,20 +62,13 @@
             <div class="h-14 flex items-center gap-2">
                 <a href="app.html"
                     class="px-3 py-2 rounded-md text-sm font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors interfont">Reservations</a>
-                <a href="history.html"
+                <a href="#"
                     class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">History</a>
-                <a href="logs.html"
+                <a href="#"
                     class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">Logs</a>
-                <a href="users.html"
+                <a href="#"
                     class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">User
                     Management</a>
-                <a href="rooms.html"
-                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">Room
-                    Management</a>
-                <div class="ml-auto flex items-center gap-3">
-                    <span id="userName" class="text-sm text-gray-600">Welcome, User</span>
-                    <button id="logoutBtn" class="text-sm text-red-600 hover:text-red-800">Logout</button>
-                </div>
             </div>
         </div>
     </div>
@@ -272,7 +252,7 @@
                             class="px-3 py-2 text-sm rounded-md border border-red-300 text-red-600 hover:bg-red-50">Cancel</button>
                     </div>
                 </div>
-                <div id="detailContent" class="p-6 overflow-y-auto">
+                <div id="detailContent" class="p-6 flex-1 overflow-y-auto">
                     <div class="text-gray-500">No reservation selected.</div>
                 </div>
                 <div class="px-6 py-4 border-t bg-gray-50">
@@ -307,7 +287,7 @@
     <nav id="mobileNav"
         class="lg:hidden fixed bottom-0 inset-x-0 bg-white/90 backdrop-blur-md border-t shadow-xl z-20 rounded-t-3xl transition-all duration-300"
         style="padding-bottom: env(safe-area-inset-bottom);">
-        <div class="grid grid-cols-5 text-xs text-gray-600 max-w-xl mx-auto">
+        <div class="grid grid-cols-4 text-xs text-gray-600 max-w-xl mx-auto">
             <a href="app.html" class="group flex flex-col items-center justify-center py-2 text-blue-600">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -315,7 +295,7 @@
                 </svg>
                 <span class="mt-0.5">Reservations</span>
             </a>
-            <a href="history.html"
+            <a href="#"
                 class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -323,7 +303,7 @@
                 </svg>
                 <span>History</span>
             </a>
-            <a href="logs.html"
+            <a href="#"
                 class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -331,21 +311,13 @@
                 </svg>
                 <span>Logs</span>
             </a>
-            <a href="users.html"
+            <a href="#"
                 class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M5.121 17.804A4 4 0 017 17h10a4 4 0 011.879.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 <span>Users</span>
-            </a>
-            <a href="rooms.html"
-                class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-                <span>Rooms</span>
             </a>
         </div>
     </nav>
@@ -452,57 +424,6 @@
     </div>
 
     <script>
-        // Mock database data (in real app, this would come from database)
-        const mockRooms = [
-            { id: 1, room_no: '1', room_name: 'Ocean View', status: 'occupied' },
-            { id: 2, room_no: '2', room_name: 'Garden Suite', status: 'available' },
-            { id: 3, room_no: '3', room_name: 'Deluxe Room', status: 'occupied' },
-            { id: 4, room_no: '4', room_name: 'Standard Room', status: 'available' },
-            { id: 5, room_no: '5', room_name: 'Family Room', status: 'available' },
-            { id: 6, room_no: '6', room_name: 'Honeymoon Suite', status: 'inactive' },
-            { id: 7, room_no: '7', room_name: 'Executive Suite', status: 'available' },
-            { id: 8, room_no: '8', room_name: 'Penthouse', status: 'inactive' },
-            { id: 9, room_no: '9', room_name: 'Studio', status: 'available' },
-            { id: 10, room_no: '10', room_name: 'Villa', status: 'available' }
-        ];
-
-        const mockReservations = [
-            { id: 1, name: 'John Doe', mobile: '+94775852207', pax: 9, from_date: '2024-12-20', to_date: '2024-12-22', booking_status: 'Complete', payment_status: 'Complete', room_numbers: '1', advance: 5000, remarks: 'Early check-in requested' },
-            { id: 2, name: 'Jane Smith', mobile: '+94770000000', pax: 5, from_date: '2024-12-20', to_date: '2024-12-21', booking_status: 'Complete', payment_status: 'Advance', room_numbers: '3', advance: 3000, remarks: 'Vegetarian meals' },
-            { id: 3, name: 'Alex Kim', mobile: '+94771234567', pax: 4, from_date: '2024-12-21', to_date: '2024-12-23', booking_status: 'Pending', payment_status: 'Pending', room_numbers: '5', advance: 0, remarks: 'Group booking' }
-        ];
-
-        // State
-        let currentUser = null;
-        let rooms = [...mockRooms];
-        let reservations = [...mockReservations];
-        let currentDate = null;
-
-        // Check authentication
-        function checkAuth() {
-            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-            const user = sessionStorage.getItem('user');
-            
-            if (isLoggedIn !== 'true' || !user) {
-                window.location.href = 'login.html';
-                return false;
-            }
-            
-            currentUser = JSON.parse(user);
-            const userName = document.getElementById('userName');
-            if (userName) {
-                userName.textContent = `Welcome, ${currentUser.fName} ${currentUser.lName}`;
-            }
-            return true;
-        }
-
-        // Logout
-        function logout() {
-            sessionStorage.removeItem('isLoggedIn');
-            sessionStorage.removeItem('user');
-            window.location.href = 'login.html';
-        }
-
         // Helpers
         function isDesktop() { return window.matchMedia('(min-width: 1024px)').matches; }
         function formatDisplayDate(date) {
@@ -525,37 +446,7 @@
             return dt;
         }
 
-        // Get status badge class
-        function getStatusBadgeClass(status) {
-            switch (status) {
-                case 'Complete': return 'bg-status-paid text-white';
-                case 'Cancelled': return 'bg-red-500 text-white';
-                case 'Postponed': return 'bg-yellow-500 text-white';
-                case 'Pending': return 'bg-gray-300 text-gray-800';
-                default: return 'bg-gray-300 text-gray-800';
-            }
-        }
-
-        // Get payment status badge class
-        function getPaymentStatusBadgeClass(status) {
-            switch (status) {
-                case 'Complete': return 'bg-status-paid text-white';
-                case 'Advance': return 'bg-yellow-500 text-white';
-                case 'Pending': return 'bg-gray-300 text-gray-800';
-                default: return 'bg-gray-300 text-gray-800';
-            }
-        }
-
-        // Get room status class
-        function getRoomStatusClass(status) {
-            switch (status) {
-                case 'available': return 'bg-room-available text-white';
-                case 'occupied': return 'bg-room-occupied text-white';
-                case 'inactive': return 'bg-room-inactive text-gray-700';
-                default: return 'bg-room-inactive text-gray-700';
-            }
-        }
-
+        let currentDate = null;
         function setCurrentDate(date) {
             currentDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
             const dateTitle = document.getElementById('dateTitle');
@@ -681,78 +572,14 @@
             }
         }
 
-        // Load rooms and reservations
-        function loadData() {
-            renderRoomGrid();
-            renderReservations();
-        }
-
-        // Render room grid
-        function renderRoomGrid() {
-            const grid = document.getElementById('roomsGrid');
-            grid.innerHTML = rooms.map(room => `
-                <button data-room="${room.id}" 
-                        class="${getRoomStatusClass(room.status)} font-bold text-lg py-3 px-4 rounded-lg hover:opacity-90 transition-opacity">
-                    ${room.room_no}
-                </button>
-            `).join('');
-
-            // Re-bind click handlers
-            document.querySelectorAll('#roomsGrid [data-room]').forEach(btn => {
-                btn.addEventListener('click', () => handleRoomButtonClick(btn));
-            });
-        }
-
-        // Render reservations
-        function renderReservations() {
-            // Mobile list
-            const mobileList = document.getElementById('reservationsMobile');
-            mobileList.innerHTML = reservations.map(reservation => `
-                <div class="reservation-row flex items-center justify-between py-3 border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors"
-                     data-room="${reservation.room_numbers}" 
-                     data-name="${reservation.name}" 
-                     data-phone="${reservation.mobile}" 
-                     data-pax="${reservation.pax}"
-                     data-status="${reservation.booking_status}">
-                    <div>
-                        <p class="font-semibold text-gray-900">${reservation.name}</p>
-                        <p class="text-gray-500 text-sm">${reservation.mobile}</p>
-                    </div>
-                    <div class="flex items-center text-gray-400">
-                        <span class="text-sm mr-2">${reservation.pax} PAX</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            `).join('');
-
-            // Desktop table
-            const desktopTable = document.getElementById('reservationsDesktop');
-            desktopTable.innerHTML = reservations.map(reservation => `
-                <tr class="reservation-row cursor-pointer hover:bg-gray-50 transition-colors"
-                    data-room="${reservation.room_numbers}" 
-                    data-name="${reservation.name}" 
-                    data-phone="${reservation.mobile}" 
-                    data-pax="${reservation.pax}"
-                    data-status="${reservation.booking_status}">
-                    <td class="px-4 py-3 font-medium text-gray-900">${reservation.name}</td>
-                    <td class="px-4 py-3 text-gray-600">${reservation.mobile}</td>
-                    <td class="px-4 py-3">${reservation.room_numbers || 'N/A'}</td>
-                    <td class="px-4 py-3">${reservation.pax}</td>
-                    <td class="px-4 py-3">
-                        <span class="inline-block text-xs px-2 py-1 rounded-full ${getStatusBadgeClass(reservation.booking_status)}">
-                            ${reservation.booking_status}
-                        </span>
-                    </td>
-                </tr>
-            `).join('');
-
-            // Re-bind click handlers
-            document.querySelectorAll('.reservation-row').forEach(row => {
-                row.addEventListener('click', () => handleReservationClick(row));
-            });
-        }
+        // --- Mock data for upcoming reservations ---
+        const mockReservations = [
+            { room: 1, date: '2025-09-16', name: 'John Doe', phone: '+94775852207', pax: 9, status: 'Paid in Full' },
+            { room: 1, date: '2025-09-17', name: 'Alex Kim', phone: '+94771234567', pax: 4, status: 'Unpaid' },
+            { room: 3, date: '2025-09-16', name: 'Jane Smith', phone: '+94770000000', pax: 5, status: 'Deposit Paid' },
+            { room: 3, date: '2025-09-19', name: 'Maria Garcia', phone: '+94770001122', pax: 3, status: 'Paid in Full' },
+            { room: 5, date: '2025-09-20', name: 'Chris Lee', phone: '+94774443322', pax: 6, status: 'Unpaid' }
+        ];
 
         function withinNextNDays(startDate, isoDate, nDays) {
             const start = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
@@ -773,10 +600,10 @@
             end.setDate(end.getDate() + 7);
             range.textContent = `${formatDisplayDate(currentDate)} – ${formatDisplayDate(end)} (${formatWeekday(currentDate)} to ${formatWeekday(end)})`;
 
-            const items = reservations
-                .filter(r => r.room_numbers && r.room_numbers.split(',').includes(roomNumber.toString()))
-                .filter(r => withinNextNDays(currentDate, r.from_date, 7))
-                .sort((a, b) => a.from_date.localeCompare(b.from_date));
+            const items = mockReservations
+                .filter(r => Number(r.room) === Number(roomNumber))
+                .filter(r => withinNextNDays(currentDate, r.date, 7))
+                .sort((a, b) => a.date.localeCompare(b.date));
 
             if (!items.length) {
                 list.innerHTML = `<div class="py-8 text-center text-gray-500">No upcoming reservations for this period.</div>`;
@@ -784,49 +611,20 @@
             }
 
             list.innerHTML = items.map(r => {
-                const d = fromISODate(r.from_date);
+                const d = fromISODate(r.date);
                 return `
                     <div class="flex items-center justify-between p-4">
                         <div>
                             <p class="text-sm text-gray-500">${formatWeekday(d)}, ${formatDisplayDate(d)}</p>
-                            <p class="font-medium text-gray-900">${r.name} <span class="text-gray-400 font-normal">(${r.mobile})</span></p>
+                            <p class="font-medium text-gray-900">${r.name} <span class="text-gray-400 font-normal">(${r.phone})</span></p>
                             <p class="text-gray-500 text-sm">${r.pax} PAX</p>
                         </div>
                         <div>
-                            <span class="text-xs px-2 py-1 rounded-full ${getStatusBadgeClass(r.booking_status)}">${r.booking_status}</span>
+                            <span class="text-xs px-2 py-1 rounded-full ${r.status === 'Paid in Full' ? 'bg-status-paid text-white' : r.status === 'Deposit Paid' ? 'bg-yellow-500 text-white' : 'bg-gray-300 text-gray-800'}">${r.status}</span>
                         </div>
                     </div>
                 `;
             }).join('');
-        }
-
-        // Create new reservation
-        function createReservation(formData) {
-            const newReservation = {
-                id: reservations.length + 1,
-                name: formData.name,
-                mobile: formData.phone,
-                pax: parseInt(formData.pax),
-                from_date: formData.date,
-                to_date: formData.date, // For single day reservations
-                booking_status: 'Pending',
-                payment_status: 'Pending',
-                room_numbers: formData.room,
-                advance: 0,
-                remarks: '',
-                user_id: currentUser.id
-            };
-
-            reservations.push(newReservation);
-            
-            // Update room status
-            const room = rooms.find(r => r.room_no === formData.room);
-            if (room) {
-                room.status = 'occupied';
-            }
-
-            closeNewReservationModal();
-            loadData();
         }
 
         function handleRoomButtonClick(buttonEl) {
@@ -837,9 +635,6 @@
 
         // Event wiring
         document.addEventListener('DOMContentLoaded', function () {
-            // Check authentication first
-            if (!checkAuth()) return;
-
             // Initialize date from hidden input or today
             const hiddenInput = document.getElementById('selectedDate');
             if (hiddenInput && hiddenInput.value) {
@@ -848,17 +643,18 @@
                 setCurrentDate(new Date());
             }
 
-            // Load initial data
-            loadData();
-
             // Wire arrows
-            document.getElementById('prevDay').addEventListener('click', function () { 
-                shiftDays(-1);
-                loadData();
+            document.getElementById('prevDay').addEventListener('click', function () { shiftDays(-1); });
+            document.getElementById('nextDay').addEventListener('click', function () { shiftDays(1); });
+
+            // Bind reservation rows (both mobile list and desktop table)
+            document.querySelectorAll('.reservation-row').forEach(function (row) {
+                row.addEventListener('click', function () { handleReservationClick(row); });
             });
-            document.getElementById('nextDay').addEventListener('click', function () { 
-                shiftDays(1);
-                loadData();
+
+            // Wire room grid buttons
+            document.querySelectorAll('#roomsGrid [data-room]').forEach(function (btn) {
+                btn.addEventListener('click', function () { handleRoomButtonClick(btn); });
             });
 
             // Close modal actions
@@ -876,16 +672,6 @@
             document.getElementById('newResCancel').addEventListener('click', closeNewReservationModal);
             document.querySelector('#newReservationModal [data-dismiss="newres-backdrop"]').addEventListener('click', closeNewReservationModal);
 
-            // New reservation form
-            document.getElementById('newReservationForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const formData = new FormData(this);
-                createReservation(Object.fromEntries(formData));
-            });
-
-            // Logout functionality
-            document.getElementById('logoutBtn').addEventListener('click', logout);
-
             // Esc to close on mobile
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape') {
@@ -896,19 +682,17 @@
             });
 
             // On initial load, if desktop, select first reservation
-            setTimeout(() => {
-                const firstRow = document.querySelector('.reservation-row');
-                if (firstRow) {
-                    populateDetail({
-                        room: firstRow.getAttribute('data-room'),
-                        name: firstRow.getAttribute('data-name'),
-                        phone: firstRow.getAttribute('data-phone'),
-                        pax: firstRow.getAttribute('data-pax'),
-                        status: firstRow.getAttribute('data-status')
-                    });
-                    if (isDesktop()) firstRow.classList.add('bg-blue-50');
-                }
-            }, 100);
+            const firstRow = document.querySelector('.reservation-row');
+            if (firstRow) {
+                populateDetail({
+                    room: firstRow.getAttribute('data-room'),
+                    name: firstRow.getAttribute('data-name'),
+                    phone: firstRow.getAttribute('data-phone'),
+                    pax: firstRow.getAttribute('data-pax'),
+                    status: firstRow.getAttribute('data-status')
+                });
+                if (isDesktop()) firstRow.classList.add('bg-blue-50');
+            }
         });
 
         // Handle responsive transitions

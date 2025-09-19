@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation History - Leisure Island</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'room-available': '#8BC34A',
+                        'room-occupied': '#E53E3E',
+                        'room-inactive': '#9CA3AF',
+                        'status-paid': '#10B981'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Prevent body scroll when mobile modal is open */
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        /* Mobile touch improvements */
+        @media (max-width: 768px) {
+            .touch-target {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .mobile-card {
+                padding: 12px;
+                margin-bottom: 8px;
+            }
+        }
+
+        /* Embedded Inter font */
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Inter-VariableFon.ttf') format('truetype');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        html {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+                'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji',
+                'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+                'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji',
+                'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif !important;
+        }
+    </style>
+</head>
+
+<body class="bg-white-900 font-sans">
+    <!-- Desktop Top Navigation -->
+    <div class="hidden lg:block bg-white/90 backdrop-blur-md border-b sticky top-0 z-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="h-14 flex items-center gap-2">
+                <a href="app.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">Reservations</a>
+                <a href="history.html"
+                    class="px-3 py-2 rounded-md text-sm font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors">History</a>
+                <a href="logs.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">Logs</a>
+                <a href="users.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">User
+                    Management</a>
+                <a href="rooms.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">Room
+                    Management</a>
+                <div class="ml-auto flex items-center gap-3">
+                    <span id="userName" class="text-sm text-gray-600">Welcome, User</span>
+                    <button id="logoutBtn" class="text-sm text-red-600 hover:text-red-800">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Responsive Container -->
+    <div class="min-h-screen max-w-6xl mx-auto flex flex-col pb-20 lg:pb-0">
+        <!-- Header / Toolbar -->
+        <div class="bg-white border-b sticky top-0 z-10">
+            <div class="px-6 py-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-2xl font-bold text-gray-900">Reservation History</h1>
+                    <button id="refreshBtn" class="text-blue-600 hover:text-blue-800">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <div class="flex flex-col lg:flex-row gap-4">
+                    <div class="flex-1">
+                        <input type="text" id="searchInput" placeholder="Search by name or phone"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div class="flex gap-2">
+                        <select id="statusFilter" class="border border-gray-300 rounded-md px-3 py-2 text-sm">
+                            <option value="">All Statuses</option>
+                            <option value="Complete">Complete</option>
+                            <option value="Cancelled">Cancelled</option>
+                            <option value="Postponed">Postponed</option>
+                        </select>
+                        <input type="date" id="dateFilter" class="border border-gray-300 rounded-md px-3 py-2 text-sm">
+                        <button id="clearFilters" class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 px-6 py-4">
+            <!-- Loading State -->
+            <div id="loadingState" class="hidden text-center py-8">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                <p class="text-gray-600 mt-2">Loading reservations...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-12">
+                <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">No reservations found</h3>
+                <p class="text-gray-500">Try adjusting your filters or check back later.</p>
+            </div>
+
+            <!-- Reservations List -->
+            <div id="reservationsList" class="space-y-4">
+                <!-- Reservations will be populated here -->
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="hidden mt-8 flex justify-center">
+                <div class="flex items-center gap-2">
+                    <button id="prevPage" class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
+                        Previous
+                    </button>
+                    <span id="pageInfo" class="px-4 py-2 text-sm text-gray-600"></span>
+                    <button id="nextPage" class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav id="mobileNav"
+        class="lg:hidden fixed bottom-0 inset-x-0 bg-white/90 backdrop-blur-md border-t shadow-xl z-20 rounded-t-3xl transition-all duration-300"
+        style="padding-bottom: env(safe-area-inset-bottom);">
+        <div class="grid grid-cols-5 text-xs text-gray-600 max-w-xl mx-auto">
+            <a href="app.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6" />
+                </svg>
+                <span class="mt-0.5">Reservations</span>
+            </a>
+            <a href="history.html" class="group flex flex-col items-center justify-center py-2 text-blue-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2v-6H3v6a2 2 0 002 2z" />
+                </svg>
+                <span>History</span>
+            </a>
+            <a href="logs.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 17v-6a2 2 0 012-2h8M9 7H5a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-4" />
+                </svg>
+                <span>Logs</span>
+            </a>
+            <a href="users.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5.121 17.804A4 4 0 017 17h10a4 4 0 011.879.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Users</span>
+            </a>
+            <a href="rooms.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <span>Rooms</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Reservation Detail Modal (Mobile) -->
+    <div id="detailModal" class="lg:hidden fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50" data-dismiss="backdrop"></div>
+        <div class="absolute inset-x-0 bottom-0 p-4">
+            <div class="bg-white rounded-2xl shadow-xl p-6 max-w-md mx-auto">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 id="modalTitle" class="text-xl font-bold text-gray-800">Reservation Details</h2>
+                    <button id="modalClose" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="modalContent" class="space-y-4">
+                    <!-- Content will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock data (in real app, this would come from database)
+        const mockHistoryData = [
+            { id: 1, name: 'John Doe', mobile: '+94775852207', pax: 9, from_date: '2024-12-15', to_date: '2024-12-17', booking_status: 'Complete', payment_status: 'Complete', room_numbers: '1', advance: 5000, remarks: 'Early check-in requested' },
+            { id: 2, name: 'Jane Smith', mobile: '+94770000000', pax: 5, from_date: '2024-12-10', to_date: '2024-12-12', booking_status: 'Complete', payment_status: 'Complete', room_numbers: '3', advance: 3000, remarks: 'Vegetarian meals' },
+            { id: 3, name: 'Alex Kim', mobile: '+94771234567', pax: 4, from_date: '2024-12-05', to_date: '2024-12-07', booking_status: 'Cancelled', payment_status: 'Advance', room_numbers: '5', advance: 1000, remarks: 'Group booking' },
+            { id: 4, name: 'Maria Garcia', mobile: '+94770001122', pax: 3, from_date: '2024-11-28', to_date: '2024-11-30', booking_status: 'Complete', payment_status: 'Complete', room_numbers: '2', advance: 2500, remarks: 'Anniversary celebration' },
+            { id: 5, name: 'Chris Lee', mobile: '+94774443322', pax: 6, from_date: '2024-11-20', to_date: '2024-11-22', booking_status: 'Postponed', payment_status: 'Advance', room_numbers: '4', advance: 2000, remarks: 'Rescheduled due to weather' }
+        ];
+
+        // State
+        let currentPage = 1;
+        let totalPages = 1;
+        let reservations = [...mockHistoryData];
+        let filteredReservations = [...mockHistoryData];
+
+        // DOM Elements
+        const searchInput = document.getElementById('searchInput');
+        const statusFilter = document.getElementById('statusFilter');
+        const dateFilter = document.getElementById('dateFilter');
+        const clearFilters = document.getElementById('clearFilters');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const loadingState = document.getElementById('loadingState');
+        const emptyState = document.getElementById('emptyState');
+        const reservationsList = document.getElementById('reservationsList');
+        const pagination = document.getElementById('pagination');
+        const prevPage = document.getElementById('prevPage');
+        const nextPage = document.getElementById('nextPage');
+        const pageInfo = document.getElementById('pageInfo');
+        const detailModal = document.getElementById('detailModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const userName = document.getElementById('userName');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Check authentication
+        function checkAuth() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            const user = sessionStorage.getItem('user');
+            
+            if (isLoggedIn !== 'true' || !user) {
+                window.location.href = 'login.html';
+                return false;
+            }
+            
+            const userData = JSON.parse(user);
+            userName.textContent = `Welcome, ${userData.fName} ${userData.lName}`;
+            return true;
+        }
+
+        // Logout
+        function logout() {
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('user');
+            window.location.href = 'login.html';
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: '2-digit' 
+            });
+        }
+
+        // Format currency
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'LKR'
+            }).format(amount || 0);
+        }
+
+        // Get status badge class
+        function getStatusBadgeClass(status) {
+            switch (status) {
+                case 'Complete': return 'bg-status-paid text-white';
+                case 'Cancelled': return 'bg-red-500 text-white';
+                case 'Postponed': return 'bg-yellow-500 text-white';
+                default: return 'bg-gray-300 text-gray-800';
+            }
+        }
+
+        // Get payment status badge class
+        function getPaymentStatusBadgeClass(status) {
+            switch (status) {
+                case 'Complete': return 'bg-status-paid text-white';
+                case 'Advance': return 'bg-yellow-500 text-white';
+                case 'Pending': return 'bg-gray-300 text-gray-800';
+                default: return 'bg-gray-300 text-gray-800';
+            }
+        }
+
+        // Load reservations
+        function loadReservations() {
+            showLoading();
+            
+            // Simulate API delay
+            setTimeout(() => {
+                applyFilters();
+                hideLoading();
+            }, 500);
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const statusFilterValue = statusFilter.value;
+            const dateFilterValue = dateFilter.value;
+
+            filteredReservations = reservations.filter(reservation => {
+                const matchesSearch = !searchTerm || 
+                    reservation.name.toLowerCase().includes(searchTerm) ||
+                    reservation.mobile.includes(searchTerm);
+                
+                const matchesStatus = !statusFilterValue || 
+                    reservation.booking_status === statusFilterValue;
+                
+                const matchesDate = !dateFilterValue || 
+                    reservation.from_date === dateFilterValue;
+                
+                return matchesSearch && matchesStatus && matchesDate;
+            });
+
+            currentPage = 1;
+            renderReservations();
+        }
+
+        // Render reservations
+        function renderReservations() {
+            if (filteredReservations.length === 0) {
+                showEmpty();
+                return;
+            }
+
+            hideEmpty();
+            
+            const startIndex = (currentPage - 1) * 10;
+            const endIndex = startIndex + 10;
+            const pageReservations = filteredReservations.slice(startIndex, endIndex);
+
+            reservationsList.innerHTML = pageReservations.map(reservation => `
+                <div class="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer reservation-item mobile-card"
+                     data-reservation='${JSON.stringify(reservation)}'>
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-900 text-sm">${reservation.name}</h3>
+                            <p class="text-xs text-gray-500">${reservation.mobile}</p>
+                        </div>
+                        <div class="ml-2">
+                            <span class="inline-block text-xs px-2 py-1 rounded-full ${getStatusBadgeClass(reservation.booking_status)}">
+                                ${reservation.booking_status}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-2 text-xs mb-2">
+                        <div>
+                            <p class="text-gray-500">Check-in</p>
+                            <p class="font-medium">${formatDate(reservation.from_date)}</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Check-out</p>
+                            <p class="font-medium">${formatDate(reservation.to_date)}</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Rooms</p>
+                            <p class="font-medium">${reservation.room_numbers || 'N/A'}</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">PAX</p>
+                            <p class="font-medium">${reservation.pax}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-2 border-t border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <span class="inline-block text-xs px-2 py-1 rounded-full ${getPaymentStatusBadgeClass(reservation.payment_status)}">
+                                ${reservation.payment_status}
+                            </span>
+                            <span class="text-xs text-gray-600">
+                                ${formatCurrency(reservation.advance)}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add click handlers
+            document.querySelectorAll('.reservation-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const reservation = JSON.parse(item.dataset.reservation);
+                    showReservationDetail(reservation);
+                });
+            });
+
+            // Update pagination
+            updatePagination();
+        }
+
+        // Show reservation detail
+        function showReservationDetail(reservation) {
+            modalTitle.textContent = `Reservation #${reservation.id}`;
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-sm text-gray-500">Guest Name</p>
+                            <p class="font-medium">${reservation.name}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Mobile</p>
+                            <p class="font-medium">${reservation.mobile}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Check-in</p>
+                            <p class="font-medium">${formatDate(reservation.from_date)}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Check-out</p>
+                            <p class="font-medium">${formatDate(reservation.to_date)}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Rooms</p>
+                            <p class="font-medium">${reservation.room_numbers || 'N/A'}</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">PAX</p>
+                            <p class="font-medium">${reservation.pax}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-gray-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-gray-500">Booking Status</span>
+                            <span class="inline-block text-xs px-2 py-1 rounded-full ${getStatusBadgeClass(reservation.booking_status)}">
+                                ${reservation.booking_status}
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-gray-500">Payment Status</span>
+                            <span class="inline-block text-xs px-2 py-1 rounded-full ${getPaymentStatusBadgeClass(reservation.payment_status)}">
+                                ${reservation.payment_status}
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Advance Payment</span>
+                            <span class="font-medium">${formatCurrency(reservation.advance)}</span>
+                        </div>
+                    </div>
+                    
+                    ${reservation.remarks ? `
+                        <div class="pt-4 border-t border-gray-200">
+                            <p class="text-sm text-gray-500 mb-1">Remarks</p>
+                            <p class="text-sm">${reservation.remarks}</p>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            
+            detailModal.classList.remove('hidden');
+            document.body.classList.add('no-scroll');
+        }
+
+        // Update pagination
+        function updatePagination() {
+            totalPages = Math.ceil(filteredReservations.length / 10);
+            
+            if (totalPages <= 1) {
+                pagination.classList.add('hidden');
+                return;
+            }
+            
+            pagination.classList.remove('hidden');
+            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+            
+            prevPage.disabled = currentPage === 1;
+            nextPage.disabled = currentPage === totalPages;
+        }
+
+        // Show loading
+        function showLoading() {
+            loadingState.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            reservationsList.classList.add('hidden');
+        }
+
+        // Hide loading
+        function hideLoading() {
+            loadingState.classList.add('hidden');
+        }
+
+        // Show empty state
+        function showEmpty() {
+            emptyState.classList.remove('hidden');
+            reservationsList.classList.add('hidden');
+            pagination.classList.add('hidden');
+        }
+
+        // Hide empty state
+        function hideEmpty() {
+            emptyState.classList.add('hidden');
+            reservationsList.classList.remove('hidden');
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', applyFilters);
+        statusFilter.addEventListener('change', applyFilters);
+        dateFilter.addEventListener('change', applyFilters);
+        clearFilters.addEventListener('click', () => {
+            searchInput.value = '';
+            statusFilter.value = '';
+            dateFilter.value = '';
+            applyFilters();
+        });
+        refreshBtn.addEventListener('click', loadReservations);
+        prevPage.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderReservations();
+            }
+        });
+        nextPage.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderReservations();
+            }
+        });
+        modalClose.addEventListener('click', () => {
+            detailModal.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+        });
+        document.querySelector('[data-dismiss="backdrop"]').addEventListener('click', () => {
+            detailModal.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+        });
+        logoutBtn.addEventListener('click', logout);
+
+        // Initialize
+        if (checkAuth()) {
+            loadReservations();
+        }
+    </script>
+</body>
+
+</html>

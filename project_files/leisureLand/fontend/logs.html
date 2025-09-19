@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action Logs - Leisure Island</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'room-available': '#8BC34A',
+                        'room-occupied': '#E53E3E',
+                        'room-inactive': '#9CA3AF',
+                        'status-paid': '#10B981'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Prevent body scroll when mobile modal is open */
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        /* Mobile touch improvements */
+        @media (max-width: 768px) {
+            .touch-target {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .mobile-card {
+                padding: 12px;
+                margin-bottom: 8px;
+            }
+        }
+
+        /* Embedded Inter font */
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Inter-VariableFon.ttf') format('truetype');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        html {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+                'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji',
+                'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+                'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji',
+                'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif !important;
+        }
+    </style>
+</head>
+
+<body class="bg-white-900 font-sans">
+    <!-- Desktop Top Navigation -->
+    <div class="hidden lg:block bg-white/90 backdrop-blur-md border-b sticky top-0 z-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="h-14 flex items-center gap-2">
+                <a href="app.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">Reservations</a>
+                <a href="history.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">History</a>
+                <a href="logs.html"
+                    class="px-3 py-2 rounded-md text-sm font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors">Logs</a>
+                <a href="users.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">User
+                    Management</a>
+                <div class="ml-auto flex items-center gap-3">
+                    <span id="userName" class="text-sm text-gray-600">Welcome, User</span>
+                    <button id="logoutBtn" class="text-sm text-red-600 hover:text-red-800">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Responsive Container -->
+    <div class="min-h-screen max-w-6xl mx-auto flex flex-col pb-20 lg:pb-0">
+        <!-- Header / Toolbar -->
+        <div class="bg-white border-b sticky top-0 z-10">
+            <div class="px-6 py-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-2xl font-bold text-gray-900">Action Logs</h1>
+                    <button id="refreshBtn" class="text-blue-600 hover:text-blue-800">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <div class="flex flex-col lg:flex-row gap-4">
+                    <div class="flex-1">
+                        <input type="text" id="searchInput" placeholder="Search by action or user"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div class="flex gap-2">
+                        <select id="actionTypeFilter" class="border border-gray-300 rounded-md px-3 py-2 text-sm">
+                            <option value="">All Actions</option>
+                            <option value="Add">Add</option>
+                            <option value="Delete">Delete</option>
+                            <option value="Edit">Edit</option>
+                        </select>
+                        <input type="date" id="dateFilter" class="border border-gray-300 rounded-md px-3 py-2 text-sm">
+                        <button id="clearFilters" class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 px-6 py-4">
+            <!-- Loading State -->
+            <div id="loadingState" class="hidden text-center py-8">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                <p class="text-gray-600 mt-2">Loading logs...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-12">
+                <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">No logs found</h3>
+                <p class="text-gray-500">Try adjusting your filters or check back later.</p>
+            </div>
+
+            <!-- Logs List -->
+            <div id="logsList" class="space-y-3">
+                <!-- Logs will be populated here -->
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="hidden mt-8 flex justify-center">
+                <div class="flex items-center gap-2">
+                    <button id="prevPage" class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
+                        Previous
+                    </button>
+                    <span id="pageInfo" class="px-4 py-2 text-sm text-gray-600"></span>
+                    <button id="nextPage" class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav id="mobileNav"
+        class="lg:hidden fixed bottom-0 inset-x-0 bg-white/90 backdrop-blur-md border-t shadow-xl z-20 rounded-t-3xl transition-all duration-300"
+        style="padding-bottom: env(safe-area-inset-bottom);">
+        <div class="grid grid-cols-5 text-xs text-gray-600 max-w-xl mx-auto">
+            <a href="app.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6" />
+                </svg>
+                <span class="mt-0.5">Reservations</span>
+            </a>
+            <a href="history.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2v-6H3v6a2 2 0 002 2z" />
+                </svg>
+                <span>History</span>
+            </a>
+            <a href="logs.html" class="group flex flex-col items-center justify-center py-2 text-blue-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 17v-6a2 2 0 012-2h8M9 7H5a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-4" />
+                </svg>
+                <span>Logs</span>
+            </a>
+            <a href="users.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5.121 17.804A4 4 0 017 17h10a4 4 0 011.879.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Users</span>
+            </a>
+            <a href="rooms.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <span>Rooms</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Mock data (in real app, this would come from database)
+        const mockLogsData = [
+            { id: 1, date: '2024-12-20 10:30:00', action: 'Created booking for John Doe', user_name: 'John Admin', emp_id: 'EMP001', action_type: 'Add' },
+            { id: 2, date: '2024-12-20 11:15:00', action: 'Updated booking #2 payment status', user_name: 'Jane Reception', emp_id: 'EMP002', action_type: 'Edit' },
+            { id: 3, date: '2024-12-20 12:00:00', action: 'Cancelled booking #3', user_name: 'John Admin', emp_id: 'EMP001', action_type: 'Delete' },
+            { id: 4, date: '2024-12-20 14:20:00', action: 'Added new room - Villa', user_name: 'Jane Reception', emp_id: 'EMP002', action_type: 'Add' },
+            { id: 5, date: '2024-12-20 15:45:00', action: 'Updated user profile for EMP003', user_name: 'John Admin', emp_id: 'EMP001', action_type: 'Edit' },
+            { id: 6, date: '2024-12-20 16:30:00', action: 'Deleted old booking records', user_name: 'John Admin', emp_id: 'EMP001', action_type: 'Delete' },
+            { id: 7, date: '2024-12-19 09:15:00', action: 'Created booking for Maria Garcia', user_name: 'Jane Reception', emp_id: 'EMP002', action_type: 'Add' },
+            { id: 8, date: '2024-12-19 10:00:00', action: 'Updated room availability', user_name: 'John Admin', emp_id: 'EMP001', action_type: 'Edit' },
+            { id: 9, date: '2024-12-19 11:30:00', action: 'Processed check-in for booking #1', user_name: 'Jane Reception', emp_id: 'EMP002', action_type: 'Edit' },
+            { id: 10, date: '2024-12-19 13:45:00', action: 'Added new user - Chris Lee', user_name: 'John Admin', emp_id: 'EMP001', action_type: 'Add' }
+        ];
+
+        // State
+        let currentPage = 1;
+        let totalPages = 1;
+        let logs = [...mockLogsData];
+        let filteredLogs = [...mockLogsData];
+
+        // DOM Elements
+        const searchInput = document.getElementById('searchInput');
+        const actionTypeFilter = document.getElementById('actionTypeFilter');
+        const dateFilter = document.getElementById('dateFilter');
+        const clearFilters = document.getElementById('clearFilters');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const loadingState = document.getElementById('loadingState');
+        const emptyState = document.getElementById('emptyState');
+        const logsList = document.getElementById('logsList');
+        const pagination = document.getElementById('pagination');
+        const prevPage = document.getElementById('prevPage');
+        const nextPage = document.getElementById('nextPage');
+        const pageInfo = document.getElementById('pageInfo');
+        const userName = document.getElementById('userName');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Check authentication
+        function checkAuth() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            const user = sessionStorage.getItem('user');
+            
+            if (isLoggedIn !== 'true' || !user) {
+                window.location.href = 'login.html';
+                return false;
+            }
+            
+            const userData = JSON.parse(user);
+            userName.textContent = `Welcome, ${userData.fName} ${userData.lName}`;
+            return true;
+        }
+
+        // Logout
+        function logout() {
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('user');
+            window.location.href = 'login.html';
+        }
+
+        // Format date and time
+        function formatDateTime(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        // Get action type badge class
+        function getActionTypeBadgeClass(actionType) {
+            switch (actionType) {
+                case 'Add': return 'bg-green-100 text-green-800';
+                case 'Delete': return 'bg-red-100 text-red-800';
+                case 'Edit': return 'bg-blue-100 text-blue-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        // Load logs
+        function loadLogs() {
+            showLoading();
+            
+            // Simulate API delay
+            setTimeout(() => {
+                applyFilters();
+                hideLoading();
+            }, 500);
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const actionTypeFilterValue = actionTypeFilter.value;
+            const dateFilterValue = dateFilter.value;
+
+            filteredLogs = logs.filter(log => {
+                const matchesSearch = !searchTerm || 
+                    log.action.toLowerCase().includes(searchTerm) ||
+                    log.user_name.toLowerCase().includes(searchTerm) ||
+                    log.emp_id.toLowerCase().includes(searchTerm);
+                
+                const matchesActionType = !actionTypeFilterValue || 
+                    log.action_type === actionTypeFilterValue;
+                
+                const matchesDate = !dateFilterValue || 
+                    log.date.startsWith(dateFilterValue);
+                
+                return matchesSearch && matchesActionType && matchesDate;
+            });
+
+            renderLogs();
+        }
+
+        // Render logs
+        function renderLogs() {
+            if (filteredLogs.length === 0) {
+                showEmpty();
+                return;
+            }
+
+            hideEmpty();
+            
+            logsList.innerHTML = filteredLogs.map(log => `
+                <div class="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow mobile-card">
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="inline-block text-xs px-2 py-1 rounded-full ${getActionTypeBadgeClass(log.action_type)}">
+                                    ${log.action_type}
+                                </span>
+                                <span class="text-xs text-gray-500">${formatDateTime(log.date)}</span>
+                            </div>
+                            <p class="text-gray-900 font-medium text-sm">${log.action}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between text-xs text-gray-500">
+                        <span>By: ${log.user_name} (${log.emp_id})</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update pagination
+            updatePagination();
+        }
+
+        // Update pagination
+        function updatePagination() {
+            totalPages = Math.ceil(filteredLogs.length / 20);
+            
+            if (totalPages <= 1) {
+                pagination.classList.add('hidden');
+                return;
+            }
+            
+            pagination.classList.remove('hidden');
+            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+            
+            prevPage.disabled = currentPage === 1;
+            nextPage.disabled = currentPage === totalPages;
+        }
+
+        // Show loading
+        function showLoading() {
+            loadingState.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            logsList.classList.add('hidden');
+        }
+
+        // Hide loading
+        function hideLoading() {
+            loadingState.classList.add('hidden');
+        }
+
+        // Show empty state
+        function showEmpty() {
+            emptyState.classList.remove('hidden');
+            logsList.classList.add('hidden');
+            pagination.classList.add('hidden');
+        }
+
+        // Hide empty state
+        function hideEmpty() {
+            emptyState.classList.add('hidden');
+            logsList.classList.remove('hidden');
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', applyFilters);
+        actionTypeFilter.addEventListener('change', applyFilters);
+        dateFilter.addEventListener('change', applyFilters);
+        clearFilters.addEventListener('click', () => {
+            searchInput.value = '';
+            actionTypeFilter.value = '';
+            dateFilter.value = '';
+            applyFilters();
+        });
+        refreshBtn.addEventListener('click', loadLogs);
+        prevPage.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                loadLogs();
+            }
+        });
+        nextPage.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadLogs();
+            }
+        });
+        logoutBtn.addEventListener('click', logout);
+
+        // Initialize
+        if (checkAuth()) {
+            loadLogs();
+        }
+    </script>
+</body>
+
+</html>

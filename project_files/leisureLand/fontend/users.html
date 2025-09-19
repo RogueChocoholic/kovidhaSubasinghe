@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Leisure Island</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'room-available': '#8BC34A',
+                        'room-occupied': '#E53E3E',
+                        'room-inactive': '#9CA3AF',
+                        'status-paid': '#10B981'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Prevent body scroll when mobile modal is open */
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        /* Mobile touch improvements */
+        @media (max-width: 768px) {
+            .touch-target {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .mobile-card {
+                padding: 12px;
+                margin-bottom: 8px;
+            }
+        }
+
+        /* Embedded Inter font */
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Inter-VariableFon.ttf') format('truetype');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        html {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+                'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji',
+                'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+                'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji',
+                'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif !important;
+        }
+    </style>
+</head>
+
+<body class="bg-white-900 font-sans">
+    <!-- Desktop Top Navigation -->
+    <div class="hidden lg:block bg-white/90 backdrop-blur-md border-b sticky top-0 z-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="h-14 flex items-center gap-2">
+                <a href="app.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">Reservations</a>
+                <a href="history.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">History</a>
+                <a href="logs.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">Logs</a>
+                <a href="users.html"
+                    class="px-3 py-2 rounded-md text-sm font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors">User
+                    Management</a>
+                <div class="ml-auto flex items-center gap-3">
+                    <span id="userName" class="text-sm text-gray-600">Welcome, User</span>
+                    <button id="logoutBtn" class="text-sm text-red-600 hover:text-red-800">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Responsive Container -->
+    <div class="min-h-screen max-w-6xl mx-auto flex flex-col pb-20 lg:pb-0">
+        <!-- Header / Toolbar -->
+        <div class="bg-white border-b sticky top-0 z-10">
+            <div class="px-6 py-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-2xl font-bold text-gray-900">User Management</h1>
+                    <button id="addUserBtn" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Add User
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <div class="flex flex-col lg:flex-row gap-4">
+                    <div class="flex-1">
+                        <input type="text" id="searchInput" placeholder="Search by name or employee ID"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div class="flex gap-2">
+                        <select id="statusFilter" class="border border-gray-300 rounded-md px-3 py-2 text-sm">
+                            <option value="">All Statuses</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                        <select id="typeFilter" class="border border-gray-300 rounded-md px-3 py-2 text-sm">
+                            <option value="">All Types</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Reception">Reception</option>
+                        </select>
+                        <button id="clearFilters" class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 px-6 py-4">
+            <!-- Loading State -->
+            <div id="loadingState" class="hidden text-center py-8">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                <p class="text-gray-600 mt-2">Loading users...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-12">
+                <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                </svg>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">No users found</h3>
+                <p class="text-gray-500">Try adjusting your filters or add a new user.</p>
+            </div>
+
+            <!-- Users List -->
+            <div id="usersList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <!-- Users will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav id="mobileNav"
+        class="lg:hidden fixed bottom-0 inset-x-0 bg-white/90 backdrop-blur-md border-t shadow-xl z-20 rounded-t-3xl transition-all duration-300"
+        style="padding-bottom: env(safe-area-inset-bottom);">
+        <div class="grid grid-cols-5 text-xs text-gray-600 max-w-xl mx-auto">
+            <a href="app.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6" />
+                </svg>
+                <span class="mt-0.5">Reservations</span>
+            </a>
+            <a href="history.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2v-6H3v6a2 2 0 002 2z" />
+                </svg>
+                <span>History</span>
+            </a>
+            <a href="logs.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 17v-6a2 2 0 012-2h8M9 7H5a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-4" />
+                </svg>
+                <span>Logs</span>
+            </a>
+            <a href="users.html" class="group flex flex-col items-center justify-center py-2 text-blue-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5.121 17.804A4 4 0 017 17h10a4 4 0 011.879.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Users</span>
+            </a>
+            <a href="rooms.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <span>Rooms</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Add/Edit User Modal -->
+    <div id="userModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50" data-dismiss="backdrop"></div>
+        <div class="absolute inset-0 flex items-end lg:items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-4 lg:p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 id="modalTitle" class="text-lg font-bold text-gray-900">Add User</h3>
+                    <button id="modalClose" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <form id="userForm" class="space-y-4">
+                    <input type="hidden" id="userId" name="id">
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="empId">Employee ID</label>
+                        <input id="empId" name="emp_id" type="text" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="e.g., EMP001">
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="firstName">First Name</label>
+                            <input id="firstName" name="fName" type="text" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="First name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="lastName">Last Name</label>
+                            <input id="lastName" name="lName" type="text" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Last name">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="mobile">Mobile Number</label>
+                        <input id="mobile" name="mobile" type="tel" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="+94771234567">
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="userType">User Type</label>
+                            <select id="userType" name="user_type_id" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select Type</option>
+                                <option value="1">Admin</option>
+                                <option value="2">Reception</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="userStatus">Status</label>
+                            <select id="userStatus" name="user_status_id" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select Status</option>
+                                <option value="1">Active</option>
+                                <option value="2">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end gap-2 pt-4">
+                        <button type="button" id="cancelBtn"
+                            class="px-4 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100">
+                            Cancel
+                        </button>
+                        <button type="submit" id="saveBtn"
+                            class="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock user data (in real app, this would come from database)
+        const mockUsersData = [
+            { id: 1, emp_id: 'EMP001', fName: 'John', lName: 'Admin', mobile: '+94771234567', user_type: 'Admin', user_status: 'Active', registered_date: '2024-01-01 00:00:00' },
+            { id: 2, emp_id: 'EMP002', fName: 'Jane', lName: 'Reception', mobile: '+94771234568', user_type: 'Reception', user_status: 'Active', registered_date: '2024-01-01 00:00:00' },
+            { id: 3, emp_id: 'EMP003', fName: 'Alex', lName: 'Manager', mobile: '+94771234569', user_type: 'Admin', user_status: 'Inactive', registered_date: '2024-02-15 00:00:00' },
+            { id: 4, emp_id: 'EMP004', fName: 'Sarah', lName: 'Staff', mobile: '+94771234570', user_type: 'Reception', user_status: 'Active', registered_date: '2024-03-10 00:00:00' }
+        ];
+
+        // State
+        let users = [...mockUsersData];
+        let filteredUsers = [...mockUsersData];
+        let isEditing = false;
+
+        // DOM Elements
+        const searchInput = document.getElementById('searchInput');
+        const statusFilter = document.getElementById('statusFilter');
+        const typeFilter = document.getElementById('typeFilter');
+        const clearFilters = document.getElementById('clearFilters');
+        const addUserBtn = document.getElementById('addUserBtn');
+        const loadingState = document.getElementById('loadingState');
+        const emptyState = document.getElementById('emptyState');
+        const usersList = document.getElementById('usersList');
+        const userModal = document.getElementById('userModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const userForm = document.getElementById('userForm');
+        const userId = document.getElementById('userId');
+        const empId = document.getElementById('empId');
+        const firstName = document.getElementById('firstName');
+        const lastName = document.getElementById('lastName');
+        const mobile = document.getElementById('mobile');
+        const userType = document.getElementById('userType');
+        const userStatus = document.getElementById('userStatus');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const userName = document.getElementById('userName');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Check authentication
+        function checkAuth() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            const user = sessionStorage.getItem('user');
+            
+            if (isLoggedIn !== 'true' || !user) {
+                window.location.href = 'login.html';
+                return false;
+            }
+            
+            const userData = JSON.parse(user);
+            userName.textContent = `Welcome, ${userData.fName} ${userData.lName}`;
+            return true;
+        }
+
+        // Logout
+        function logout() {
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('user');
+            window.location.href = 'login.html';
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: '2-digit' 
+            });
+        }
+
+        // Get status badge class
+        function getStatusBadgeClass(status) {
+            switch (status) {
+                case 'Active': return 'bg-green-100 text-green-800';
+                case 'Inactive': return 'bg-red-100 text-red-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        // Get type badge class
+        function getTypeBadgeClass(type) {
+            switch (type) {
+                case 'Admin': return 'bg-purple-100 text-purple-800';
+                case 'Reception': return 'bg-blue-100 text-blue-800';
+                default: return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        // Load users
+        function loadUsers() {
+            showLoading();
+            
+            // Simulate API delay
+            setTimeout(() => {
+                applyFilters();
+                hideLoading();
+            }, 500);
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const statusFilterValue = statusFilter.value;
+            const typeFilterValue = typeFilter.value;
+
+            filteredUsers = users.filter(user => {
+                const matchesSearch = !searchTerm || 
+                    user.fName.toLowerCase().includes(searchTerm) ||
+                    user.lName.toLowerCase().includes(searchTerm) ||
+                    user.emp_id.toLowerCase().includes(searchTerm);
+                
+                const matchesStatus = !statusFilterValue || 
+                    user.user_status === statusFilterValue;
+                
+                const matchesType = !typeFilterValue || 
+                    user.user_type === typeFilterValue;
+                
+                return matchesSearch && matchesStatus && matchesType;
+            });
+
+            renderUsers();
+        }
+
+        // Render users
+        function renderUsers() {
+            if (filteredUsers.length === 0) {
+                showEmpty();
+                return;
+            }
+
+            hideEmpty();
+            
+            usersList.innerHTML = filteredUsers.map(user => `
+                <div class="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow mobile-card">
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-900 text-sm">${user.fName} ${user.lName}</h3>
+                            <p class="text-xs text-gray-500">${user.emp_id}</p>
+                            <p class="text-xs text-gray-500">${user.mobile}</p>
+                        </div>
+                        <div class="flex flex-col gap-1 ml-2">
+                            <span class="inline-block text-xs px-2 py-1 rounded-full ${getStatusBadgeClass(user.user_status)}">
+                                ${user.user_status}
+                            </span>
+                            <span class="inline-block text-xs px-2 py-1 rounded-full ${getTypeBadgeClass(user.user_type)}">
+                                ${user.user_type}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between text-xs text-gray-500 mb-2">
+                        <span>${formatDate(user.registered_date)}</span>
+                    </div>
+                    
+                    <div class="flex gap-1">
+                        <button onclick="editUser(${user.id})" class="flex-1 px-2 py-1 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded text-xs text-center touch-target">
+                            Edit
+                        </button>
+                        <button onclick="toggleUserStatus(${user.id}, '${user.user_status}')" 
+                            class="flex-1 px-2 py-1 ${user.user_status === 'Active' ? 'text-red-600 hover:text-red-800 hover:bg-red-50' : 'text-green-600 hover:text-green-800 hover:bg-green-50'} rounded text-xs text-center touch-target">
+                            ${user.user_status === 'Active' ? 'Deactivate' : 'Activate'}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Show add user modal
+        function showAddUserModal() {
+            isEditing = false;
+            modalTitle.textContent = 'Add User';
+            userForm.reset();
+            userId.value = '';
+            userModal.classList.remove('hidden');
+            document.body.classList.add('no-scroll');
+        }
+
+        // Edit user
+        function editUser(userIdValue) {
+            const user = users.find(u => u.id == userIdValue);
+            if (!user) return;
+
+            isEditing = true;
+            modalTitle.textContent = 'Edit User';
+            userId.value = user.id;
+            empId.value = user.emp_id;
+            firstName.value = user.fName;
+            lastName.value = user.lName;
+            mobile.value = user.mobile;
+            userType.value = user.user_type === 'Admin' ? '1' : '2';
+            userStatus.value = user.user_status === 'Active' ? '1' : '2';
+            
+            userModal.classList.remove('hidden');
+            document.body.classList.add('no-scroll');
+        }
+
+        // Toggle user status
+        function toggleUserStatus(userIdValue, currentStatus) {
+            const newStatus = currentStatus === 'Active' ? 'Inactive' : 'Active';
+            
+            // Update in mock data
+            const user = users.find(u => u.id == userIdValue);
+            if (user) {
+                user.user_status = newStatus;
+                loadUsers();
+            }
+        }
+
+        // Save user
+        function saveUser(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(userForm);
+            const userData = Object.fromEntries(formData);
+            
+            if (isEditing) {
+                // Update existing user
+                const user = users.find(u => u.id == userData.id);
+                if (user) {
+                    user.emp_id = userData.emp_id;
+                    user.fName = userData.fName;
+                    user.lName = userData.lName;
+                    user.mobile = userData.mobile;
+                    user.user_type = userData.user_type_id === '1' ? 'Admin' : 'Reception';
+                    user.user_status = userData.user_status_id === '1' ? 'Active' : 'Inactive';
+                }
+            } else {
+                // Add new user
+                const newUser = {
+                    id: users.length + 1,
+                    emp_id: userData.emp_id,
+                    fName: userData.fName,
+                    lName: userData.lName,
+                    mobile: userData.mobile,
+                    user_type: userData.user_type_id === '1' ? 'Admin' : 'Reception',
+                    user_status: userData.user_status_id === '1' ? 'Active' : 'Inactive',
+                    registered_date: new Date().toISOString()
+                };
+                users.push(newUser);
+            }
+            
+            userModal.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+            loadUsers();
+        }
+
+        // Show loading
+        function showLoading() {
+            loadingState.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            usersList.classList.add('hidden');
+        }
+
+        // Hide loading
+        function hideLoading() {
+            loadingState.classList.add('hidden');
+        }
+
+        // Show empty state
+        function showEmpty() {
+            emptyState.classList.remove('hidden');
+            usersList.classList.add('hidden');
+        }
+
+        // Hide empty state
+        function hideEmpty() {
+            emptyState.classList.add('hidden');
+            usersList.classList.remove('hidden');
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', applyFilters);
+        statusFilter.addEventListener('change', applyFilters);
+        typeFilter.addEventListener('change', applyFilters);
+        clearFilters.addEventListener('click', () => {
+            searchInput.value = '';
+            statusFilter.value = '';
+            typeFilter.value = '';
+            applyFilters();
+        });
+        addUserBtn.addEventListener('click', showAddUserModal);
+        modalClose.addEventListener('click', () => {
+            userModal.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+        });
+        cancelBtn.addEventListener('click', () => {
+            userModal.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+        });
+        document.querySelector('[data-dismiss="backdrop"]').addEventListener('click', () => {
+            userModal.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+        });
+        userForm.addEventListener('submit', saveUser);
+        logoutBtn.addEventListener('click', logout);
+
+        // Initialize
+        if (checkAuth()) {
+            loadUsers();
+        }
+    </script>
+</body>
+
+</html>

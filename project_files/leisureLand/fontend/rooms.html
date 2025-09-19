@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Management - Leisure Island</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'room-available': '#8BC34A',
+                        'room-occupied': '#E53E3E',
+                        'room-inactive': '#9CA3AF',
+                        'status-paid': '#10B981'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Prevent body scroll when mobile modal is open */
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        /* Mobile touch improvements */
+        @media (max-width: 768px) {
+            .touch-target {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .mobile-card {
+                padding: 12px;
+                margin-bottom: 8px;
+            }
+        }
+
+        /* Embedded Inter font */
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Inter-VariableFon.ttf') format('truetype');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        html {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+                'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji',
+                'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+                'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji',
+                'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif !important;
+        }
+    </style>
+</head>
+
+<body class="bg-white-900 font-sans">
+    <!-- Desktop Top Navigation -->
+    <div class="hidden lg:block bg-white/90 backdrop-blur-md border-b sticky top-0 z-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="h-14 flex items-center gap-2">
+                <a href="app.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">Reservations</a>
+                <a href="history.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">History</a>
+                <a href="logs.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">Logs</a>
+                <a href="users.html"
+                    class="px-3 py-2 rounded-md text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors">User
+                    Management</a>
+                <a href="rooms.html"
+                    class="px-3 py-2 rounded-md text-sm font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 transition-colors">Room
+                    Management</a>
+                <div class="ml-auto flex items-center gap-3">
+                    <span id="userName" class="text-sm text-gray-600">Welcome, User</span>
+                    <button id="logoutBtn" class="text-sm text-red-600 hover:text-red-800">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Responsive Container -->
+    <div class="min-h-screen max-w-6xl mx-auto flex flex-col pb-20 lg:pb-0">
+        <!-- Header / Toolbar -->
+        <div class="bg-white border-b sticky top-0 z-10">
+            <div class="px-6 py-4">
+                <div class="flex items-center justify-between mb-4">
+                    <h1 class="text-2xl font-bold text-gray-900">Room Management</h1>
+                    <button id="addRoomBtn" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Add Room
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <div class="flex flex-col lg:flex-row gap-4">
+                    <div class="flex-1">
+                        <input type="text" id="searchInput" placeholder="Search by room number or name"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div class="flex gap-2">
+                        <select id="statusFilter" class="border border-gray-300 rounded-md px-3 py-2 text-sm">
+                            <option value="">All Statuses</option>
+                            <option value="available">Available</option>
+                            <option value="occupied">Occupied</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                        <button id="clearFilters" class="px-3 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 px-6 py-4">
+            <!-- Loading State -->
+            <div id="loadingState" class="hidden text-center py-8">
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                <p class="text-gray-600 mt-2">Loading rooms...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-12">
+                <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">No rooms found</h3>
+                <p class="text-gray-500">Try adjusting your filters or add a new room.</p>
+            </div>
+
+            <!-- Rooms Grid -->
+            <div id="roomsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+                <!-- Rooms will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav id="mobileNav"
+        class="lg:hidden fixed bottom-0 inset-x-0 bg-white/90 backdrop-blur-md border-t shadow-xl z-20 rounded-t-3xl transition-all duration-300"
+        style="padding-bottom: env(safe-area-inset-bottom);">
+        <div class="grid grid-cols-5 text-xs text-gray-600 max-w-xl mx-auto">
+            <a href="app.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6" />
+                </svg>
+                <span class="mt-0.5">Reservations</span>
+            </a>
+            <a href="history.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2v-6H3v6a2 2 0 002 2z" />
+                </svg>
+                <span>History</span>
+            </a>
+            <a href="logs.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 17v-6a2 2 0 012-2h8M9 7H5a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-4" />
+                </svg>
+                <span>Logs</span>
+            </a>
+            <a href="users.html" class="group flex flex-col items-center justify-center py-2 hover:text-gray-900 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5.121 17.804A4 4 0 017 17h10a4 4 0 011.879.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Users</span>
+            </a>
+            <a href="rooms.html" class="group flex flex-col items-center justify-center py-2 text-blue-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <span>Rooms</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Add/Edit Room Modal -->
+    <div id="roomModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50" data-dismiss="backdrop"></div>
+        <div class="absolute inset-0 flex items-end lg:items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-4 lg:p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 id="modalTitle" class="text-lg font-bold text-gray-900">Add Room</h3>
+                    <button id="modalClose" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <form id="roomForm" class="space-y-4">
+                    <input type="hidden" id="roomId" name="id">
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="roomNumber">Room Number</label>
+                        <input id="roomNumber" name="room_no" type="text" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="e.g., 101">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="roomName">Room Name</label>
+                        <input id="roomName" name="room_name" type="text" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="e.g., Ocean View Suite">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="roomStatus">Status</label>
+                        <select id="roomStatus" name="status" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">Select Status</option>
+                            <option value="available">Available</option>
+                            <option value="occupied">Occupied</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex justify-end gap-2 pt-4">
+                        <button type="button" id="cancelBtn"
+                            class="px-4 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100">
+                            Cancel
+                        </button>
+                        <button type="submit" id="saveBtn"
+                            class="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock room data (in real app, this would come from database)
+        const mockRoomsData = [
+            { id: 1, room_no: '1', room_name: 'Ocean View', status: 'occupied' },
+            { id: 2, room_no: '2', room_name: 'Garden Suite', status: 'available' },
+            { id: 3, room_no: '3', room_name: 'Deluxe Room', status: 'occupied' },
+            { id: 4, room_no: '4', room_name: 'Standard Room', status: 'available' },
+            { id: 5, room_no: '5', room_name: 'Family Room', status: 'available' },
+            { id: 6, room_no: '6', room_name: 'Honeymoon Suite', status: 'inactive' },
+            { id: 7, room_no: '7', room_name: 'Executive Suite', status: 'available' },
+            { id: 8, room_no: '8', room_name: 'Penthouse', status: 'inactive' },
+            { id: 9, room_no: '9', room_name: 'Studio', status: 'available' },
+            { id: 10, room_no: '10', room_name: 'Villa', status: 'available' }
+        ];
+
+        // State
+        let rooms = [...mockRoomsData];
+        let filteredRooms = [...mockRoomsData];
+        let isEditing = false;
+
+        // DOM Elements
+        const searchInput = document.getElementById('searchInput');
+        const statusFilter = document.getElementById('statusFilter');
+        const clearFilters = document.getElementById('clearFilters');
+        const addRoomBtn = document.getElementById('addRoomBtn');
+        const loadingState = document.getElementById('loadingState');
+        const emptyState = document.getElementById('emptyState');
+        const roomsGrid = document.getElementById('roomsGrid');
+        const roomModal = document.getElementById('roomModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const roomForm = document.getElementById('roomForm');
+        const roomId = document.getElementById('roomId');
+        const roomNumber = document.getElementById('roomNumber');
+        const roomName = document.getElementById('roomName');
+        const roomStatus = document.getElementById('roomStatus');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const userName = document.getElementById('userName');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Check authentication
+        function checkAuth() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            const user = sessionStorage.getItem('user');
+            
+            if (isLoggedIn !== 'true' || !user) {
+                window.location.href = 'login.html';
+                return false;
+            }
+            
+            const userData = JSON.parse(user);
+            userName.textContent = `Welcome, ${userData.fName} ${userData.lName}`;
+            return true;
+        }
+
+        // Logout
+        function logout() {
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('user');
+            window.location.href = 'login.html';
+        }
+
+        // Get status badge class
+        function getStatusBadgeClass(status) {
+            switch (status) {
+                case 'available': return 'bg-room-available text-white';
+                case 'occupied': return 'bg-room-occupied text-white';
+                case 'inactive': return 'bg-room-inactive text-gray-700';
+                default: return 'bg-room-inactive text-gray-700';
+            }
+        }
+
+        // Load rooms
+        function loadRooms() {
+            showLoading();
+            
+            // Simulate API delay
+            setTimeout(() => {
+                applyFilters();
+                hideLoading();
+            }, 500);
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const statusFilterValue = statusFilter.value;
+
+            filteredRooms = rooms.filter(room => {
+                const matchesSearch = !searchTerm || 
+                    room.room_no.toLowerCase().includes(searchTerm) ||
+                    room.room_name.toLowerCase().includes(searchTerm);
+                
+                const matchesStatus = !statusFilterValue || 
+                    room.status === statusFilterValue;
+                
+                return matchesSearch && matchesStatus;
+            });
+
+            renderRooms();
+        }
+
+        // Render rooms
+        function renderRooms() {
+            if (filteredRooms.length === 0) {
+                showEmpty();
+                return;
+            }
+
+            hideEmpty();
+            
+            roomsGrid.innerHTML = filteredRooms.map(room => `
+                <div class="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer mobile-card">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-900 text-base">Room ${room.room_no}</h3>
+                            <p class="text-xs text-gray-500 truncate">${room.room_name}</p>
+                        </div>
+                        <div class="ml-2">
+                            <span class="inline-block text-xs px-2 py-1 rounded-full ${getStatusBadgeClass(room.status)}">
+                                ${room.status.charAt(0).toUpperCase() + room.status.slice(1)}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-gray-500">Management</span>
+                        <div class="flex gap-1">
+                            <button onclick="editRoom(${room.id})" class="px-2 py-1 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded text-xs touch-target">
+                                Edit
+                            </button>
+                            <button onclick="toggleRoomStatus(${room.id}, '${room.status}')" 
+                                class="px-2 py-1 ${room.status === 'inactive' ? 'text-green-600 hover:text-green-800 hover:bg-green-50' : 'text-red-600 hover:text-red-800 hover:bg-red-50'} rounded text-xs touch-target">
+                                ${room.status === 'inactive' ? 'Activate' : 'Deactivate'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Show add room modal
+        function showAddRoomModal() {
+            isEditing = false;
+            modalTitle.textContent = 'Add Room';
+            roomForm.reset();
+            roomId.value = '';
+            roomModal.classList.remove('hidden');
+            document.body.classList.add('no-scroll');
+        }
+
+        // Edit room
+        function editRoom(roomIdValue) {
+            const room = rooms.find(r => r.id == roomIdValue);
+            if (!room) return;
+
+            isEditing = true;
+            modalTitle.textContent = 'Edit Room';
+            roomId.value = room.id;
+            roomNumber.value = room.room_no;
+            roomName.value = room.room_name;
+            roomStatus.value = room.status;
+            
+            roomModal.classList.remove('hidden');
+            document.body.classList.add('no-scroll');
+        }
+
+        // Toggle room status
+        function toggleRoomStatus(roomIdValue, currentStatus) {
+            const newStatus = currentStatus === 'inactive' ? 'available' : 'inactive';
+            
+            // Update in mock data
+            const room = rooms.find(r => r.id == roomIdValue);
+            if (room) {
+                room.status = newStatus;
+                loadRooms();
+            }
+        }
+
+        // Save room
+        function saveRoom(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(roomForm);
+            const roomData = Object.fromEntries(formData);
+            
+            if (isEditing) {
+                // Update existing room
+                const room = rooms.find(r => r.id == roomData.id);
+                if (room) {
+                    room.room_no = roomData.room_no;
+                    room.room_name = roomData.room_name;
+                    room.status = roomData.status;
+                }
+            } else {
+                // Add new room
+                const newRoom = {
+                    id: rooms.length + 1,
+                    room_no: roomData.room_no,
+                    room_name: roomData.room_name,
+                    status: roomData.status
+                };
+                rooms.push(newRoom);
+            }
+            
+            roomModal.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+            loadRooms();
+        }
+
+        // Show loading
+        function showLoading() {
+            loadingState.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            roomsGrid.classList.add('hidden');
+        }
+
+        // Hide loading
+        function hideLoading() {
+            loadingState.classList.add('hidden');
+        }
+
+        // Show empty state
+        function showEmpty() {
+            emptyState.classList.remove('hidden');
+            roomsGrid.classList.add('hidden');
+        }
+
+        // Hide empty state
+        function hideEmpty() {
+            emptyState.classList.add('hidden');
+            roomsGrid.classList.remove('hidden');
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', applyFilters);
+        statusFilter.addEventListener('change', applyFilters);
+        clearFilters.addEventListener('click', () => {
+            searchInput.value = '';
+            statusFilter.value = '';
+            applyFilters();
+        });
+        addRoomBtn.addEventListener('click', showAddRoomModal);
+        modalClose.addEventListener('click', () => {
+            roomModal.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+        });
+        cancelBtn.addEventListener('click', () => {
+            roomModal.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+        });
+        document.querySelector('[data-dismiss="backdrop"]').addEventListener('click', () => {
+            roomModal.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+        });
+        roomForm.addEventListener('submit', saveRoom);
+        logoutBtn.addEventListener('click', logout);
+
+        // Initialize
+        if (checkAuth()) {
+            loadRooms();
+        }
+    </script>
+</body>
+
+</html>

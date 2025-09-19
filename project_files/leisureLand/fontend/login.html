@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Login - Leisure Land</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Leisure Island</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,205 +21,213 @@
         }
     </script>
     <style>
-        :root { 
-            --safe-top: env(safe-area-inset-top); 
-            --safe-bottom: env(safe-area-inset-bottom); 
+        /* Embedded Inter font */
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Inter-VariableFon.ttf') format('truetype');
+            font-weight: 100 900;
+            font-style: normal;
+            font-display: swap;
         }
-        .no-highlight { -webkit-tap-highlight-color: transparent; }
-        .input-focus:focus { outline: none; box-shadow: 0 0 0 3px rgba(59,130,246,0.15); border-color: #3B82F6; }
-        .spinner { width: 20px; height: 20px; border: 2px solid #fff; border-top-color: transparent; border-radius: 9999px; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+
+        html {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+                'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji',
+                'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+                'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji',
+                'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif !important;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
     </style>
-    <link rel="icon" href="data:,">
 </head>
-<body class="bg-white min-h-screen no-highlight" style="padding-top: var(--safe-top); padding-bottom: var(--safe-bottom);">
-    <!-- Mobile-first app-like container -->
-    <div class="min-h-screen flex flex-col lg:flex-row">
-        <!-- Left/Top: Brand panel (hidden on very small screens to prioritize form) -->
-        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-blue-800 text-white items-center justify-center p-12">
-            <div class="max-w-md text-center">
-                <div class="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-2xl mb-4">
-                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+
+<body class="gradient-bg min-h-screen flex items-center justify-center p-4">
+    <!-- Login Card -->
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+        <!-- Logo/Header -->
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6" />
+                </svg>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-900">Leisure Island</h1>
+            <p class="text-gray-500 text-sm mt-1">Hotel Management System</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="space-y-6">
+            <div>
+                <label for="empId" class="block text-sm font-medium text-gray-700 mb-2">Employee ID</label>
+                <input type="text" id="empId" name="emp_id" required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    placeholder="Enter your employee ID">
+            </div>
+
+            <div>
+                <label for="mobile" class="block text-sm font-medium text-gray-700 mb-2">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    placeholder="Enter your mobile number">
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
+                    <span id="errorText"></span>
                 </div>
-                <h1 class="text-5xl font-bold">Leisure Land</h1>
-                <p class="text-blue-100 mt-2">Reception Portal</p>
-                <p class="text-blue-100 mt-6">Manage reservations quickly and professionally with a mobile-optimized experience.</p>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="hidden">
+                <div class="flex items-center justify-center py-3">
+                    <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                    <span class="ml-2 text-gray-600">Signing in...</span>
+                </div>
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit" id="loginButton"
+                class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                Sign In
+            </button>
+        </form>
+
+        <!-- Demo Credentials -->
+        <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+            <h3 class="text-sm font-medium text-gray-700 mb-2">Demo Credentials:</h3>
+            <div class="text-xs text-gray-600 space-y-1">
+                <div><strong>Admin:</strong> EMP001 / +94771234567</div>
+                <div><strong>Reception:</strong> EMP002 / +94771234568</div>
             </div>
         </div>
 
-        <!-- Right/Main: Login form -->
-        <div class="flex-1 flex items-stretch">
-            <div class="w-full flex flex-col">
-                <!-- Mobile header branding -->
-                <div class="lg:hidden bg-gradient-to-br from-blue-600 to-blue-700 text-white px-6 pt-10 pb-6" style="padding-top: calc(2rem + var(--safe-top));">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h1 class="text-2xl font-bold leading-tight">Leisure Land</h1>
-                            <p class="text-blue-100 text-sm">Reception Login</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Content -->
-                <div class="flex-1 px-6 py-6 lg:p-12 bg-white">
-                    <div class="max-w-md w-full mx-auto">
-                        <h2 class="hidden lg:block text-3xl font-bold text-gray-900 mb-2">Welcome back</h2>
-                        <p class="hidden lg:block text-gray-600 mb-8">Sign in to access the receptionist dashboard.</p>
-
-                        <form id="loginForm" class="space-y-5">
-                            <div>
-                                <label for="identifier" class="block text-sm font-medium text-gray-700 mb-2">Email or Phone</label>
-                                <input id="identifier" name="identifier" type="text" autocomplete="username" inputmode="email" placeholder="you@example.com or +9477 123 4567" class="w-full px-4 py-3 border border-gray-300 rounded-lg input-focus transition-colors" required>
-                                <div class="error-msg text-red-600 text-sm mt-1 hidden"></div>
-                            </div>
-
-                            <div>
-                                <div class="flex items-center justify-between mb-2">
-                                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                                    <a href="#" class="text-sm text-blue-600 hover:text-blue-800">Forgot?</a>
-                                </div>
-                                <div class="relative">
-                                    <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg input-focus transition-colors" required>
-                                    <button type="button" id="togglePassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="error-msg text-red-600 text-sm mt-1 hidden"></div>
-                            </div>
-
-                            <div class="flex items-center justify-between">
-                                <label class="flex items-center gap-3 text-sm text-gray-700">
-                                    <input id="remember" name="remember" type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                    Remember me
-                                </label>
-                                <a href="signup.html" class="text-sm text-blue-600 hover:text-blue-800">Create account</a>
-                            </div>
-
-                            <!-- Primary action fixed near bottom on mobile for app-like feel -->
-                            <div class="lg:relative">
-                                <div class="fixed left-0 right-0 bottom-0 lg:static bg-white/90 lg:bg-transparent backdrop-blur lg:backdrop-blur-0 border-t lg:border-0 px-6 pt-3 pb-4" style="padding-bottom: calc(1rem + var(--safe-bottom));">
-                                    <button id="submitBtn" type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2">
-                                        <span id="submitText">Sign in</span>
-                                        <span id="submitSpinner" class="spinner hidden"></span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-
-                        <!-- Secondary links -->
-                        <div class="mt-24 lg:mt-6 text-center text-gray-500 text-xs">
-                            By continuing, you agree to our
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Terms</a>
-                            and
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Privacy Policy</a>.
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Footer -->
+        <div class="mt-8 text-center">
+            <p class="text-xs text-gray-500">
+                © 2024 Leisure Island. All rights reserved.
+            </p>
         </div>
-    </div>
-
-    <!-- Success toast -->
-    <div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-6 z-50 hidden">
-        <div class="bg-gray-900 text-white text-sm px-4 py-2 rounded-full shadow-lg">Signed in · Redirecting…</div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('loginForm');
-            const identifier = document.getElementById('identifier');
-            const password = document.getElementById('password');
-            const submitBtn = document.getElementById('submitBtn');
-            const submitText = document.getElementById('submitText');
-            const submitSpinner = document.getElementById('submitSpinner');
-            const toast = document.getElementById('toast');
-            const togglePassword = document.getElementById('togglePassword');
+        // Mock user data (in real app, this would come from database)
+        const mockUsers = [
+            { id: 1, emp_id: 'EMP001', fName: 'John', lName: 'Admin', mobile: '+94771234567', user_type: 'Admin', user_status: 'Active' },
+            { id: 2, emp_id: 'EMP002', fName: 'Jane', lName: 'Reception', mobile: '+94771234568', user_type: 'Reception', user_status: 'Active' }
+        ];
 
-            // Toggle password visibility
-            togglePassword.addEventListener('click', function() {
-                const type = password.type === 'password' ? 'text' : 'password';
-                password.type = type;
-                const icon = togglePassword.querySelector('svg');
-                if (type === 'text') {
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"></path>';
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const empIdInput = document.getElementById('empId');
+        const mobileInput = document.getElementById('mobile');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+        const loadingState = document.getElementById('loadingState');
+        const loginButton = document.getElementById('loginButton');
+
+        // Show error message
+        function showError(message) {
+            errorText.textContent = message;
+            errorMessage.classList.remove('hidden');
+            setTimeout(() => {
+                errorMessage.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Show loading state
+        function showLoading() {
+            loadingState.classList.remove('hidden');
+            loginButton.disabled = true;
+            loginButton.textContent = 'Signing in...';
+        }
+
+        // Hide loading state
+        function hideLoading() {
+            loadingState.classList.add('hidden');
+            loginButton.disabled = false;
+            loginButton.textContent = 'Sign In';
+        }
+
+        // Handle login
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const empId = empIdInput.value.trim();
+            const mobile = mobileInput.value.trim();
+
+            if (!empId || !mobile) {
+                showError('Please enter both Employee ID and Mobile number');
+                return;
+            }
+
+            showLoading();
+
+            // Simulate API call delay
+            setTimeout(() => {
+                const user = mockUsers.find(u => u.emp_id === empId && u.mobile === mobile);
+                
+                if (user && user.user_status === 'Active') {
+                    // Store user data in sessionStorage
+                    sessionStorage.setItem('user', JSON.stringify(user));
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    
+                    // Redirect to main app
+                    window.location.href = 'app.html';
                 } else {
-                    icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>';
+                    showError('Invalid credentials or inactive account');
                 }
-            });
+                
+                hideLoading();
+            }, 1000);
+        }
 
-            function showError(input, message) {
-                const error = input.parentElement.querySelector('.error-msg') || input.closest('div').querySelector('.error-msg');
-                if (!error) return;
-                input.classList.add('border-red-500');
-                error.textContent = message;
-                error.classList.remove('hidden');
+        // Check if already logged in
+        function checkAuth() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            if (isLoggedIn === 'true') {
+                window.location.href = 'app.html';
             }
+        }
 
-            function clearError(input) {
-                const error = input.parentElement.querySelector('.error-msg') || input.closest('div').querySelector('.error-msg');
-                if (!error) return;
-                input.classList.remove('border-red-500');
-                error.textContent = '';
-                error.classList.add('hidden');
+        // Event Listeners
+        loginForm.addEventListener('submit', handleLogin);
+
+        // Auto-focus first input
+        empIdInput.focus();
+
+        // Check authentication on load
+        checkAuth();
+
+        // Handle Enter key navigation
+        empIdInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                mobileInput.focus();
             }
+        });
 
-            // Simple identifier validation: email or phone
-            function isValidIdentifier(value) {
-                const v = value.trim();
-                const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                const phone = /^[+]?\d[\d\s-]{6,}$/;
-                return email.test(v) || phone.test(v);
+        mobileInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                loginForm.dispatchEvent(new Event('submit'));
             }
-
-            identifier.addEventListener('input', () => clearError(identifier));
-            password.addEventListener('input', () => clearError(password));
-
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                // Validate inputs
-                let ok = true;
-                if (!isValidIdentifier(identifier.value)) {
-                    showError(identifier, 'Enter a valid email or phone number');
-                    ok = false;
-                }
-                if (password.value.length < 8) {
-                    showError(password, 'Password must be at least 8 characters');
-                    ok = false;
-                }
-                if (!ok) return;
-
-                // Loading state
-                submitBtn.disabled = true;
-                submitText.textContent = 'Signing in…';
-                submitSpinner.classList.remove('hidden');
-
-                // Simulate API call
-                setTimeout(() => {
-                    submitBtn.disabled = false;
-                    submitText.textContent = 'Sign in';
-                    submitSpinner.classList.add('hidden');
-
-                    // Show toast and redirect
-                    toast.classList.remove('hidden');
-                    setTimeout(() => {
-                        toast.classList.add('hidden');
-                        window.location.href = 'app.html';
-                    }, 900);
-                }, 1200);
-            });
         });
     </script>
 </body>
-</html>
 
+</html>
