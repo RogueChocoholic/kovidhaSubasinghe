@@ -14,7 +14,6 @@
                         'room-available': '#8BC34A',
                         'room-occupied': '#E53E3E',
                         'room-inactive': '#9CA3AF',
-                        'room-pending': '#FFD700',
                         'status-paid': '#10B981'
                     }
 
@@ -34,14 +33,14 @@
                 min-height: 44px;
                 min-width: 44px;
             }
-
+            
             .mobile-card {
                 padding: 12px;
                 margin-bottom: 8px;
             }
         }
 
-
+       
         /* Embedded Inter font */
         @font-face {
             font-family: 'Inter';
@@ -56,7 +55,6 @@
                 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji',
                 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
         }
-
         /* Ensure Inter wins over utility classes like Tailwind's font-sans */
         body,
         button,
@@ -148,52 +146,30 @@
             <!-- Rooms Grid -->
             <div class="px-6 py-4">
                 <h2 class="text-gray-500 text-sm font-medium mb-4">Room Reservations</h2>
-                
                 <div id="roomsGrid" class="grid grid-cols-5 gap-3 mb-6">
                     <!-- Example rooms -->
                     <button data-room="1"
-                        class="bg-room-occupied text-white font-bold text-lg py-3 px-4 rounded-lg hover:opacity-90 transition-opacity">1</button>
+                        class="bg-room-available text-white font-bold text-lg py-3 px-4 rounded-lg hover:opacity-90 transition-opacity">1</button>
                     <button data-room="2"
-                        class="bg-room-available text-white font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">2</button>
+                        class="bg-room-inactive text-gray-700 font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">2</button>
                     <button data-room="3"
                         class="bg-room-occupied text-white font-bold text-lg py-3 px-4 rounded-lg hover:opacity-90 transition-opacity">3</button>
                     <button data-room="4"
-                        class="bg-room-available text-white font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">4</button>
+                        class="bg-room-inactive text-gray-700 font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">4</button>
                     <button data-room="5"
-                        class="bg-room-pending text-gray-700 font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">5</button>
+                        class="bg-room-inactive text-gray-700 font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">5</button>
                     <button data-room="6"
-                        class="bg-room-available text-white font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">6</button>
-                    <button data-room="7" disabled
+                        class="bg-room-inactive text-gray-700 font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">6</button>
+                    <button data-room="7"
                         class="bg-room-inactive text-gray-700 font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">7</button>
                     <button data-room="8"
-                        class="bg-room-available text-white font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">8</button>
+                        class="bg-room-inactive text-gray-700 font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">8</button>
                     <button data-room="9"
-                        class="bg-room-available text-white font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">9</button>
+                        class="bg-room-inactive text-gray-700 font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">9</button>
                     <button data-room="10"
-                        class="bg-room-available text-white font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">10</button>
+                        class="bg-room-inactive text-gray-700 font-bold text-lg py-3 px-4 rounded-lg hover:bg-gray-300 transition-colors">10</button>
                 </div>
 
-<!-- Legend -->
-<div class="flex flex-wrap gap-4 mb-6 text-xs font-medium text-gray-600">
-    <div class="flex items-center gap-2">
-      <span class="w-4 h-4 rounded bg-room-available border"></span>
-      <span>Available</span>
-    </div>
-    <div class="flex items-center gap-2">
-      <span class="w-4 h-4 rounded bg-room-occupied"></span>
-      <span>Occupied</span>
-    </div>
-    <div class="flex items-center gap-2">
-      <span class="w-4 h-4 rounded bg-room-pending border"></span>
-      <span>Pending</span>
-    </div>
-    <div class="flex items-center gap-2">
-      <span class="w-4 h-4 rounded bg-room-inactive border"></span>
-      <span>Inactive</span>
-    </div>
-   
-  </div>
-  
                 <!-- Reservations: Mobile list -->
                 <h3 class="text-gray-500 text-sm font-medium mb-4 lg:hidden">Reservations</h3>
                 <div id="reservationsMobile" class="space-y-3 lg:hidden">
@@ -475,7 +451,7 @@
         </div>
     </div>
 
-    <!-- <script>
+    <script>
         // Mock database data (in real app, this would come from database)
         const mockRooms = [
             { id: 1, room_no: '1', room_name: 'Ocean View', status: 'occupied' },
@@ -491,11 +467,11 @@
         ];
 
         const mockReservations = [
-            { id: 1, name: 'John Doe', mobile: '+94775852207', pax: 9, from_date: '2025-12-20', to_date: '2025-12-22', booking_status: 'Complete', payment_status: 'Complete', room_numbers: '1', advance: 5000, remarks: 'Early check-in requested' },
-            { id: 2, name: 'Jane Smith', mobile: '+94770000000', pax: 5, from_date: '2025-12-20', to_date: '2025-12-21', booking_status: 'Complete', payment_status: 'Advance', room_numbers: '3', advance: 3000, remarks: 'Vegetarian meals' },
-            { id: 3, name: 'Alex Kim', mobile: '+94771234567', pax: 4, from_date: '2025-12-20', to_date: '2025-12-23', booking_status: 'Pending', payment_status: 'Pending', room_numbers: '5', advance: 0, remarks: 'Group booking' },
-     
-               ];
+            { id: 1, name: 'John Doe', mobile: '+94775852207', pax: 9, from_date: '2024-12-20', to_date: '2024-12-22', booking_status: 'Complete', payment_status: 'Complete', room_numbers: '1', advance: 5000, remarks: 'Early check-in requested' },
+            { id: 2, name: 'Jane Smith', mobile: '+94770000000', pax: 5, from_date: '2024-12-20', to_date: '2024-12-21', booking_status: 'Complete', payment_status: 'Advance', room_numbers: '3', advance: 3000, remarks: 'Vegetarian meals' },
+            { id: 3, name: 'Alex Kim', mobile: '+94771234567', pax: 4, from_date: '2024-12-21', to_date: '2024-12-23', booking_status: 'Pending', payment_status: 'Pending', room_numbers: '5', advance: 0, remarks: 'Group booking' }
+        ];
+
         // State
         let currentUser = null;
         let rooms = [...mockRooms];
@@ -506,12 +482,12 @@
         function checkAuth() {
             const isLoggedIn = sessionStorage.getItem('isLoggedIn');
             const user = sessionStorage.getItem('user');
-
+            
             if (isLoggedIn !== 'true' || !user) {
                 window.location.href = 'login.html';
                 return false;
             }
-
+            
             currentUser = JSON.parse(user);
             const userName = document.getElementById('userName');
             if (userName) {
@@ -842,7 +818,7 @@
             };
 
             reservations.push(newReservation);
-
+            
             // Update room status
             const room = rooms.find(r => r.room_no === formData.room);
             if (room) {
@@ -876,11 +852,11 @@
             loadData();
 
             // Wire arrows
-            document.getElementById('prevDay').addEventListener('click', function () {
+            document.getElementById('prevDay').addEventListener('click', function () { 
                 shiftDays(-1);
                 loadData();
             });
-            document.getElementById('nextDay').addEventListener('click', function () {
+            document.getElementById('nextDay').addEventListener('click', function () { 
                 shiftDays(1);
                 loadData();
             });
@@ -901,7 +877,7 @@
             document.querySelector('#newReservationModal [data-dismiss="newres-backdrop"]').addEventListener('click', closeNewReservationModal);
 
             // New reservation form
-            document.getElementById('newReservationForm').addEventListener('submit', function (e) {
+            document.getElementById('newReservationForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const formData = new FormData(this);
                 createReservation(Object.fromEntries(formData));
@@ -933,287 +909,6 @@
                     if (isDesktop()) firstRow.classList.add('bg-blue-50');
                 }
             }, 100);
-        });
-
-        // Handle responsive transitions
-        window.addEventListener('resize', function () {
-            // If moving to desktop, ensure modal is closed
-            if (isDesktop()) {
-                closeMobileModal();
-                // keep schedule modal usable on desktop; do not auto-close
-            }
-        });
-    </script> -->
-    <script>
-        // Helpers
-        function isDesktop() { return window.matchMedia('(min-width: 1024px)').matches; }
-        function formatDisplayDate(date) {
-            const fmt = new Intl.DateTimeFormat(undefined, { month: 'short', day: '2-digit' });
-            return fmt.format(date); // e.g., Sep 14
-        }
-        function formatWeekday(date) {
-            const fmt = new Intl.DateTimeFormat(undefined, { weekday: 'long' });
-            return fmt.format(date); // e.g., Sunday
-        }
-        function toISODate(date) {
-            const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        }
-        function fromISODate(value) {
-            const [y, m, d] = value.split('-').map(Number);
-            const dt = new Date(y, (m || 1) - 1, d || 1);
-            return dt;
-        }
-
-        let currentDate = null;
-        function setCurrentDate(date) {
-            currentDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-            const dateTitle = document.getElementById('dateTitle');
-            const weekdayTitle = document.getElementById('weekdayTitle');
-            const hiddenInput = document.getElementById('selectedDate');
-            dateTitle.textContent = formatDisplayDate(currentDate);
-            weekdayTitle.textContent = formatWeekday(currentDate);
-            if (hiddenInput) hiddenInput.value = toISODate(currentDate);
-        }
-        function shiftDays(delta) {
-            const d = new Date(currentDate);
-            d.setDate(d.getDate() + delta);
-            setCurrentDate(d);
-        }
-
-        function openMobileModal() {
-            const modal = document.getElementById('mobileModal');
-            modal.classList.remove('hidden');
-            document.body.classList.add('no-scroll');
-        }
-
-        function closeMobileModal() {
-            const modal = document.getElementById('mobileModal');
-            modal.classList.add('hidden');
-            document.body.classList.remove('no-scroll');
-        }
-
-        // Room schedule modal controls
-        function openRoomScheduleModal() {
-            const modal = document.getElementById('roomScheduleModal');
-            modal.classList.remove('hidden');
-            document.body.classList.add('no-scroll');
-        }
-        function closeRoomScheduleModal() {
-            const modal = document.getElementById('roomScheduleModal');
-            modal.classList.add('hidden');
-            document.body.classList.remove('no-scroll');
-        }
-
-        // New reservation modal controls
-        function openNewReservationModal(prefill) {
-            const modal = document.getElementById('newReservationModal');
-            const form = document.getElementById('newReservationForm');
-            const dateInput = document.getElementById('newResDate');
-            const roomInput = document.getElementById('newResRoom');
-            dateInput.value = prefill && prefill.date ? prefill.date : toISODate(currentDate);
-            roomInput.value = prefill && prefill.room ? prefill.room : '';
-            modal.classList.remove('hidden');
-            document.body.classList.add('no-scroll');
-        }
-        function closeNewReservationModal() {
-            const modal = document.getElementById('newReservationModal');
-            modal.classList.add('hidden');
-            document.body.classList.remove('no-scroll');
-        }
-
-        function populateDetail({ room, name, phone, pax, status }) {
-            // Desktop pane
-            const title = document.getElementById('detailRoomTitle');
-            const statusBadge = document.getElementById('detailStatus');
-            const content = document.getElementById('detailContent');
-
-            title.textContent = `Room ${String(room).padStart(2, '0')}`;
-            statusBadge.textContent = status || '';
-            if (status) {
-                statusBadge.classList.remove('hidden');
-            } else {
-                statusBadge.classList.add('hidden');
-            }
-            content.innerHTML = `
-                <div class="space-y-4">
-                    <div class="flex justify-between items-start">
-                        <div class="text-left">
-                            <p class="font-semibold text-gray-900 text-lg">${name}</p>
-                            <p class="text-gray-500">${phone}</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-gray-400 text-sm font-medium">${pax} PAX</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            // Desktop summary footer fields (if present)
-            const guestEl = document.getElementById('detailGuest');
-            const phoneEl = document.getElementById('detailPhone');
-            const paxEl = document.getElementById('detailPax');
-            if (guestEl) guestEl.textContent = name || '—';
-            if (phoneEl) phoneEl.textContent = phone || '—';
-            if (paxEl) paxEl.textContent = pax ? `${pax}` : '—';
-
-            // Mobile modal
-            document.getElementById('modalRoomTitle').textContent = `Room ${String(room).padStart(2, '0')}`;
-            const modalStatus = document.getElementById('modalStatus');
-            if (status) {
-                modalStatus.textContent = status;
-                modalStatus.classList.remove('hidden');
-            } else {
-                modalStatus.textContent = '';
-                modalStatus.classList.add('hidden');
-            }
-            document.getElementById('modalName').textContent = name;
-            document.getElementById('modalPhone').textContent = phone;
-            document.getElementById('modalPax').textContent = `${pax} PAX`;
-        }
-
-        function handleReservationClick(el) {
-            const data = {
-                room: el.getAttribute('data-room'),
-                name: el.getAttribute('data-name'),
-                phone: el.getAttribute('data-phone'),
-                pax: el.getAttribute('data-pax'),
-                status: el.getAttribute('data-status')
-            };
-            populateDetail(data);
-            // Selection highlight on desktop
-            if (isDesktop()) {
-                document.querySelectorAll('.reservation-row').forEach(function (row) {
-                    row.classList.remove('bg-blue-50');
-                });
-                el.classList.add('bg-blue-50');
-            } else {
-                openMobileModal();
-            }
-        }
-
-        // --- Mock data for upcoming reservations ---
-        const mockReservations = [
-            { room: 1, date: '2025-09-20', name: 'John Doe', phone: '+94775852207', pax: 9, status: 'Paid in Full' },
-            { room: 1, date: '2025-09-21', name: 'Alex Kim', phone: '+94771234567', pax: 4, status: 'Unpaid' },
-            { room: 3, date: '2025-09-20', name: 'Jane Smith', phone: '+94770000000', pax: 5, status: 'Deposit Paid' },
-            { room: 3, date: '2025-09-19', name: 'Maria Garcia', phone: '+94770001122', pax: 3, status: 'Paid in Full' },
-            { room: 5, date: '2025-09-20', name: 'Chris Lee', phone: '+94774443322', pax: 6, status: 'Unpaid' }
-        ];
-
-        function withinNextNDays(startDate, isoDate, nDays) {
-            const start = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-            const target = fromISODate(isoDate);
-            const end = new Date(start);
-            end.setDate(end.getDate() + nDays);
-            return target >= start && target < end;
-        }
-
-        function renderRoomSchedule(roomNumber) {
-            const list = document.getElementById('scheduleList');
-            const title = document.getElementById('scheduleTitle');
-            const range = document.getElementById('scheduleRange');
-
-            title.textContent = `Room ${String(roomNumber).padStart(2, '0')} · Upcoming Reservations`;
-
-            const end = new Date(currentDate);
-            end.setDate(end.getDate() + 7);
-            range.textContent = `${formatDisplayDate(currentDate)} – ${formatDisplayDate(end)} (${formatWeekday(currentDate)} to ${formatWeekday(end)})`;
-
-            const items = mockReservations
-                .filter(r => Number(r.room) === Number(roomNumber))
-                .filter(r => withinNextNDays(currentDate, r.date, 7))
-                .sort((a, b) => a.date.localeCompare(b.date));
-
-            if (!items.length) {
-                list.innerHTML = `<div class="py-8 text-center text-gray-500">No upcoming reservations for this period.</div>`;
-                return;
-            }
-
-            list.innerHTML = items.map(r => {
-                const d = fromISODate(r.date);
-                return `
-                    <div class="flex items-center justify-between p-4">
-                        <div>
-                            <p class="text-sm text-gray-500">${formatWeekday(d)}, ${formatDisplayDate(d)}</p>
-                            <p class="font-medium text-gray-900">${r.name} <span class="text-gray-400 font-normal">(${r.phone})</span></p>
-                            <p class="text-gray-500 text-sm">${r.pax} PAX</p>
-                        </div>
-                        <div>
-                            <span class="text-xs px-2 py-1 rounded-full ${r.status === 'Paid in Full' ? 'bg-status-paid text-white' : r.status === 'Deposit Paid' ? 'bg-yellow-500 text-white' : 'bg-gray-300 text-gray-800'}">${r.status}</span>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function handleRoomButtonClick(buttonEl) {
-            const room = buttonEl.getAttribute('data-room');
-            renderRoomSchedule(room);
-            openRoomScheduleModal();
-        }
-
-        // Event wiring
-        document.addEventListener('DOMContentLoaded', function () {
-            // Initialize date from hidden input or today
-            const hiddenInput = document.getElementById('selectedDate');
-            if (hiddenInput && hiddenInput.value) {
-                setCurrentDate(fromISODate(hiddenInput.value));
-            } else {
-                setCurrentDate(new Date());
-            }
-
-            // Wire arrows
-            document.getElementById('prevDay').addEventListener('click', function () { shiftDays(-1); });
-            document.getElementById('nextDay').addEventListener('click', function () { shiftDays(1); });
-
-            // Bind reservation rows (both mobile list and desktop table)
-            document.querySelectorAll('.reservation-row').forEach(function (row) {
-                row.addEventListener('click', function () { handleReservationClick(row); });
-            });
-
-            // Wire room grid buttons
-            document.querySelectorAll('#roomsGrid [data-room]').forEach(function (btn) {
-                btn.addEventListener('click', function () { handleRoomButtonClick(btn); });
-            });
-
-            // Close modal actions
-            document.getElementById('modalClose').addEventListener('click', closeMobileModal);
-            document.querySelector('#mobileModal [data-dismiss="backdrop"]').addEventListener('click', closeMobileModal);
-
-            // Close schedule modal actions
-            document.getElementById('scheduleClose').addEventListener('click', closeRoomScheduleModal);
-            document.querySelector('#roomScheduleModal [data-dismiss="schedule-backdrop"]').addEventListener('click', closeRoomScheduleModal);
-
-            // New Reservation modal wiring
-            document.getElementById('fabNewReservation').addEventListener('click', function () { openNewReservationModal(); });
-            document.getElementById('btnNewReservationDesktop').addEventListener('click', function () { openNewReservationModal(); });
-            document.getElementById('newResClose').addEventListener('click', closeNewReservationModal);
-            document.getElementById('newResCancel').addEventListener('click', closeNewReservationModal);
-            document.querySelector('#newReservationModal [data-dismiss="newres-backdrop"]').addEventListener('click', closeNewReservationModal);
-
-            // Esc to close on mobile
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') {
-                    closeMobileModal();
-                    closeRoomScheduleModal();
-                    closeNewReservationModal();
-                }
-            });
-
-            // On initial load, if desktop, select first reservation
-            const firstRow = document.querySelector('.reservation-row');
-            if (firstRow) {
-                populateDetail({
-                    room: firstRow.getAttribute('data-room'),
-                    name: firstRow.getAttribute('data-name'),
-                    phone: firstRow.getAttribute('data-phone'),
-                    pax: firstRow.getAttribute('data-pax'),
-                    status: firstRow.getAttribute('data-status')
-                });
-                if (isDesktop()) firstRow.classList.add('bg-blue-50');
-            }
         });
 
         // Handle responsive transitions
