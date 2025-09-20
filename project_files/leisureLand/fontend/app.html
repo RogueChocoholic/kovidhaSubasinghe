@@ -148,7 +148,7 @@
             <!-- Rooms Grid -->
             <div class="px-6 py-4">
                 <h2 class="text-gray-500 text-sm font-medium mb-4">Room Reservations</h2>
-                
+
                 <div id="roomsGrid" class="grid grid-cols-5 gap-3 mb-6">
                     <!-- Example rooms -->
                     <button data-room="1"
@@ -173,27 +173,27 @@
                         class="bg-room-available text-white font-bold text-lg py-3 px-4 rounded-lg hover:opacity-90 transition-colors">10</button>
                 </div>
 
-<!-- Legend -->
-<div class="flex flex-wrap gap-4 mb-6 text-xs font-medium text-gray-600">
-    <div class="flex items-center gap-2">
-      <span class="w-4 h-4 rounded bg-room-available border"></span>
-      <span>Available</span>
-    </div>
-    <div class="flex items-center gap-2">
-      <span class="w-4 h-4 rounded bg-room-occupied"></span>
-      <span>Occupied</span>
-    </div>
-    <div class="flex items-center gap-2">
-      <span class="w-4 h-4 rounded bg-room-pending border"></span>
-      <span>Pending</span>
-    </div>
-    <div class="flex items-center gap-2">
-      <span class="w-4 h-4 rounded bg-room-inactive border"></span>
-      <span>Inactive</span>
-    </div>
-   
-  </div>
-  
+                <!-- Legend -->
+                <div class="flex flex-wrap gap-4 mb-6 text-xs font-medium text-gray-600">
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded bg-room-available border"></span>
+                        <span>Available</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded bg-room-occupied"></span>
+                        <span>Occupied</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded bg-room-pending border"></span>
+                        <span>Pending</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-4 h-4 rounded bg-room-inactive border"></span>
+                        <span>Inactive</span>
+                    </div>
+
+                </div>
+
                 <!-- Reservations: Mobile list -->
                 <h3 class="text-gray-500 text-sm font-medium mb-4 lg:hidden">Reservations</h3>
                 <div id="reservationsMobile" class="space-y-3 lg:hidden">
@@ -1224,6 +1224,11 @@
                 // keep schedule modal usable on desktop; do not auto-close
             }
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            alert("Please choose the date '2025-09-20' to see the related mock data")
+            currentDate = new Date("2025-09-20")
+        })
     </script>
 </body>
 
