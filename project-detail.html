@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project | Kovidha Subasinghe</title>
+
+  <meta name="title" content="Project | Kovidha Subasinghe" />
+  <meta name="description" content="Project case study by Kovidha Subasinghe — problem, solution, tech stack, and outcomes." />
+  <meta name="author" content="Kovidha Subasinghe" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0d0500" />
+  <link rel="canonical" href="https://kovidha-subasinghe.vercel.app/project-detail.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://kovidha-subasinghe.vercel.app/project-detail.html" />
+  <meta property="og:title" content="Project | Kovidha Subasinghe" />
+  <meta property="og:description" content="Engineering case study — architecture, stack, and impact." />
+  <meta property="og:image" content="https://kovidha-subasinghe.vercel.app/assets/img/hero.png" />
+  <meta property="og:site_name" content="Kovidha Subasinghe" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Project | Kovidha Subasinghe" />
+  <meta name="twitter:description" content="Portfolio project case study." />
+  <meta name="twitter:image" content="https://kovidha-subasinghe.vercel.app/assets/img/hero.png" />
+
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { colors: { cacao: { 950: '#0d0500', 900: '#1a0a00', 800: '#2d1200' } }, fontFamily: { display: ['Bebas Neue', 'sans-serif'], body: ['Space Grotesk', 'sans-serif'], mono: ['Courier Prime', 'monospace'], serif: ['Playfair Display', 'serif'] } } } }</script>
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+  <div id="grain" aria-hidden="true"></div>
+  <div id="cur-outer" aria-hidden="true"></div>
+  <div id="cur-inner" aria-hidden="true"></div>
+  <div id="page-trans" aria-hidden="true"></div>
+
+  <div id="dev-console" role="dialog" aria-label="Developer console" aria-hidden="true">
+    <div id="dc-inner">
+      <div class="dc-hdr"><span class="dc-title">KOVIDHA.OS // DevConsole</span><button id="dc-close"
+          style="color:var(--cream-600);font-size:.8rem;">[ CLOSE ]</button></div>
+      <div class="dc-out" id="dc-out"></div>
+      <div class="dc-row"><span class="dc-pr">$</span><input id="dc-in" type="text" placeholder="type 'help'"
+          autocomplete="off" spellcheck="false" /></div>
+    </div>
+  </div>
+
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">KS<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Hire Me</a>
+    <button id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <main id="case-content">
+
+    <header class="page-hero" id="proj-hero">
+      <div id="proj-hero-bg" style="position:absolute;inset:0;background:linear-gradient(135deg,#0d0500,#2d1200);">
+      </div>
+      <div style="position:relative;z-index:2;width:100%;">
+        <a href="projects.html"
+          style="display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-600);margin-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:.35rem;transition:color 250ms;"
+          data-hover><i class="fa-solid fa-arrow-left i-arr-left" aria-hidden="true"></i> Back to Projects</a>
+        <div class="page-hero-label" id="proj-label">Case Study</div>
+        <h1 class="page-hero-title" id="proj-title">Project</h1>
+        <div id="proj-external-wrap" style="margin-top:1.5rem;display:none;">
+          <a id="proj-external" href="#" target="_blank" rel="noopener" class="txt-btn" data-no-trans
+            style="font-size:.85rem;"><span>View live / repo</span><span class="arr"><i class="fa-solid fa-arrow-up-right-from-square i-arr-up-r" aria-hidden="true"></i></span></a>
+        </div>
+      </div>
+    </header>
+
+    <section class="section section--dark" style="padding:3rem var(--pad-x);">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;" id="proj-stats" class="proj-stats-bar">
+      </div>
+    </section>
+
+    <section class="section section--dark" style="padding-top:0;" id="proj-body"></section>
+
+    <section class="section section--mid" id="proj-stack-section">
+      <div class="scene-tag">Tech Stack</div>
+      <h2
+        style="font-family:var(--font-display);font-size:clamp(2rem,5vw,4rem);color:var(--cream-50);letter-spacing:.02em;margin-bottom:2.5rem;">
+        UNDER<br>THE HOOD</h2>
+      <div id="proj-stack" style="display:flex;flex-wrap:wrap;gap:.75rem;"></div>
+    </section>
+
+    <section class="section section--dark" style="text-align:center;">
+      <div class="cta-label">Next project</div>
+      <h2 id="next-proj-title"
+        style="font-family:var(--font-display);font-size:clamp(2.5rem,7vw,6rem);color:var(--cream-50);letter-spacing:.02em;line-height:.9;margin-bottom:2rem;">
+        —</h2>
+      <a id="next-proj-link" href="projects.html" class="cta-btn"><span>View case study</span><span class="arr"><i class="fa-solid fa-arrow-right i-arr-right" aria-hidden="true"></i></span></a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="ft-logo">KS<span>.</span></div>
+    <p class="ft-copy">© 2026 Kovidha Subasinghe</p>
+    <nav class="ft-links">
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://github.com/RogueChocoholic" target="_blank" rel="noopener" data-no-trans>GitHub</a>
+      <a href="https://www.linkedin.com/in/kovidha-subasinghe/" target="_blank" rel="noopener" data-no-trans>LinkedIn</a>
+    </nav>
+  </footer>
+
+  <script src="js/site-config.js"></script>
+  <script src="js/seo.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/scenes.js"></script>
+  <script src="js/project-detail.js"></script>
+</body>
+
+</html>
