@@ -1,813 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kovidha Subasinghe | Software Engineering Undergraduate</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kovidha Subasinghe | Let's collaborate</title>
 
-    <meta name="title" content="Kovidha Subasinghe | Portfolio">
-    <meta name="description" content="This is my portfolio. Includes all my projects, CV, and personal details.">
+  <meta name="title" content="Kovidha Subasinghe | Let's collaborate" />
+  <meta name="description" content="Portfolio of Kovidha Subasinghe — software engineering undergraduate (BCU via Java Institute), intern at Innobot Health. Real projects: Atlas multi-tenant SaaS, LMS Sentinel control plane, white-label EduLMS, PJBiology LMS (5000+ students), and automation. Resume &amp; contact." />
+  <meta name="author" content="Kovidha Subasinghe" />
+  <meta name="keywords" content="Kovidha Subasinghe, kovidha, chocoholic, RogueChocoholic, software engineer, portfolio, web developer, Laravel, Livewire, PostgreSQL, multi-tenant SaaS, microservices, control plane, PHP, Python, Java, automation, LMS, Sri Lanka, Galle, Birmingham City University, Java Institute, Innobot Health, projects, resume, CV" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0d0500" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://kovidha-subasinghe.vercel.app/" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kovidha-subasinghe.vercel.app/">
-    <meta property="og:title" content="Kovidha Subasinghe | Portfolio">
-    <meta property="og:description" content="This is my portfolio. Includes all my projects, CV, and personal details.">
-    <meta property="og:image" content="./resources/img/heroImg.jpg">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kovidha-subasinghe.vercel.app/" />
+  <meta property="og:title" content="Kovidha Subasinghe | Let's collaborate" />
+  <meta property="og:description" content="Software engineering undergraduate &amp; intern building backend systems, client LMS platforms, and healthcare automation. Projects, CV, and contact." />
+  <meta property="og:image" content="https://kovidha-subasinghe.vercel.app/assets/img/hero.png" />
+  <meta property="og:image:alt" content="Kovidha Subasinghe — Software Engineer" />
+  <meta property="og:locale" content="en_LK" />
+  <meta property="og:site_name" content="Kovidha Subasinghe" />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://kovidha-subasinghe.vercel.app/">
-    <meta name="twitter:title" content="Kovidha Subasinghe | Portfolio">
-    <meta name="twitter:description"
-        content="This is my portfolio. Includes all my projects, CV, and personal details.">
-    <meta name="twitter:image" content="./resources/img/heroImg.jpg">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://kovidha-subasinghe.vercel.app/" />
+  <meta name="twitter:title" content="Kovidha Subasinghe | Let's collaborate" />
+  <meta name="twitter:description" content="SWE undergraduate · Innobot Health intern · PJBiology LMS, PHP/Python/Java projects, resume &amp; contact." />
+  <meta name="twitter:image" content="https://kovidha-subasinghe.vercel.app/assets/img/hero.png" />
+  <meta name="twitter:creator" content="@devChocoholic" />
 
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Kovidha" />
+  <link rel="manifest" href="site.webmanifest" />
 
-    <!-- Additional Meta -->
-    <meta name="author" content="Kovidha Subasinghe">
-    <meta name="keywords"
-        content="Kovidha Subasinghe, kovi, kovidha, roguechocholic, portfolio, web developer, projects, CV">
-    <!-- favicon -->
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="kovidha-subasinghe" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- GSAP for advanced animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <script type="application/ld+json">
-            {
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Kovidha Subasinghe",
-              "url": "https://kovidha-subasinghe.vercel.app/",
-              "image": "./resources/img/heroImg.jpg",
-              "sameAs": [
-                "https://github.com/RogueChocoholic",
-                "https://www.linkedin.com/in/kovidha-subasinghe/"
-              ],
-              "jobTitle": "Web Developer",
-              "worksFor": {
-                "@type": "Organization",
-                "name": "Freelance"
-              },
-              "description": "This is my personal portfolio including my projects, CV, and more.",
-              "email": "mailto:kovidhasubasinghe@gmail.com"
-            }
-            </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://kovidha-subasinghe.vercel.app/#person",
+        "name": "Kovidha Subasinghe",
+        "url": "https://kovidha-subasinghe.vercel.app/",
+        "image": "https://kovidha-subasinghe.vercel.app/assets/img/hero.png",
+        "email": "mailto:kovidhasubasinghe@gmail.com",
+        "jobTitle": "Intern Software Engineer",
+        "description": "Software engineering undergraduate and intern software engineer specialising in backend systems, SaaS, PHP/Python development, and healthcare automation.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Galle",
+          "addressRegion": "Southern Province",
+          "addressCountry": "LK"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Birmingham City University",
+          "department": "Software Engineering"
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Innobot Health",
+          "url": "https://www.innobothealth.com/"
+        },
+        "sameAs": [
+          "https://github.com/RogueChocoholic",
+          "https://www.linkedin.com/in/kovidha-subasinghe/",
+          "https://www.behance.net/kovidhasubasinghe",
+          "https://x.com/devChocoholic"
+        ],
+        "knowsAbout": ["Software Engineering", "PHP", "Python", "Java", "MySQL", "Automation", "Selenium", "Web Development"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://kovidha-subasinghe.vercel.app/#website",
+        "url": "https://kovidha-subasinghe.vercel.app/",
+        "name": "Kovidha Subasinghe Portfolio",
+        "description": "Projects, resume, skills, and contact for Kovidha Subasinghe.",
+        "publisher": { "@id": "https://kovidha-subasinghe.vercel.app/#person" },
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        indigo: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            200: '#c7d2fe',
-                            300: '#a5b4fc',
-                            400: '#818cf8',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            800: '#3730a3',
-                            900: '#312e81',
-                            950: '#1e1b4b',
-                        }
-                    },
-                    fontFamily: {
-                        'playfair': ['"Playfair Display"', 'serif'],
-                        'inter': ['Inter', 'sans-serif']
-                    }
-                }
-            }
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: {
+          cacao: { 950:'#0d0500', 900:'#1a0a00', 800:'#2d1200', 700:'#3d1a00' },
+          amber: { kv:'#c17f24' },
+          cream: { kv:'#f5e6d3' }
+        },
+        fontFamily: {
+          display:['Bebas Neue','Impact','sans-serif'],
+          body:['Space Grotesk','Helvetica Neue','sans-serif'],
+          mono:['Courier Prime','Courier New','monospace'],
+          serif:['Playfair Display','Georgia','serif'],
         }
-    </script>
+      }}
+    }
+  </script>
 
-    <style>
-        /* Custom styles */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .bg-gradient {
-            /* background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%); */
-            background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
-        }
-
-        .text-gradient {
-            background: linear-gradient(135deg, #5f83f8 0%, #a777e3 100%);
-            /* background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%); */
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .project-card {
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.1), 0 10px 10px -5px rgba(79, 70, 229, 0.04);
-        }
-
-        .skill-bar {
-            position: relative;
-            height: 6px;
-            background: #e0e7ff;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            position: absolute;
-            height: 100%;
-            border-radius: 3px;
-            /* background: linear-gradient(90deg, #4338ca 0%, #6366f1 100%); */
-            background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
-            transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .nav-link {
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: #4f46e5;
-            transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .social-icon {
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .social-icon:hover {
-            transform: translateY(-5px);
-            color: #4f46e5;
-        }
-
-        /* Animated background */
-        .animated-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-
-        .animated-bg span {
-            position: absolute;
-            display: block;
-            width: 20px;
-            height: 20px;
-            background: rgba(79, 70, 229, 0.05);
-            animation: animate 25s linear infinite;
-            bottom: -150px;
-            border-radius: 50%;
-        }
-
-        @keyframes animate {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-                border-radius: 0;
-            }
-
-            100% {
-                transform: translateY(-1000px) rotate(720deg);
-                opacity: 0;
-                border-radius: 50%;
-            }
-        }
-
-        /* Typing animation */
-        .typing-text {
-            border-right: 3px solid #4f46e5;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from {
-                width: 0
-            }
-
-            to {
-                width: 100%
-            }
-        }
-
-        @keyframes blink-caret {
-
-            from,
-            to {
-                border-color: transparent
-            }
-
-            50% {
-                border-color: #4f46e5
-            }
-        }
-
-        /* Custom cursor */
-        .custom-cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: rgba(79, 70, 229, 0.3);
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background-color 0.3s;
-        }
-
-        .cursor-dot {
-            position: fixed;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background-color: #4f46e5;
-            pointer-events: none;
-            z-index: 10000;
-            transform: translate(-50%, -50%);
-        }
-
-        /* Preloader */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .preloader.fade-out {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #4f46e5;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Elegant button styles */
-        .btn-elegant {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .btn-elegant:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .btn-elegant:hover:before {
-            width: 100%;
-        }
-
-        /* Elegant image hover effect */
-        .img-hover-zoom {
-            overflow: hidden;
-        }
-
-        .img-hover-zoom img {
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .img-hover-zoom:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Decorative elements */
-        .decorative-line {
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #4338ca 0%, #6366f1 100%);
-            margin: 0 auto;
-        }
-
-        /* Elegant form inputs */
-        .elegant-input {
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .elegant-input:focus {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-        }
-    </style>
+  <link rel="stylesheet" href="css/main.css" />
 </head>
+<body class="no-scroll">
 
-<body class="bg-gray-50" onload="loadProjectCards();">
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="loader"></div>
+  <!-- Film grain overlay -->
+  <div id="grain" aria-hidden="true"></div>
+
+  <!-- Custom cursor -->
+  <div id="cur-outer" aria-hidden="true"></div>
+  <div id="cur-inner" aria-hidden="true"></div>
+
+  <!-- Page transition curtain -->
+  <div id="page-trans" aria-hidden="true"></div>
+
+  <!-- ═══ INTRO BOOT SEQUENCE ═══ -->
+  <div id="intro" role="presentation" aria-label="Loading portfolio">
+    <div id="terminal">
+      <div class="t-header">
+        <div class="t-dot r"></div>
+        <div class="t-dot y"></div>
+        <div class="t-dot g"></div>
+        <span class="t-label">kovidha.os — terminal</span>
+      </div>
+      <div id="t-body">
+        <span id="t-cur"></span>
+      </div>
+      <div class="intro-name glitch" data-text="KOVIDHA">KOVIDHA</div>
     </div>
+  </div>
 
-    <!-- Custom Cursor -->
-    <div class="custom-cursor"></div>
-    <div class="cursor-dot"></div>
+  <!-- ═══ NAV ═══ -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo">KS<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Hire Me</a>
+    <button id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-    <!-- Header -->
-    <header class="fixed w-full bg-white bg-opacity-90 backdrop-blur-sm shadow-sm z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <a href="index.html" class="text-2xl font-bold font-playfair">
-                    <span class="text-indigo-700">Kovidha</span><span class="text-indigo-500">.Subasinghe</span>
-                </a>
+  <!-- Chapter counter -->
+  <div id="chapter" aria-hidden="true">
+    <span class="ch-curr">01</span>
+    <span class="ch-total">/ 06</span>
+  </div>
 
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Home</a>
-                    <a href="#about" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">About</a>
-                    <a href="#skills" class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Skills</a>
-                    <a href="#projects"
-                        class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Projects</a>
-                    <a href="#contact"
-                        class="nav-link text-gray-700 hover:text-indigo-600 transition-colors">Contact</a>
-                </nav>
+  <!-- Dev console easter egg (` key) -->
+  <div id="dev-console" role="dialog" aria-label="Developer console" aria-hidden="true">
+    <div id="dc-inner">
+      <div class="dc-hdr">
+        <span class="dc-title">KOVIDHA.OS // DevConsole — press ` to toggle</span>
+        <button id="dc-close" style="color:var(--cream-600);font-size:.8rem;letter-spacing:.1em;">[ CLOSE ]</button>
+      </div>
+      <div class="dc-out" id="dc-out"></div>
+      <div class="dc-row">
+        <span class="dc-pr">$</span>
+        <input id="dc-in" type="text" placeholder="type 'help'" autocomplete="off" spellcheck="false" aria-label="Console input" />
+      </div>
+    </div>
+  </div>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="menu-toggle" class="text-gray-700 focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
+  <main id="main-content">
 
-            <!-- Mobile Navigation -->
-            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2">
-                <nav class="flex flex-col space-y-4">
-                    <a href="#home" class="text-gray-700 hover:text-indigo-600 transition-colors">Home</a>
-                    <a href="#about" class="text-gray-700 hover:text-indigo-600 transition-colors">About</a>
-                    <a href="#skills" class="text-gray-700 hover:text-indigo-600 transition-colors">Skills</a>
-                    <a href="#projects" class="text-gray-700 hover:text-indigo-600 transition-colors">Projects</a>
-                    <a href="#contact" class="text-gray-700 hover:text-indigo-600 transition-colors">Contact</a>
-                </nav>
-            </div>
+    <!-- ══════════════════════════════════════
+         SCENE 01 — HERO
+    ══════════════════════════════════════ -->
+    <section id="hero" data-ch="1" aria-label="Hero">
+      <div class="hero-bg-text" aria-hidden="true" data-para="0.15">BACKEND</div>
+      <div class="hero-num" aria-hidden="true">01</div>
+
+      <div style="position:relative;z-index:2;">
+        <div class="hero-label" aria-hidden="true">Intern Software Engineer · Undergraduate</div>
+        <h1 class="hero-name">
+          KOVIDHA<br><span class="acc">SUBASINGHE</span>
+        </h1>
+        <div class="hero-bottom">
+          <p class="hero-bio">
+            Software engineering undergraduate building real systems for real clients.<br>
+            Backend-focused · automation at Innobot Health · architecture-minded.
+          </p>
+          <div class="hero-scroll" aria-hidden="true">
+            <div class="scroll-line"></div>
+            <span class="scroll-text">scroll</span>
+          </div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center relative overflow-hidden pt-20">
-        <!-- Animated Background -->
-        <div class="animated-bg">
-            <span style="--i:11;"></span>
-            <span style="--i:12;"></span>
-            <span style="--i:24;"></span>
-            <span style="--i:10;"></span>
-            <span style="--i:14;"></span>
-            <span style="--i:23;"></span>
-            <span style="--i:18;"></span>
-            <span style="--i:16;"></span>
-            <span style="--i:19;"></span>
-            <span style="--i:20;"></span>
-            <span style="--i:22;"></span>
-            <span style="--i:25;"></span>
-            <span style="--i:18;"></span>
-            <span style="--i:21;"></span>
-            <span style="--i:15;"></span>
-            <span style="--i:13;"></span>
-            <span style="--i:26;"></span>
-            <span style="--i:17;"></span>
-            <span style="--i:13;"></span>
-            <span style="--i:28;"></span>
-        </div>
-
-        <div class="container mx-auto px-6 py-12 md:py-0">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div data-aos="fade-right" data-aos-duration="1000">
-                    <div class="mb-2 inline-block">
-                        <span class="text-indigo-600 text-sm font-medium tracking-wider uppercase">Portfolio</span>
-                        <div class="w-20 h-0.5 bg-indigo-600 mt-1"></div>
-                    </div>
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4 font-playfair">
-                        Hi, I'm <span class="text-gradient ">Kovidha Subasinghe</span>
-                    </h1>
-                    <div class="overflow-hidden h-12">
-                        <h2 id="typing-text" class="text-2xl md:text-3xl text-gray-700 mb-6 typing-text font-playfair">
-                            Undergraduate
-                        </h2>
-                    </div>
-                    <p class="text-gray-600 mb-8 text-lg">
-                        I'm passionate about building elegant solutions to complex problems. Currently pursuing my
-                        degree in
-                        Software Engineering.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#contact" class="bg-gradient text-white px-8 py-3 rounded-lg btn-elegant shadow-md">
-                            Get in touch
-                        </a>
-                        <a href="#projects"
-                            class="border border-indigo-300 text-indigo-600 hover:border-indigo-500 px-8 py-3 rounded-lg transition-all hover:shadow-md">
-                            View my work
-                        </a>
-                    </div>
-                </div>
-                <div class="flex justify-center" data-aos="fade-left" data-aos-duration="1000">
-                    <div
-                        class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-indigo-100 shadow-xl transform hover:rotate-3 transition-transform duration-500">
-                        <img src="./resources/img/heroImg.jpg" alt="Profile" class="object-cover w-full h-full">
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-indigo-600 text-sm font-medium tracking-wider uppercase">About Me</span>
-                <div class="decorative-line my-3"></div>
-                <h2 class="text-3xl md:text-4xl font-bold font-playfair">Who I Am</h2>
-            </div>
-            <div class="max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-                <p class="text-gray-600 mb-6 text-lg leading-relaxed">
-                    I'm a software engineering undergraduate with a passion for creating efficient, user-friendly
-                    applications. My journey in tech began with my fascination for problem-solving and has evolved into
-                    a deep
-                    interest in software development.
-                </p>
-                <p class="text-gray-600 mb-6 text-lg leading-relaxed">
-                    Currently pursuing my Bachelor's degree in Software Engineering, I've had the opportunity to work on
-                    various projects that have helped me develop a strong foundation in both front-end and back-end
-                    technologies.
-                </p>
-                <p class="text-gray-600 text-lg leading-relaxed">
-                    When I'm not coding, you can find me exploring new technologies, contributing to open-source
-                    projects, or
-                    enjoying outdoor activities to maintain a healthy work-life balance.
-                </p>
-            </div>
+    <!-- ══════════════════════════════════════
+         SCENE 02 — ABOUT TEASER
+    ══════════════════════════════════════ -->
+    <section id="about-preview" class="section section--mid" data-ch="2" aria-label="About">
+      <div class="scene-tag">Scene 02 / Origin</div>
+
+      <div class="about-grid">
+        <div class="reveal reveal-l">
+          <blockquote class="big-quote">
+            "I don't just write code — I architect systems and own their lifecycle."
+          </blockquote>
+          <a href="about.html" class="txt-btn" style="margin-top:2rem;display:inline-flex;">
+            <span>Full story</span><span class="arr"><i class="fa-solid fa-arrow-right i-arr-right" aria-hidden="true"></i></span>
+          </a>
         </div>
+        <div class="about-body reveal reveal-r d2">
+          <p>I'm <strong>Kovidha Subasinghe</strong> — pursuing a <strong>BSc (Hons) in Software Engineering</strong> from Birmingham City University via the <strong>Java Institute for Advanced Technology</strong>, and working as an <strong>Intern Software Engineer</strong> at <strong>Innobot Health</strong> (since November 2025).</p>
+          <p>My work lives in the backend — designing data flows, writing automations, integrating APIs, and making systems that actually hold up in the real world. I've built and deployed production systems from scratch, solo.</p>
+          <p>I think in architectures. I ship in systems. I care about the <strong>reliability</strong> of what I build.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-24 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-indigo-600 text-sm font-medium tracking-wider uppercase">My Expertise</span>
-                <div class="decorative-line my-3"></div>
-                <h2 class="text-3xl md:text-4xl font-bold font-playfair">Technical Skills</h2>
+    <!-- ══════════════════════════════════════
+         SCENE 03 — SKILLS
+    ══════════════════════════════════════ -->
+    <section id="skills" class="section" data-ch="3" aria-label="Skills">
+      <div class="scene-tag">Scene 03 / Stack</div>
+      <h2 class="sec-heading" data-split>TECH<span class="acc">ARSENAL</span></h2>
 
-            </div>
-            <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-                <div data-aos="fade-right" data-aos-delay="100">
-                    <div class="mb-10">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">HTML/CSS</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;" data-width="85%"></div>
-                        </div>
-                    </div>
-                    <div class="mb-10">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">JavaScript</span>
-                            <span>70%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;" data-width="70%"></div>
-                        </div>
-                    </div>
-                    <div class="mb-10">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">PHP</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;" data-width="80%"></div>
-                        </div>
-                    </div>
-                    <!-- <div class="mb-10">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">Node.js</span>
-                            <span>50%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;" data-width="50%"></div>
-                        </div>
-                    </div> -->
-                </div>
-                <div data-aos="fade-left" data-aos-delay="100">
-                    <div class="mb-10">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">Java</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;" data-width="80%"></div>
-                        </div>
-                    </div>
-                    <div class="mb-10">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">Python</span>
-                            <span>50%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;" data-width="50%"></div>
-                        </div>
-                    </div>
-
-                    <div class="mb-10">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">Git</span>
-                            <span>60%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;" data-width="60%"></div>
-                        </div>
-                    </div>
-                    <div class="mb-10">
-                        <div class="flex justify-between mb-2">
-                            <span class="font-medium">SQL</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%;" data-width="75%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mx-auto my-5" data-aos="fade-up" data-aos-delay="200">
-                <a onclick="downloadPdf();" style="cursor: pointer;"
-                    class="inline-block bg-white text-indigo-900 px-8 py-3 rounded-lg btn-elegant shadow-md hover:bg-indigo-700 hover:text-white transition-colors "
-                    data-aos="fade-up" data-aos-delay="200">
-                    Download Resume
-                </a>
-            </div>
+      <div class="skills-wrap">
+        <!-- Left: live terminal demo -->
+        <div class="s-terminal reveal reveal-l">
+          <div class="s-term-head">
+            <div class="t-dot r"></div>
+            <div class="t-dot y"></div>
+            <div class="t-dot g"></div>
+            <span class="t-label" style="font-size:.65rem;letter-spacing:.1em;color:var(--cream-600);">kovidha — skills query</span>
+          </div>
+          <div class="s-term-body" id="s-term-body"></div>
         </div>
-    </section>
-    <!-- Projects Section -->
-    <section id="projects" class="py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-indigo-600 text-sm font-medium tracking-wider uppercase">My Work</span>
-                <div class="decorative-line my-3"></div>
-                <h2 class="text-3xl md:text-4xl font-bold font-playfair">Featured Projects</h2>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8" id="project-container">
-                <!-- Project 1 -->
-                <div class="project-card bg-white rounded-xl overflow-hidden shadow-md" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <div class="h-48 bg-gray-200 relative overflow-hidden img-hover-zoom">
-                        <img src="./resources/pelicanmall/Screenshot (26).png" alt="E-commerce Website"
-                            class="w-full h-full object-cover">
-                        <div class="absolute top-4 left-4 bg-indigo-600 text-white text-xs px-2 py-1 rounded">Client
-                            Project</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-bold text-xl mb-2 font-playfair">E-commerce Website</h3>
-                        <p class="text-gray-600 mb-4">Developed a responsive e-commerce platform for a local business,
-                            implementing product catalog, shopping cart, and payment integration.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-indigo-50 text-indigo-700 text-xs px-2 py-1 rounded">React</span>
-                            <span class="bg-indigo-50 text-indigo-700 text-xs px-2 py-1 rounded">Node.js</span>
-                            <span class="bg-indigo-50 text-indigo-700 text-xs px-2 py-1 rounded">MongoDB</span>
-                            <span class="bg-indigo-50 text-indigo-700 text-xs px-2 py-1 rounded">Stripe</span>
-                        </div>
-                        <a href="project-details.html"
-                            class="text-indigo-600 hover:text-indigo-700 flex items-center text-sm font-medium group">
-                            View Details
-                            <i
-                                class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-indigo-600 text-sm font-medium tracking-wider uppercase">Get In Touch</span>
-                <div class="decorative-line my-3"></div>
-                <h2 class="text-3xl md:text-4xl font-bold font-playfair">Contact Me</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-                <div data-aos="fade-right" data-aos-delay="100">
-                    <p class="text-gray-600 mb-8 text-lg leading-relaxed text-justify">
-                        I'm currently looking for new opportunities to apply my skills and grow as a developer. Whether
-                        you have
-                        a question or just want to say hi, I'll try my best to get back to you!
-                    </p>
-                    <div class="space-y-6">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
-                                <i class="fas fa-envelope text-indigo-600"></i>
-                            </div>
-                            <a href="mailto:kovidhasubasinghe@gmail.com"
-                                class="text-gray-600 hover:text-indigo-600 transition-colors">
-                                kovidhasubasinghe@gmail.com
-                            </a>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
-                                <i class="fab fa-github text-indigo-600"></i>
-                            </div>
-                            <a href="https://github.com/RogueChocoholic" target="_blank" rel="noopener noreferrer"
-                                class="text-gray-600 hover:text-indigo-600 transition-colors">
-                                github.com/RogueChocoholic
-                            </a>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
-                                <i class="fab fa-linkedin text-indigo-600"></i>
-                            </div>
-                            <a href="https://www.linkedin.com/in/kovidha-subasinghe/" target="_blank"
-                                rel="noopener noreferrer" class="text-gray-600 hover:text-indigo-600 transition-colors">
-                                linkedin.com/in/kovidha-subasinghe
-                            </a>
-                        </div>
-                    </div>
 
-                    <div class="mt-10">
-                        <h3 class="text-xl font-semibold mb-4 font-playfair">Follow Me</h3>
-                        <div class="flex space-x-4">
-                            <a href="https://t.me/RogueChocoholic" target="_blank"
-                                class="social-icon w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
-                                <i class="fab fa-telegram"></i>
-                            </a>
-                            <a href="https://wa.me/message/UKXKP62H4BLDJ1" target="_blank"
-                                class="social-icon w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                            <a href="https://www.instagram.com/_k_o_v_i_" target="_blank"
-                                class="social-icon w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="https://x.com/devChocoholic" target="_blank"
-                                class="social-icon w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
-                                <i class="fab fa-x-twitter"></i>
-                            </a>
-                            <a href="https://www.behance.net/kovidhasubasinghe" target="_blank"
-                                class="social-icon w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-200">
-                                <i class="fab fa-behance"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <form class="space-y-6" data-aos="fade-left" data-aos-delay="100"
-                    action="https://usebasin.com/f/19b4502a7c64" method="post">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
-                            Name
-                        </label>
-                        <input type="text" id="name" name="name" required
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg elegant-input focus:outline-none"
-                            placeholder="Your name" />
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
-                            Email
-                        </label>
-                        <input type="email" id="email" name="email" required
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg elegant-input focus:outline-none"
-                            placeholder="Your email" />
-                    </div>
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
-                            Message
-                        </label>
-                        <textarea id="message" rows="5" name="message" required
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg elegant-input focus:outline-none"
-                            placeholder="Your message"></textarea>
-                    </div>
-                    <button type="submit" class="bg-gradient text-white px-8 py-3 rounded-lg btn-elegant shadow-md">
-                        Send Message
-                    </button>
-                </form>
-                <script type="text/javascript">
-                    function configureAhoy() {
-                        ahoy.configure({
-                            visitsUrl: "https://usebasin.com/ahoy/visits",
-                            eventsUrl: "https://usebasin.com/ahoy/events",
-                            page: "19b4502a7c64" /* Use your form id here */
-                        });
-                        ahoy.trackView();
-                        ahoy.trackSubmits();
-                    }
-                </script>
-                <script src="https://cdn.jsdelivr.net/npm/ahoy.js@0.3.9/dist/ahoy.min.js" async defer
-                    onload="configureAhoy()"></script>
-            </div>
-        </div>
+        <!-- Right: visual skill bars -->
+        <div class="skill-cats reveal reveal-r d1" id="skill-cats"></div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-10 bg-gradient text-white">
-        <div class="container mx-auto px-6 text-center">
-            <p>© <span id="current-year"></span> Kovidha Subasinghe. All rights reserved.</p>
-            <div class="flex justify-center space-x-4 mt-4">
-                <a href="https://github.com/RogueChocoholic" target="_blank"
-                    class="text-indigo-300 hover:text-white transition-colors">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/kovidha-subasinghe/" target="_blank"
-                    class="text-indigo-300 hover:text-white transition-colors">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://x.com/devChocoholic" target="_blank"
-                    class="text-indigo-300 hover:text-white transition-colors">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-            </div>
+    <!-- ══════════════════════════════════════
+         SCENE 04 — PROJECTS
+    ══════════════════════════════════════ -->
+    <section id="projects-preview" class="section section--dark" data-ch="4" aria-label="Projects">
+      <div class="scene-tag">Scene 04 / Built</div>
+
+      <div class="proj-header">
+        <h2 class="sec-heading" style="margin-bottom:0;" data-split>WORK</h2>
+        <a href="projects.html" class="view-all">All projects <i class="fa-solid fa-arrow-right i-arr-right" aria-hidden="true"></i></a>
+      </div>
+
+      <div class="proj-grid" id="home-proj-grid">
+        <!-- filled by projects.js -->
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SCENE 05 — EXPERIENCE
+    ══════════════════════════════════════ -->
+    <section id="experience" class="section section--mid" data-ch="5" aria-label="Experience">
+      <div class="scene-tag">Scene 05 / Roles</div>
+
+      <div class="exp-layout">
+        <!-- Sticky left -->
+        <div class="exp-sticky">
+          <h2 class="exp-h">FIELD<br>RECORD<small class="acc">Experience</small></h2>
+          <p class="exp-sub">Real-world roles. Production systems. Real clients. Healthcare automation. Not tutorial projects.</p>
         </div>
-    </footer>
-    <script>
 
-        function downloadPdf() {
-            var link = document.createElement("a");
-            link.href = "../resources/cv/Kovidha Subasinghe Resume.pdf";
-            link.download;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
+        <!-- Timeline -->
+        <ol class="timeline" aria-label="Experience timeline">
 
-    </script>
-    <!-- AOS Animation Library -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Main JavaScript -->
-    <!-- modern browsers -->
-    <script type="module" src="./main.js"></script>
-    <!-- legacy or unsupported browsers -->
-    <script nomodule src="./main.legacy.js"></script>
+          <li class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Nov 2025 – Present</div>
+            <div class="tl-role">Intern Software Engineer</div>
+            <div class="tl-company">Innobot Health · Remote (USA healthcare)</div>
+            <p class="tl-desc">Python automations and RPA for US healthcare/insurance operations — Selenium workflows, Google API integrations, and multi-step pipelines that remove manual bottlenecks at scale. (No public screenshots — proprietary work.)</p>
+            <div class="tl-tags">
+              <span class="tl-chip">Python</span>
+              <span class="tl-chip">Selenium</span>
+              <span class="tl-chip">Google APIs</span>
+              <span class="tl-chip">RPA</span>
+              <span class="tl-chip">API Integration</span>
+            </div>
+          </li>
+
+          <li class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Feb 2025 – Present</div>
+            <div class="tl-role">Software Engineer</div>
+            <div class="tl-company">Dessina.co · Remote</div>
+            <p class="tl-desc">Full software development lifecycle for client projects — requirements through deployment. Web and desktop apps with Java, PHP, MySQL, JavaScript, and Bootstrap; ongoing client support.</p>
+            <div class="tl-tags">
+              <span class="tl-chip">Java</span>
+              <span class="tl-chip">PHP</span>
+              <span class="tl-chip">MySQL</span>
+              <span class="tl-chip">Full Stack</span>
+            </div>
+          </li>
+
+          <li class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Oct 2024 – Present</div>
+            <div class="tl-role">Freelance Web Developer</div>
+            <div class="tl-company">Self-employed · Sri Lanka</div>
+            <p class="tl-desc">Client-facing web applications and portals — from LMS platforms to reservation systems, owning architecture, build, and maintenance.</p>
+            <div class="tl-tags">
+              <span class="tl-chip">PHP</span>
+              <span class="tl-chip">MySQL</span>
+              <span class="tl-chip">Client work</span>
+            </div>
+          </li>
+
+          <li class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">2023 – 2027</div>
+            <div class="tl-role">BSc (Hons) Software Engineering</div>
+            <div class="tl-company">Birmingham City University · via Java Institute for Advanced Technology</div>
+            <p class="tl-desc">Undergraduate degree covering software engineering fundamentals, systems architecture, databases, and applied development — Galle, Sri Lanka.</p>
+            <div class="tl-tags">
+              <span class="tl-chip">BCU</span>
+              <span class="tl-chip">Java Institute</span>
+              <span class="tl-chip">SWE</span>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         SCENE 06 — CONTACT CTA
+    ══════════════════════════════════════ -->
+    <section id="contact-cta" class="section section--dark" data-ch="6" aria-label="Contact call to action">
+      <div class="cta-wrap">
+        <div class="cta-bg-text" aria-hidden="true">HELLO</div>
+        <div class="cta-label reveal">Let's connect</div>
+        <h2 class="cta-h reveal d1">GOT A<br>PROJECT?</h2>
+        <p class="cta-sub reveal d2">I'm available for freelance projects, collaborations, and building things that actually matter. Let's talk systems.</p>
+        <a href="contact.html" class="cta-btn reveal d3">
+          <span>Start the conversation</span>
+          <span class="arr"><i class="fa-solid fa-arrow-right i-arr-right" aria-hidden="true"></i></span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="ft-logo">KS<span>.</span></div>
+    <p class="ft-copy">© 2026 Kovidha Subasinghe · Galle, Sri Lanka</p>
+    <nav class="ft-links" aria-label="Footer navigation">
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+      <a href="assets/cv/Kovidha-Subasinghe-Resume.pdf" download data-no-trans>Resume</a>
+      <a href="https://github.com/RogueChocoholic" target="_blank" rel="noopener" data-no-trans>GitHub</a>
+      <a href="https://www.linkedin.com/in/kovidha-subasinghe/" target="_blank" rel="noopener" data-no-trans>LinkedIn</a>
+    </nav>
+  </footer>
+
+  <script src="js/core.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/intro.js"></script>
+  <script src="js/scenes.js"></script>
+  <script>
+    (function renderHomeProjects() {
+      const grid = document.getElementById('home-proj-grid');
+      if (!grid || typeof PROJECTS === 'undefined') return;
+      grid.innerHTML = HOME_FEATURED.map((id, i) => {
+        const p = PROJECTS[id];
+        const featured = i === 0 ? ' featured' : '';
+        const techs = p.stack.slice(0, 5).map(t => `<span class="tech-chip">${t}</span>`).join('');
+        return `
+        <article class="proj-card${featured}" data-project="${id}">
+          <div class="proj-bg" style="${projectThumbStyle(p)}"></div>
+          <div class="proj-overlay"></div>
+          <div class="proj-body">
+            <span class="proj-tag">${p.label.split('·')[0].trim()}</span>
+            <h3 class="proj-title">${p.title}</h3>
+            <p class="proj-desc">${p.short}</p>
+            <div class="proj-techs">${techs}</div>
+          </div>
+          <a href="${p.link}" class="proj-arrow" aria-label="View ${p.title}"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        </article>`;
+      }).join('');
+    })();
+  </script>
 </body>
-
 </html>
