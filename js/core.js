@@ -225,7 +225,7 @@ const DevConsole = (() => {
 
   const commands = {
     help: () => `<span class="dc-sys">Available commands:</span>\n  help · about · skills · projects · contact · chocoholic · clear · exit`,
-    about: () => `<span class="dc-sys">KOVIDHA SUBASINGHE</span>\nIntern Software Engineer · SWE Undergraduate\nBSc @ Birmingham City University via Java Institute\nInnobot Health (Nov 2025) · Galle, Sri Lanka`,
+    about: () => `<span class="dc-sys">KOVIDHA SUBASINGHE</span>\nAssociate Software Engineer · SWE Undergraduate\nBSc @ Birmingham City University via Java Institute\nInnobot Health (Nov 2025) · Galle, Sri Lanka`,
     skills: () => `<span class="dc-sys">SKILL MATRIX</span>\nLanguages:  Java · Python · PHP · JavaScript\nAutomation: Python · Selenium · Google APIs · RPA\nFrameworks: Spring Boot · Laravel · Bootstrap\nDatabases:  MySQL · PostgreSQL · SQLite`,
     projects: () => `<span class="dc-sys">PROJECTS</span>\natlas         → Multi-tenant client ops SaaS, Laravel/Livewire/PostgreSQL\nlms_sentinel  → LMS control plane, Ed25519 licensing + HMAC heartbeats\nedulms        → White-label LMS, data-plane node under Sentinel\npjbiology     → LMS, 5000+ students, PHP/MySQL/Bootstrap\nleisureland · pelicanmall · rekaira · lqlk · flexGym · amity`,
     contact: () => `<span class="dc-sys">CONTACT</span>\nEmail:    kovidhasubasinghe@gmail.com\nGitHub:   github.com/RogueChocoholic\nLinkedIn: linkedin.com/in/kovidha-subasinghe\nBehance:  behance.net/kovidhasubasinghe (design era)`,

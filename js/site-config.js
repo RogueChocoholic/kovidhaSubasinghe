@@ -4,7 +4,7 @@
 const SITE = {
   origin: 'https://kovidha-subasinghe.vercel.app',
   name: 'Kovidha Subasinghe',
-  tagline: 'Intern Software Engineer · Software Engineering Undergraduate',
+  tagline: 'Associate Software Engineer · Software Engineering Undergraduate',
   email: 'kovidhasubasinghe@gmail.com',
   locale: 'en_LK',
   ogImage: '/assets/img/hero.png',
@@ -15,7 +15,7 @@ const SITE = {
     'https://x.com/devChocoholic',
   ],
   keywords:
-    'Kovidha Subasinghe, kovidha, RogueChocoholic, software engineer, intern, portfolio, web developer, PHP, Python, Java, automation, LMS, PJBiology, Sri Lanka, Galle, Birmingham City University, Java Institute, Innobot Health, projects, resume, CV',
+    'Kovidha Subasinghe, kovidha, RogueChocoholic, software engineer, associate, portfolio, web developer, PHP, Python, Java, automation, LMS, PJBiology, Sri Lanka, Galle, Birmingham City University, Java Institute, Innobot Health, projects, resume, CV',
 };
 
 function siteUrl(path = '') {
