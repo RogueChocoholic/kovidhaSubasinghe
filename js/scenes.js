@@ -135,7 +135,7 @@ const TermDemo = (() => {
     { delay: 1400, prompt: '$', text: 'kovidha --list-tools' },
     { delay: 1800, prompt: null, text: '  → Postman · IntelliJ · VS Code · HeidiSQL' },
     { delay: 2200, prompt: '$', text: 'kovidha --status' },
-    { delay: 2600, prompt: null, text: '  Currently: Intern @ Innobot Health (Nov 2025)' },
+    { delay: 2600, prompt: null, text: '  Currently: Associate Software Engineer @ Innobot Health (Nov 2025)' },
     { delay: 2900, prompt: null, text: '  Focus:     Backend · Automation · RPA · APIs' },
     { delay: 3300, prompt: '$', text: '█' },
   ];

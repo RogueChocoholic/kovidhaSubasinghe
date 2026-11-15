@@ -34,12 +34,12 @@ for the Innobot Health start date. Please settle it in Q1.6 and I'll make it con
 | --- | ---------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
 | 1.1 | Full name (as displayed)                             | Kovidha Subasinghe                                            | Kovidha Subasinghe                                            |
 | 1.2 | Name pronunciation (optional, for a tooltip)         | —                                                             |                                                               |
-| 1.3 | Primary job title / headline                         | Intern Software Engineer · Software Engineering Undergraduate | Intern Software Engineer · Software Engineering Undergraduate |
+| 1.3 | Primary job title / headline                         | Associate Software Engineer · Software Engineering Undergraduate | Associate Software Engineer · Software Engineering Undergraduate |
 | 1.4 | One-line "focus" descriptor                          | backend · automation · systems                                | backend, automation systems, saas systems                     |
 | 1.5 | Location (city, country)                             | Galle, Sri Lanka                                              | Galle, Sri Lanka                                              |
-| 1.6 | **Current role + start date (resolve the conflict)** | Intern @ Innobot Health — Sep 2025 *vs* Nov 2025              | Intern @ Innobot Health since Nov 2025                        |
+| 1.6 | **Current role + start date (resolve the conflict)** | Associate Software Engineer @ Innobot Health — Nov 2025              | Associate Software Engineer @ Innobot Health since Nov 2025                        |
 | 1.7 | Are you currently available for opportunities?       | Yes (`available: true`)                                       | Yes                                                           |
-| 1.8 | What are you seeking?                                | internships · collaborations                                  | Freelance projects, collaborations                            |
+| 1.8 | What are you seeking?                                | roles · collaborations                                  | Freelance projects, collaborations                            |
 | 1.9 | Pronouns (only if you want them shown)               | not shown                                                     |                                                               |
 
 
@@ -75,7 +75,7 @@ for the Innobot Health start date. Please settle it in Q1.6 and I'll make it con
 > The first thing visitors see. Big name + a 1–2 line bio.
 
 - **3.1 — Big-name display.** Currently shows `KOVIDHA SUBASINGHE`. Keep, or use a different display (e.g. just first name)? → `keep it as is`
-- **3.2 — Hero label (tiny line above the name).** Current: *"Intern Software Engineer · Undergraduate"*. → keep as is
+- **3.2 — Hero label (tiny line above the name).** Current: *"Associate Software Engineer · Undergraduate"*. → keep as is
 - **3.3 — Hero bio (the punchy 2-liner).** Current:
   > "Software engineering undergraduate building real systems for real clients. Backend-focused · automation at Innobot Health · architecture-minded." Keep / rewrite / give me bullet facts and I'll write it → keep as is **3.4 — Giant background watchword.** Current: `BACKEND`. One word that defines you. → `BACKEND`
 
@@ -166,7 +166,7 @@ For **each role**, confirm or edit. Add rows for anything missing.
 **6.1 — Innobot Health**
 
 - Dates: `Sep 2025 – Present` *(or Nov — see Q1.6)* → `Nov 11th`
-- Role: `Intern Software Engineer` → `____`
+- Role: `Associate Software Engineer` → `____`
 - Company / location: `Innobot Health · Remote (USA healthcare)` → `____`
 - What you do (1–2 lines or bullets): current = *"Python automations and RPA for US
 healthcare/insurance operations — Selenium workflows, Google API integrations, multi-step
@@ -191,7 +191,7 @@ PHP, MySQL, JS, Bootstrap; ongoing client support."* → `____`
 owning architecture, build, maintenance."* → `____`
 - Tags: `PHP, MySQL, Client work` → `____`
 
-**6.4 — Any other roles/jobs/internships** to add (or remove)? → `____`
+**6.4 — Any other roles/jobs** to add (or remove)? → `____`
 
 ---
 
@@ -343,7 +343,7 @@ through? → `____`
 
 - **15.1 — Search keywords** you specifically want to rank for → `kovidha, kovidha subasinghe, chocoholic`
 - **15.2 — Meta description tweaks** (the blurb shown in Google results) → `___`
-- **15.3 — Preferred site title format** (current: "Kovidha Subasinghe | Intern Software Engineer & SWE Undergraduate") → Kovidha Subasinghe | Let's collaborate
+- **15.3 — Preferred site title format** (current: "Kovidha Subasinghe | Associate Software Engineer & SWE Undergraduate") → Kovidha Subasinghe | Let's collaborate
 
 ---
 
